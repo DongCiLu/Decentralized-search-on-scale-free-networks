@@ -1,0 +1,153 @@
+\relax 
+\citation{Abraham:2011:HLA:2008623.2008645}
+\citation{Vieira:2007:ESR:1321440.1321520}
+\citation{Kempe:2003:MSI:956750.956769}
+\citation{Tang:2003:VLI:948205.948223}
+\citation{Potamias:2009:FSP:1645953.1646063}
+\citation{tretyakov2011fast}
+\citation{Akiba:2012:SQC:2247596.2247614}
+\citation{6399472}
+\citation{Jin:2012:HLA:2213836.2213887}
+\citation{Thorup:2005:ADO:1044731.1044732}
+\citation{Goldberg:2005:CSP:1070432.1070455}
+\citation{Potamias:2009:FSP:1645953.1646063}
+\citation{Gubichev:2010:FAE:1871437.1871503}
+\citation{tretyakov2011fast}
+\citation{6399472}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{\thepage }}
+\newlabel{introduction}{{1}{\thepage }}
+\citation{Kleinberg:2000p5066}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contributions}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Preliminaries}{\thepage }}
+\newlabel{preliminary}{{2}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Notations}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Problem formulation}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Landmark based indexes}{\thepage }}
+\newlabel{equ:upper}{{1}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Distance of path estimated by distance-only label and path label. The dashed curved line shows the path estimated by the distance-only label. The solid curved line shows the path estimated by the path label.}}{\thepage }}
+\newlabel{fig:basic_lca}{{1}{\thepage }}
+\newlabel{equ:lower}{{2}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}The least common ancestor distance}{\thepage }}
+\newlabel{equ:lca}{{3}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Decentralized search finds edges that are invisible to labels of the source and target vertices. The dashed curved line shows the path found by LCA distance. The solid curved line shows the path found by the decentralized search.}}{\thepage }}
+\newlabel{fig:basic_dec}{{2}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Decentralized search for \\ shortest path approximation}{\thepage }}
+\newlabel{searching}{{3}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Index guided decentralized search}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Decentralized search explores the edges that are not directly connected to the indexed shortest path. Edge $(4, 9)$ cannot be found by solely searching circles in the path by LCA distance.}}{\thepage }}
+\newlabel{fig:dec_common}{{3}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Early termination}{\thepage }}
+\newlabel{equ:term}{{4}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Bi-directional search}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Bidirectional decentralized search can explore different set of edges which may found path at different length. Searches start at vertex $7$ will lead to a path shorter than starting at $20$ by taking advantage of the edge $(5, 19)$.}}{\thepage }}
+\newlabel{fig:bi_dec}{{4}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Handle ties in decentralized search}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Tie happens during decentralized search. Although LCA distances are the same, selecting different neighbor will search different part of the graph which may lead to paths at different length.}}{\thepage }}
+\newlabel{fig:tie}{{5}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Index Construction}{\thepage }}
+\newlabel{preprocessing}{{4}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Impact of index on query accuracy}{\thepage }}
+\citation{180251}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Decentralized search selects vertices with lowest common ancestor with target vertex at each step.}}{\thepage }}
+\newlabel{fig:vis_dec}{{6}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Heuristic index construction algorithm}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Distributed Implementations}{\thepage }}
+\newlabel{implementation}{{5}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Decentralized search vertex-program}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Heuristic algorithm that index shortest path with highest path degree during breadth first search}}{\thepage }}
+\newlabel{fig:bfs_illustrate}{{7}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces System overview.}}{\thepage }}
+\newlabel{fig:system}{{8}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Index construction vertex-program}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Breaking ties}{\thepage }}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Algorithm decentralized search vertex program running on $u$}}{\thepage }}
+\newlabel{alg:vc_dec}{{1}{\thepage }}
+\citation{callaway2000network}
+\citation{180251}
+\citation{snapnets}
+\citation{snapnets}
+\citation{nr}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Algorithm heuristic index construction vertex program running on $u$}}{\thepage }}
+\newlabel{alg:vc_bfs}{{2}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Hot-spot prevention}{\thepage }}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Datasets}}{\thepage }}
+\newlabel{table:datasets}{{1}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Evaluations}{\thepage }}
+\newlabel{evaluation}{{6}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Datasets}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Approximation Accuracy}{\thepage }}
+\newlabel{eval_accuracy}{{6.2}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The accuracy of the approximated distance of decentralized search and various optimizations compared to LCA distance.}}{\thepage }}
+\newlabel{fig:accuracy_dec}{{9}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Impact of index quality on the accuracy of both decentralized search and label comparison.}}{\thepage }}
+\newlabel{fig:accuracy_index}{{10}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The time and space overhead for preprocessing for a single landmark by heuristic and random index construction}}{\thepage }}
+\newlabel{fig:overhead_index}{{11}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Overhead}{\thepage }}
+\newlabel{eval_overhead}{{6.3}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The average search time of decentralized search with various optimizations.}}{\thepage }}
+\newlabel{fig:overhead_search}{{12}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Scalability}{\thepage }}
+\newlabel{eval_scalability}{{6.4}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces The average search time as the number of machines increase}}{\thepage }}
+\newlabel{fig:scale_machine}{{13}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces The average search time as the number of queries increase}}{\thepage }}
+\newlabel{fig:scale_query}{{14}{\thepage }}
+\citation{Cohen:2002:RDQ:545381.545503}
+\citation{Akiba:2013:FES:2463676.2465315}
+\citation{Akiba:2012:SQC:2247596.2247614}
+\citation{Wei:2010:TES:1807167.1807181}
+\citation{Akiba:2013:FES:2463676.2465315}
+\citation{Jin:2012:HLA:2213836.2213887}
+\citation{Fu:2013:IIB:2536336.2536346}
+\citation{Thorup:2005:ADO:1044731.1044732}
+\citation{Goldberg:2005:CSP:1070432.1070455}
+\citation{Potamias:2009:FSP:1645953.1646063}
+\citation{floreskul2014memory}
+\citation{Maier:2011:INS:1993077.1993079}
+\citation{Thorup:2005:ADO:1044731.1044732}
+\citation{Potamias:2009:FSP:1645953.1646063}
+\citation{6927522}
+\citation{Akiba:2012:SQC:2247596.2247614}
+\citation{Gubichev:2010:FAE:1871437.1871503}
+\citation{tretyakov2011fast}
+\citation{6399472}
+\citation{7004250}
+\citation{Zhao:2010:OSP:1863190.1863199}
+\citation{Goldberg:2005:CSP:1070432.1070455}
+\citation{Gubichev:2010:FAE:1871437.1871503}
+\bibstyle{abbrv}
+\bibdata{reference}
+\bibcite{Abraham:2011:HLA:2008623.2008645}{1}
+\bibcite{Akiba:2013:FES:2463676.2465315}{2}
+\bibcite{Akiba:2012:SQC:2247596.2247614}{3}
+\bibcite{callaway2000network}{4}
+\bibcite{7004250}{5}
+\bibcite{Cohen:2002:RDQ:545381.545503}{6}
+\bibcite{floreskul2014memory}{7}
+\bibcite{Fu:2013:IIB:2536336.2536346}{8}
+\bibcite{Goldberg:2005:CSP:1070432.1070455}{9}
+\bibcite{180251}{10}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces The average search time for different size of graphs}}{\thepage }}
+\newlabel{fig:scale_graph}{{15}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Works}{\thepage }}
+\newlabel{relatedwork}{{7}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{\thepage }}
+\newlabel{conclusion}{{8}{\thepage }}
+\@writefile{toc}{\contentsline {section}{\numberline {9}References}{\thepage }}
+\bibcite{Gubichev:2010:FAE:1871437.1871503}{11}
+\bibcite{Jin:2012:HLA:2213836.2213887}{12}
+\bibcite{Kempe:2003:MSI:956750.956769}{13}
+\bibcite{Kleinberg:2000p5066}{14}
+\bibcite{snapnets}{15}
+\bibcite{Maier:2011:INS:1993077.1993079}{16}
+\bibcite{Potamias:2009:FSP:1645953.1646063}{17}
+\bibcite{6399472}{18}
+\bibcite{nr}{19}
+\bibcite{6927522}{20}
+\bibcite{Tang:2003:VLI:948205.948223}{21}
+\bibcite{Thorup:2005:ADO:1044731.1044732}{22}
+\bibcite{tretyakov2011fast}{23}
+\bibcite{Vieira:2007:ESR:1321440.1321520}{24}
+\bibcite{Wei:2010:TES:1807167.1807181}{25}
+\bibcite{Zhao:2010:OSP:1863190.1863199}{26}

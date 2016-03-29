@@ -1,0 +1,176 @@
+\begin{thebibliography}{10}
+
+\bibitem{Abraham:2011:HLA:2008623.2008645}
+I.~Abraham, D.~Delling, A.~V. Goldberg, and R.~F. Werneck.
+\newblock A hub-based labeling algorithm for shortest paths in road networks.
+\newblock In {\em Proceedings of the 10th International Conference on
+  Experimental Algorithms}, SEA'11, pages 230--241, Berlin, Heidelberg, 2011.
+  Springer-Verlag.
+
+\bibitem{Akiba:2013:FES:2463676.2465315}
+T.~Akiba, Y.~Iwata, and Y.~Yoshida.
+\newblock Fast exact shortest-path distance queries on large networks by pruned
+  landmark labeling.
+\newblock In {\em Proceedings of the 2013 ACM SIGMOD International Conference
+  on Management of Data}, SIGMOD '13, pages 349--360, New York, NY, USA, 2013.
+  ACM.
+
+\bibitem{Akiba:2012:SQC:2247596.2247614}
+T.~Akiba, C.~Sommer, and K.-i. Kawarabayashi.
+\newblock Shortest-path queries for complex networks: Exploiting low tree-width
+  outside the core.
+\newblock In {\em Proceedings of the 15th International Conference on Extending
+  Database Technology}, EDBT '12, pages 144--155, New York, NY, USA, 2012. ACM.
+
+\bibitem{callaway2000network}
+D.~S. Callaway, M.~E. Newman, S.~H. Strogatz, and D.~J. Watts.
+\newblock Network robustness and fragility: Percolation on random graphs.
+\newblock {\em Physical review letters}, 85(25):5468, 2000.
+
+\bibitem{7004250}
+M.~Christoforaki and T.~Suel.
+\newblock Estimating pairwise distances in large graphs.
+\newblock In {\em Big Data (Big Data), 2014 IEEE International Conference on},
+  pages 335--344, Oct 2014.
+
+\bibitem{Cohen:2002:RDQ:545381.545503}
+E.~Cohen, E.~Halperin, H.~Kaplan, and U.~Zwick.
+\newblock Reachability and distance queries via 2-hop labels.
+\newblock In {\em Proceedings of the Thirteenth Annual ACM-SIAM Symposium on
+  Discrete Algorithms}, SODA '02, pages 937--946, Philadelphia, PA, USA, 2002.
+  Society for Industrial and Applied Mathematics.
+
+\bibitem{floreskul2014memory}
+V.~Floreskul, K.~Tretyakov, and M.~Dumas.
+\newblock Memory-efficient fast shortest path estimation in large social
+  networks.
+\newblock In {\em Eighth International AAAI Conference on Weblogs and Social
+  Media}, 2014.
+
+\bibitem{Fu:2013:IIB:2536336.2536346}
+A.~W.-C. Fu, H.~Wu, J.~Cheng, and R.~C.-W. Wong.
+\newblock Is-label: An independent-set based labeling scheme for point-to-point
+  distance querying.
+\newblock {\em Proc. VLDB Endow.}, 6(6):457--468, Apr. 2013.
+
+\bibitem{Goldberg:2005:CSP:1070432.1070455}
+A.~V. Goldberg and C.~Harrelson.
+\newblock Computing the shortest path: A search meets graph theory.
+\newblock In {\em Proceedings of the Sixteenth Annual ACM-SIAM Symposium on
+  Discrete Algorithms}, SODA '05, pages 156--165, Philadelphia, PA, USA, 2005.
+  Society for Industrial and Applied Mathematics.
+
+\bibitem{180251}
+J.~E. Gonzalez, Y.~Low, H.~Gu, D.~Bickson, and C.~Guestrin.
+\newblock Powergraph: Distributed graph-parallel computation on natural graphs.
+\newblock In {\em Presented as part of the 10th USENIX Symposium on Operating
+  Systems Design and Implementation (OSDI 12)}, pages 17--30, Hollywood, CA,
+  2012. USENIX.
+
+\bibitem{Gubichev:2010:FAE:1871437.1871503}
+A.~Gubichev, S.~Bedathur, S.~Seufert, and G.~Weikum.
+\newblock Fast and accurate estimation of shortest paths in large graphs.
+\newblock In {\em Proceedings of the 19th ACM International Conference on
+  Information and Knowledge Management}, CIKM '10, pages 499--508, New York,
+  NY, USA, 2010. ACM.
+
+\bibitem{Jin:2012:HLA:2213836.2213887}
+R.~Jin, N.~Ruan, Y.~Xiang, and V.~Lee.
+\newblock A highway-centric labeling approach for answering distance queries on
+  large sparse graphs.
+\newblock In {\em Proceedings of the 2012 ACM SIGMOD International Conference
+  on Management of Data}, SIGMOD '12, pages 445--456, New York, NY, USA, 2012.
+  ACM.
+
+\bibitem{Kempe:2003:MSI:956750.956769}
+D.~Kempe, J.~Kleinberg, and E.~Tardos.
+\newblock Maximizing the spread of influence through a social network.
+\newblock In {\em Proceedings of the Ninth ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, KDD '03, pages 137--146, New York,
+  NY, USA, 2003. ACM.
+
+\bibitem{Kleinberg:2000p5066}
+J.~Kleinberg.
+\newblock Navigation in a small world.
+\newblock {\em Nature}, 406:845, 2000.
+
+\bibitem{snapnets}
+J.~Leskovec and A.~Krevl.
+\newblock {SNAP Datasets}: {Stanford} large network dataset collection.
+\newblock {http://snap.stanford.edu/data}, June 2014.
+
+\bibitem{Maier:2011:INS:1993077.1993079}
+M.~Maier, M.~Rattigan, and D.~Jensen.
+\newblock Indexing network structure with shortest-path trees.
+\newblock {\em ACM Trans. Knowl. Discov. Data}, 5(3):15:1--15:25, Aug. 2011.
+
+\bibitem{Potamias:2009:FSP:1645953.1646063}
+M.~Potamias, F.~Bonchi, C.~Castillo, and A.~Gionis.
+\newblock Fast shortest path distance estimation in large networks.
+\newblock In {\em Proceedings of the 18th ACM Conference on Information and
+  Knowledge Management}, CIKM '09, pages 867--876, New York, NY, USA, 2009.
+  ACM.
+
+\bibitem{6399472}
+M.~Qiao, H.~Cheng, L.~Chang, and J.~Yu.
+\newblock Approximate shortest distance computing: A query-dependent local
+  landmark scheme.
+\newblock {\em Knowledge and Data Engineering, IEEE Transactions on},
+  26(1):55--68, Jan 2014.
+
+\bibitem{nr}
+R.~A. Rossi and N.~K. Ahmed.
+\newblock The network data repository with interactive graph analytics and
+  visualization.
+\newblock In {\em Proceedings of the Twenty-Ninth AAAI Conference on Artificial
+  Intelligence}, 2015.
+
+\bibitem{6927522}
+F.~Takes and W.~Kosters.
+\newblock Adaptive landmark selection strategies for fast shortest path
+  computation in large real-world graphs.
+\newblock In {\em Web Intelligence (WI) and Intelligent Agent Technologies
+  (IAT), 2014 IEEE/WIC/ACM International Joint Conferences on}, volume~1, pages
+  27--34, Aug 2014.
+
+\bibitem{Tang:2003:VLI:948205.948223}
+L.~Tang and M.~Crovella.
+\newblock Virtual landmarks for the internet.
+\newblock In {\em Proceedings of the 3rd ACM SIGCOMM Conference on Internet
+  Measurement}, IMC '03, pages 143--152, New York, NY, USA, 2003. ACM.
+
+\bibitem{Thorup:2005:ADO:1044731.1044732}
+M.~Thorup and U.~Zwick.
+\newblock Approximate distance oracles.
+\newblock {\em J. ACM}, 52(1):1--24, Jan. 2005.
+
+\bibitem{tretyakov2011fast}
+K.~Tretyakov, A.~Armas-Cervantes, L.~Garc{\'\i}a-Ba{\~n}uelos, J.~Vilo, and
+  M.~Dumas.
+\newblock Fast fully dynamic landmark-based estimation of shortest path
+  distances in very large graphs.
+\newblock In {\em Proceedings of the 20th ACM international conference on
+  Information and knowledge management}, pages 1785--1794. ACM, 2011.
+
+\bibitem{Vieira:2007:ESR:1321440.1321520}
+M.~V. Vieira, B.~M. Fonseca, R.~Damazio, P.~B. Golgher, D.~d.~C. Reis, and
+  B.~Ribeiro-Neto.
+\newblock Efficient search ranking in social networks.
+\newblock In {\em Proceedings of the Sixteenth ACM Conference on Conference on
+  Information and Knowledge Management}, CIKM '07, pages 563--572, New York,
+  NY, USA, 2007. ACM.
+
+\bibitem{Wei:2010:TES:1807167.1807181}
+F.~Wei.
+\newblock Tedi: Efficient shortest path query answering on graphs.
+\newblock In {\em Proceedings of the 2010 ACM SIGMOD International Conference
+  on Management of Data}, SIGMOD '10, pages 99--110, New York, NY, USA, 2010.
+  ACM.
+
+\bibitem{Zhao:2010:OSP:1863190.1863199}
+X.~Zhao, A.~Sala, C.~Wilson, H.~Zheng, and B.~Y. Zhao.
+\newblock Orion: Shortest path estimation for large social graphs.
+\newblock In {\em Proceedings of the 3rd Wonference on Online Social Networks},
+  WOSN'10, pages 9--9, Berkeley, CA, USA, 2010. USENIX Association.
+
+\end{thebibliography}
