@@ -1,0 +1,29 @@
+" File : vimrc.local
+" Creater : lovexy
+" Date : 2010/11/20
+
+filetype indent on
+filetype on
+filetype plugin on
+
+set nobackup
+set nowritebackup
+set mouse=a
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smarttab
+set expandtab
+
+set fileformat=unix
+set fileformats=unix,dos
+
+map <right> : bn<enter>
+map <left>  : bp<enter>
+
+" nesc highlighting
+augroup filetypedetect 
+  au! BufRead,BufNewFile *nc setfiletype nc 
+augroup END
