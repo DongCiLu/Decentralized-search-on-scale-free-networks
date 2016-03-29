@@ -8,8 +8,8 @@ ssh-copy-id lanterns2.eecs.utk.edu
 sudo chown zlu12 /local
 sudo chown zlu12 /mydata
 
-svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/DecSearch /local/DecSearch
-svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/Scripts /local/Scripts
+# svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/DecSearch /local/DecSearch
+# svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/Scripts /local/Scripts
 
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
