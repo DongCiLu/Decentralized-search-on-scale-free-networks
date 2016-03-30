@@ -46,7 +46,7 @@ make -j2
 ln -s /mydata /local/PowerGraph/release/apps/ds_dist/datasets
 ln -s /local/DecSearch/results /local/PowerGraph/release/apps/ds_dist/results
 ln -s /local/DecSearch/distributed/utils/simple_multi.sh /local/PowerGraph/release/apps/ds_dist/simple.sh
-ln -s /local/DecSearch/distributed/utils/load.sh /local/PowerGraph/release/apps/ds_dist/load.sh
+cp /local/DecSearch/distributed/utils/load.sh /local/PowerGraph/release/apps/ds_dist/load.sh
 mkdir binary
 mv ds_dist binary/ds_dist_test
 

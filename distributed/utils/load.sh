@@ -1,10 +1,6 @@
-echo $$
 echo "%CPU %MEM ARGS $(date)" > load.log
-while true;
+while [ -e "load.log" ];
 do 
-    if [ -e "load.log" ]
-    then
-        ps -e -o pcpu,pmem,args | grep "ds_dist" | grep -v "grep" >> load.log;
-    fi
-    sleep 1;
+    ps -e -o pcpu,pmem,args | grep "ds_dist" | grep -v "grep" | grep -v "load.sh" >> load.log;
+    sleep 0.1;
 done
