@@ -1,6 +1,5 @@
 hostname_master=$HOSTNAME
-# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
-hostname_prefix_array=("node-0" "node-1")
+hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
 
 sudo chown zlu12 /mydata
 
