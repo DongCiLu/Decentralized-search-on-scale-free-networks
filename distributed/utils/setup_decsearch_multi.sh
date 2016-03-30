@@ -24,7 +24,7 @@ done
 # scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
 # scp -r lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases /mydata
 
-scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/wiki /mydata
+scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/wiki_wcc.txt /mydata
 mkdir /mydata/testcases/
 mkdir /mydata/testcases/withreal
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases/withreal/wiki_testcases.txt /mydata
