@@ -2,10 +2,6 @@ hostname_master=$HOSTNAME
 # hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
 hostname_prefix_array=("node-0" "node-1")
 
-# prompts first
-ssh-keygen
-ssh-copy-id lanterns2.eecs.utk.edu
-
 sudo chown zlu12 /local
 sudo chown zlu12 /mydata
 
@@ -15,6 +11,8 @@ for hostname_node in "${hostname_prefix_array[@]}"
 do
     ssh -i /local/DecSearch/distributed/utils/others/cloud_zlu12_pkey_openssh ${hostname_master//node-0/$hostname_node} 'sh' < /local/DecSearch/distributed/utils/cloudlab_passwordless_ssh.sh
 done
+
+ssh-copy-id lanterns2.eecs.utk.edu
 
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
