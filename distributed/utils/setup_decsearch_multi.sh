@@ -21,13 +21,13 @@ do
 done
 
 # scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
-# scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
-# scp -r lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases /mydata
+scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
+scp -r lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases /mydata
 
-scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/wiki_wcc.txt /mydata
-mkdir /mydata/testcases/
-mkdir /mydata/testcases/withreal
-scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases/withreal/wiki_testcases.txt /mydata/testcases/withreal
+# scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/wiki_wcc.txt /mydata
+# mkdir /mydata/testcases/
+# mkdir /mydata/testcases/withreal
+# scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases/withreal/wiki_testcases.txt /mydata/testcases/withreal
 
 sudo apt-get update
 sudo apt-get -y install vim ssh gcc g++ build-essential cmake zlib1g-dev git automake  
