@@ -43,7 +43,7 @@ do
                 for hostname_node in "${hostname_prefix_array[@]}"
                 do
                     remote_node=${hostname_master//node-0/$hostname_node}
-                    ssh $remote_node '/local/Powergraph/release/apps/ds_dist/load.sh' &
+                    ssh $remote_node '/local/PowerGraph/release/apps/ds_dist/load.sh' &
                 done
                 cm1_mod5=${cm1_mod4//n_exp/${n_exp[$l]}} 
                 ${cm1_mod5//class/$class}
