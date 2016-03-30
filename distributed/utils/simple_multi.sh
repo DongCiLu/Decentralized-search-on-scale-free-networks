@@ -4,7 +4,7 @@ gn_array=("sinaweibo" "webuk")
 data_folder="datasets"
 exec_folder="binary"
 res_folder="results"
-testcase_folder="datasets"
+testcase_folder="datasets/testcases/withreal"
 
 n_cores=(2)
 n_exp=(100000)
