@@ -12,9 +12,9 @@
 
 #define EARLY_TERMINATION //Never turn off
 //#define BIDIRECTIONAL_SEARCH
-#define TIE_FULL
+//#define TIE_FULL
 //#define LABEL_DEG
-#define SELECTIVE_LCA
+//#define SELECTIVE_LCA
 //#define TIE_HEUR
 
 //#define CALC_REAL //Turn off all the others when turn this on

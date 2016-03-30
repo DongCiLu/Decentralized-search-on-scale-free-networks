@@ -1,5 +1,5 @@
 # gn_array=("wiki" "skitter" "bio" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
-gn_array=("wiki" "skitter" "bio" "baidu" "Livejournal" "hollywood")
+gn_array=("wiki")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -10,8 +10,8 @@ testcase_folder="datasets/testcases/withreal" # only enable when you need accura
 n_cores=(4)
 n_exp=(10000)
 n_machines=(1)
-n_tree=(2 5)
-posfix=("tiefull" "tiefull") # if use real, dont forget to change the testcase directory
+n_tree=(1)
+posfix=("test") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /home/$USER/PowerGraph/scripts/mpirsync"
