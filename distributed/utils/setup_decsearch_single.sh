@@ -1,7 +1,3 @@
-#!/bin/sh
-
-# prompts first
-
 ssh-keygen
 ssh-copy-id lanterns2.eecs.utk.edu
 
