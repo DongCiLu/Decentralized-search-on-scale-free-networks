@@ -9,7 +9,7 @@ ssh-copy-id lanterns2.eecs.utk.edu
 sudo chown zlu12 /local
 sudo chown zlu12 /mydata
 
-sudo chmod 600 /local/DecSearch/distributed/utils/others/could_zlu12_pkey_openssh
+sudo chmod 600 /local/DecSearch/distributed/utils/others/cloud_zlu12_pkey_openssh
 
 for hostname_node in "${hostname_prefix_array[@]}"
 do
