@@ -1,15 +1,20 @@
 #!/bin/sh
 
-# prompts first
+hostname_master=${hostname}
+# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
+hostname_prefix_array=("node-0" "node-1")
 
+# prompts first
 ssh-keygen
 ssh-copy-id lanterns2.eecs.utk.edu
 
 sudo chown zlu12 /local
 sudo chown zlu12 /mydata
 
-# svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/DecSearch /local/DecSearch
-# svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/Scripts /local/Scripts
+for hostname_node in "${hostname_prefix_array[@]}"
+do
+    ssh -i /local/DecSearch/distributed/utils/others/cloud_zlu12_pkey_openssh ${hostname_master//node-0/$hostname_node} 'bash -s' < /local/DecSearch/distributed/utils/cloudlab_passwordless_ssh.sh
+done
 
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
@@ -38,15 +43,18 @@ cd /local/PowerGraph
 cp /local/DecSearch/distributed/utils/boost_1_53_0.tar.gz /local/PowerGraph/deps/boost/src/
 cp /local/DecSearch/distributed/utils/libevent-2.0.18-stable.tar.gz /local/PowerGraph/deps/event/src/
 cd /local/PowerGraph/release/apps/ds_dist/
-make -j8
+make -j2
 
 ln -s /mydata /local/PowerGraph/release/apps/ds_dist/datasets
 ln -s /local/DecSearch/results /local/PowerGraph/release/apps/ds_dist/results
-ln -s /local/DecSearch/distributed/utils/simple_monster.sh /local/PowerGraph/release/apps/ds_dist/simple.sh
+ln -s /local/DecSearch/distributed/utils/simple_multi.sh /local/PowerGraph/release/apps/ds_dist/simple.sh
+ln -s /local/DecSearch/distributed/utils/load.sh /local/PowerGraph/release/apps/ds_dist/load.sh
 mkdir binary
 mv ds_dist binary/ds_dist_test
 
-hostname > /local/PowerGraph/release/apps/ds_dist/machines
-sudo ln -s /local/Scripts/vimrc.local /etc/vim/vimrc.local
+for hostname_node in "${hostname_prefix_array[@]}"
+do
+    echo ${hostname_master//node-0/$hostname_node} >> /local/PowerGraph/release/apps/ds_dist/machines
+done
 
 echo "You are all set."
