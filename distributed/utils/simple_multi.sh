@@ -9,7 +9,7 @@ exec_folder="binary"
 res_folder="results"
 testcase_folder="datasets/testcases/withreal"
 
-n_cores=(2)
+n_cores=(8)
 n_exp=(10000)
 n_machines=(8)
 n_tree=(1)
