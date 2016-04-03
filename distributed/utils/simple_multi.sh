@@ -7,7 +7,7 @@ hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "no
 data_folder="datasets"
 exec_folder="binary"
 res_folder="results"
-testcase_folder="datasets/testcases/withreal"
+testcase_folder="datasets/testcases/regular"
 
 n_cores=(8)
 n_exp=(10000)
