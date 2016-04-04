@@ -2,6 +2,9 @@
 #define DEC_SEARCH_H
 
 #include "common.hpp"
+#ifdef DEBUG_SHOW_STEP
+#include <time.h>
+#endif
 
 struct hop_msg_type {
     std::vector<gsInstance> inst_set; // instance id to instance
@@ -178,6 +181,19 @@ class dec_search :
 
         edge_dir_type gather_edges(icontext_type& context, 
                 const vertex_type& vertex) const { 
+#ifdef DEBUG_SHOW_STEP
+            if (procid == 0) {
+                int super_step = inst_set.begin()->path.size();
+                if (step_flags[super_step][0] == 0) {
+                    step_mtx.lock();
+                    time_t timer = time(NULL);
+                    std::cout << super_step << " gather: " << timer << std::endl;
+                    step_flags[super_step][0] = 1;
+                    step_mtx.unlock();
+                }
+            }
+#endif
+
             return DIRECTED_GRAPH? graphlab::OUT_EDGES : 
                 graphlab::ALL_EDGES; 
         } // end of gather_edges 
@@ -225,6 +241,18 @@ class dec_search :
 
         void apply(icontext_type& context, vertex_type& vertex,
                 const min_code_distance_type& min_code_dist) {
+#ifdef DEBUG_SHOW_STEP
+            if (procid == 0) {
+                int super_step = inst_set.begin()->path.size();
+                if (step_flags[super_step][1] == 0) {
+                    step_mtx.lock();
+                    time_t timer = time(NULL);
+                    std::cout << super_step << " apply: " << timer << std::endl;
+                    step_flags[super_step][1] = 1;
+                    step_mtx.unlock();
+                }
+            }
+#endif
             std::vector<mc_instance>::const_iterator mcIter = 
                 min_code_dist.mc_inst_set.begin();
             std::vector<gsInstance>::iterator iter = inst_set.begin();
@@ -296,6 +324,18 @@ class dec_search :
 
         edge_dir_type scatter_edges(icontext_type& context, 
                 const vertex_type& vertex) const {
+#ifdef DEBUG_SHOW_STEP
+            if (procid == 0) {
+                int super_step = inst_set.begin()->path.size();
+                if (step_flags[super_step][2] == 0) {
+                    step_mtx.lock();
+                    time_t timer = time(NULL);
+                    std::cout << super_step << " scatter: " << timer << std::endl;
+                    step_flags[super_step][2] = 1;
+                    step_mtx.unlock();
+                }
+            }
+#endif
             if (!inst_set.empty())
                 return DIRECTED_GRAPH? graphlab::OUT_EDGES : 
                     graphlab::ALL_EDGES; 

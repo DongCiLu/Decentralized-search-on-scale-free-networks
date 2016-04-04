@@ -51,6 +51,12 @@ class query_handler{
                 std::min(this->n_query, this->n_query_batch);
             procid = this->dc->procid();
             in.open(this->input_file.c_str());
+#ifdef DEBUG_SHOW_STEP
+            step_flags.resize(20);
+            for (int i = 0; i < 20; i++){
+                step_flags[i].resize(5, 0);
+            }
+#endif
         }
 
         ~query_handler() {

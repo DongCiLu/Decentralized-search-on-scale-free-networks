@@ -53,6 +53,7 @@ cp /local/DecSearch/distributed/utils/libevent-2.0.18-stable.tar.gz /local/Power
 cd /local/PowerGraph/release/apps/ds_dist/
 make -j2
 
+ln -s /local/DecSearch/distributed /local/PowerGraph/release/apps/ds_dist/src
 ln -s /mydata /local/PowerGraph/release/apps/ds_dist/datasets
 ln -s /local/DecSearch/results /local/PowerGraph/release/apps/ds_dist/results
 ln -s /local/DecSearch/distributed/utils/simple_multi.sh /local/PowerGraph/release/apps/ds_dist/simple.sh
