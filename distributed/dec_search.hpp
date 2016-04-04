@@ -328,7 +328,7 @@ class dec_search :
             if (procid == 0) {
                 step_mtx.lock();
                 int super_step = 0;
-                for (int i = 0; i < 20; i++) {
+                for (int i = 1; i < 20; i++) {
                     if (step_flags[i][1] == 1)
                         super_step = i;
                     else
