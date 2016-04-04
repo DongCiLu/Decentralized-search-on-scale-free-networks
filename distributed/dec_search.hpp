@@ -327,7 +327,13 @@ class dec_search :
 #ifdef DEBUG_SHOW_STEP
             if (procid == 0) {
                 step_mtx.lock();
-                int super_step = inst_set.begin()->path.size();
+                int super_step = 0;
+                for (int i = 0; i < 20; i++) {
+                    if (step_flags[i][1] == 1)
+                        super_step = i;
+                    else
+                        break;
+                }
                 if (step_flags[super_step][2] == 0) {
                     time_t timer = time(NULL);
                     std::cout << super_step << " scatter: " << timer << std::endl;
