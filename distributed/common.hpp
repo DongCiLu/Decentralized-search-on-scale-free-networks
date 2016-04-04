@@ -20,7 +20,7 @@
 //#define CALC_REAL //Turn off all the others when turn this on
 
 //#define DEBUG
-#define DEBUG_SHOW_STEP
+//#define DEBUG_SHOW_STEP
 
 /******************* Declear basic types for graph *******************/
 bool DIRECTED_GRAPH = false;
