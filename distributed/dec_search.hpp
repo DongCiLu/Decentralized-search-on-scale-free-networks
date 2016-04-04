@@ -183,14 +183,14 @@ class dec_search :
                 const vertex_type& vertex) const { 
 #ifdef DEBUG_SHOW_STEP
             if (procid == 0) {
+                step_mtx.lock();
                 int super_step = inst_set.begin()->path.size();
                 if (step_flags[super_step][0] == 0) {
-                    step_mtx.lock();
                     time_t timer = time(NULL);
                     std::cout << super_step << " gather: " << timer << std::endl;
                     step_flags[super_step][0] = 1;
-                    step_mtx.unlock();
                 }
+                step_mtx.unlock();
             }
 #endif
 
@@ -243,14 +243,14 @@ class dec_search :
                 const min_code_distance_type& min_code_dist) {
 #ifdef DEBUG_SHOW_STEP
             if (procid == 0) {
+                step_mtx.lock();
                 int super_step = inst_set.begin()->path.size();
                 if (step_flags[super_step][1] == 0) {
-                    step_mtx.lock();
                     time_t timer = time(NULL);
                     std::cout << super_step << " apply: " << timer << std::endl;
                     step_flags[super_step][1] = 1;
-                    step_mtx.unlock();
                 }
+                step_mtx.unlock();
             }
 #endif
             std::vector<mc_instance>::const_iterator mcIter = 
@@ -326,14 +326,14 @@ class dec_search :
                 const vertex_type& vertex) const {
 #ifdef DEBUG_SHOW_STEP
             if (procid == 0) {
+                step_mtx.lock();
                 int super_step = inst_set.begin()->path.size();
                 if (step_flags[super_step][2] == 0) {
-                    step_mtx.lock();
                     time_t timer = time(NULL);
                     std::cout << super_step << " scatter: " << timer << std::endl;
                     step_flags[super_step][2] = 1;
-                    step_mtx.unlock();
                 }
+                step_mtx.unlock();
             }
 #endif
             if (!inst_set.empty())
