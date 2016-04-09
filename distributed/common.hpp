@@ -28,9 +28,6 @@ typedef std::vector< std::vector<code_type> > label_type;
 
 struct vertex_data {
     label_type code;
-#ifdef TIE_HEUR
-    long potential;
-#endif
 #ifdef CALC_REAL
     size_t flag;
 #endif
@@ -40,9 +37,6 @@ struct vertex_data {
 #endif
 
     vertex_data() {
-#ifdef TIE_HEUR
-        potential = 0;
-#endif
 #ifdef CALC_REAL
         flag = 0;
 #endif
@@ -54,9 +48,6 @@ struct vertex_data {
 
     void save(graphlab::oarchive& oarc) const {
         oarc << code;
-#ifdef TIE_HEUR
-        oarc << potential;
-#endif
 #ifdef CALC_REAL
         oarc << flag;
 #endif
@@ -68,9 +59,6 @@ struct vertex_data {
 
     void load(graphlab::iarchive& iarc) {
         iarc >> code;
-#ifdef TIE_HEUR
-        iarc >> potential;
-#endif
 #ifdef CALC_REAL
         iarc >> flag;
 #endif

@@ -91,16 +91,9 @@ struct min_code_distance_type {
     min_code_distance_type() { } 
 
     // create an gather instance from one point to all gsInstance
-#ifdef TIE_HEUR
-    min_code_distance_type(graphlab::vertex_id_type vid, 
-            const label_type& vcode, 
-            const std::vector<gsInstance>& inst_set,
-            long potential) {
-#else
     min_code_distance_type(graphlab::vertex_id_type vid, 
             const label_type& vcode, 
             const std::vector<gsInstance>& inst_set) {
-#endif
 #ifdef TIE_FULL
         std::set<graphlab::vertex_id_type> vids;
         vids.insert(vid);
@@ -110,10 +103,8 @@ struct min_code_distance_type {
                 iter != inst_set.end(); ++iter) {
             distance_type dist = 
                 get_code_dist(vcode, iter->dst_code);
-#if defined(TIE_FULL)
+#ifdef TIE_FULL
             mc_instance mcInst(iter->id, dist, vids);
-#elif defined(TIE_HEUR)
-            mc_instance mcInst(iter->id, dist, vid, potential);
 #else
             mc_instance mcInst(iter->id, dist, vid);
 #endif // TIE_FULL
@@ -131,12 +122,6 @@ struct min_code_distance_type {
             // both vector generate from same set so they are in same order
             if (iter->dist < mc_inst_set[pos].dist) 
                 mc_inst_set[pos] = *iter;
-#ifdef TIE_HEUR
-            else if (iter->dist == mc_inst_set[pos].dist) {
-                if (iter->potential > mc_inst_set[pos].potential)
-                    mc_inst_set[pos] = *iter;
-            }
-#endif //TIE_FULL
 #ifdef TIE_FULL
             else if (iter->dist == mc_inst_set[pos].dist)
                 mc_inst_set[pos].vids.insert(iter->vids.begin(), 
@@ -197,13 +182,8 @@ class dec_search :
             other.data().ignore_cnt += inst_set.size() * ignore_tree_cnt;
 #endif
             other.data().check_cnt += inst_set.size() * other.data().code.size();
-#ifdef TIE_HEUR
-            return min_code_distance_type(other.id(), 
-                    other.data().code, inst_set, other.data().potential);
-#else
             return min_code_distance_type(other.id(), 
                     other.data().code, inst_set);
-#endif
         } // end of gather function
 
         void store_result(std::vector<gsInstance>::iterator iter) {
