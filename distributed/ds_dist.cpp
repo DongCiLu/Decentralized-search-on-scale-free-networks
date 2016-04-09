@@ -68,8 +68,11 @@ int main(int argc, char** argv) {
         "\t#edges:     " << graph.num_edges() << std::endl;
 
     // start the handler here
-    //size_t n_query_batch = 10000;
-    size_t n_query_batch = n_query;
+#ifdef TIE_FULL
+    size_t n_query_batch = 1000;
+#else
+    size_t n_query_batch = 50000;
+#endif
     query_handler qh(n_tree, n_query,
             &dc, &clopts, &graph, 
             input_file, exec_type, 

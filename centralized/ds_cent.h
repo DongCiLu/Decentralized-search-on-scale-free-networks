@@ -10,9 +10,6 @@
 #define TGRAPH_TYPE TNGraph
 #define PGRAPH_TYPE PNGraph
 
-#define TIE_FULL
-#define TIE_HEUR
-
 #include <string>
 #include <vector>
 #include <set>
@@ -46,6 +43,8 @@ class ds_cent {
     private:
         dist_type get_dist(id_type src_id, id_type dst_id, id_type& lca);
         dist_type do_search(id_type src, id_type dst); 
+        dist_type do_search_multi(id_type src, id_type dst); 
+        dist_type do_search_all(id_type src, id_type dst); 
         std::vector< std::pair<id_type, dist_type> > 
             get_bfs_order(std::vector< std::vector<id_type> > sketch);
         dist_type tree_sketch(id_type src, id_type dst);
@@ -68,6 +67,8 @@ class ds_cent {
         size_t total_path_cnt;
 
         dist_type total_real;
+        dist_type total_est_all;
+        dist_type total_est_multi;
         dist_type total_est;
         dist_type total_comp;
         dist_type total_obv;
@@ -76,9 +77,7 @@ class ds_cent {
         size_t num_exp;
         dist_type max_dist;
 
-#ifdef TIE_HEUR
         std::map<id_type, long> unlabeled_degree;
-#endif
 
 };
 

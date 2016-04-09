@@ -24,8 +24,9 @@ string ds_cent<id_type, dist_type>::get_time() {
 template <typename id_type, typename dist_type>
 ds_cent<id_type, dist_type>::ds_cent(string graphfile) : 
     total_tick(0), total_comp_tick(0), total_path_cnt(0),
-    total_real(0), total_est(0), total_comp(0), total_obv(0),
-    num_tree(2), num_exp(1000) {
+    total_real(0), total_est_all(0), total_est_multi(0), 
+    total_est(0), total_comp(0), total_obv(0),
+    num_tree(2), num_exp(3000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -36,9 +37,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile) :
     vector< vector<id_type> > init_code(num_tree); 
     for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); NI < net->EndNI(); NI++) {
         codes.insert(make_pair(NI.GetId(), init_code));
-#ifdef TIE_HEUR
         unlabeled_degree[NI.GetId()] = NI.GetDeg();
-#endif
     }
 
     size_t pos = graphfile.find_last_of("/") + 1;
@@ -155,20 +154,12 @@ void ds_cent<id_type, dist_type>::build_code_sys() {
         clock() - start_tick << "\n" << endl;
 }
 
-#ifdef TIE_FULL
 template <typename id_type, typename dist_type>
-dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
+dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, id_type dst) {
     set<id_type> cur_set, next_set;
-    map<id_type, size_t> path_cnt;
-    map<id_type, size_t> new_path_cnt;
-#ifdef TIE_HEUR
-    map< id_type, pair<size_t, id_type> > lca_vertex;
-#endif
     cur_set.insert(src);
-    path_cnt[src] = 1;
     dist_type est_dist = 0, min_dist = -1; // max dist
     while (*(cur_set.begin()) != dst) {
-        new_path_cnt.clear();
         next_set.clear();
         for (typename set<id_type>::iterator iter = cur_set.begin(); 
                 iter != cur_set.end(); ++iter) {
@@ -180,65 +171,19 @@ dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
                     min_dist = dist;
                     next_set.clear();
                     next_set.insert(cur_vertex.GetNbrNId(i));
-                    new_path_cnt.clear();
-                    new_path_cnt[cur_vertex.GetNbrNId(i)] = 
-                        path_cnt[cur_vertex.GetId()];
-#ifdef TIE_HEUR
-                    lca_vertex.clear();
-                    size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
-                    lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
-#endif
                 }
-#ifdef TIE_HEUR
-                if (dist == min_dist) {
-                    size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
-                    if (lca_vertex.find(lca) == lca_vertex.end()) {
-                        if (new_path_cnt.find(cur_vertex.GetNbrNId(i)) == 
-                                new_path_cnt.end())
-                            new_path_cnt[cur_vertex.GetNbrNId(i)] = 0;
-                        new_path_cnt[cur_vertex.GetNbrNId(i)] += 
-                            path_cnt[cur_vertex.GetId()];
-                        lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
-                    }
-                    else {
-                        if (deg > lca_vertex[lca].second) {
-                            lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
-                        }
-                    }
-                }
-#else
                 if (dist == min_dist) {
                     next_set.insert(cur_vertex.GetNbrNId(i));
-                    if (new_path_cnt.find(cur_vertex.GetNbrNId(i)) == 
-                            new_path_cnt.end())
-                        new_path_cnt[cur_vertex.GetNbrNId(i)] = 0;
-                    new_path_cnt[cur_vertex.GetNbrNId(i)] += 
-                        path_cnt[cur_vertex.GetId()];
-                    existed_lca.insert(lca);
                 }
-#endif
             }
         }
-#ifdef TIE_HEUR
-        for (typename map< id_type, pair<size_t, id_type> >::iterator 
-                iter = lca_vertex.begin();
-                iter != lca_vertex.end(); ++iter)
-            cur_set.insert(iter->second.second);
-#else
         cur_set = next_set;
-#endif
-        path_cnt = new_path_cnt;
             
         // if we will reach dst code
         for (size_t i = 0; i < codes[dst].size(); ++i) {
             for (size_t j = 0; j < codes[dst][i].size(); ++j) {
                 if (cur_set.find(codes[dst][i][j]) != cur_set.end()) {
                     est_dist += codes[dst][i].size() - j;
-                    for(typename map<id_type, size_t>::iterator 
-                            iter = path_cnt.begin();
-                            iter != path_cnt.end();
-                            ++iter)
-                        total_path_cnt += iter->second;
                     return est_dist; 
                 }
             }
@@ -249,7 +194,63 @@ dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
 
     return est_dist; // should never reach here
 }
-#else
+template <typename id_type, typename dist_type>
+dist_type ds_cent<id_type, dist_type>::do_search_multi(id_type src, id_type dst) {
+    set<id_type> cur_set, next_set;
+    map< id_type, pair<size_t, id_type> > lca_vertex;
+    cur_set.insert(src);
+    dist_type est_dist = 0, min_dist = -1; // max dist
+    
+    while (*(cur_set.begin()) != dst) {
+        next_set.clear();
+        for (typename set<id_type>::iterator iter = cur_set.begin(); 
+                iter != cur_set.end(); ++iter) {
+            TGRAPH_TYPE::TNodeI cur_vertex = net->GetNI(*iter);
+            for (size_t i = 0; i < cur_vertex.GetDeg(); ++ i) {
+                id_type lca = -1;
+                dist_type dist = get_dist(cur_vertex.GetNbrNId(i), dst, lca);
+                if (dist < min_dist) {
+                    min_dist = dist;
+                    next_set.clear();
+                    next_set.insert(cur_vertex.GetNbrNId(i));
+                    lca_vertex.clear();
+                    size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
+                    lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
+                }
+                if (dist == min_dist) {
+                    size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
+                    if (lca_vertex.find(lca) == lca_vertex.end()) {
+                        lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
+                    }
+                    else {
+                        if (deg > lca_vertex[lca].second) {
+                            lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
+                        }
+                    }
+                }
+            }
+        }
+        for (typename map< id_type, pair<size_t, id_type> >::iterator 
+                iter = lca_vertex.begin();
+                iter != lca_vertex.end(); ++iter)
+            cur_set.insert(iter->second.second);
+            
+        // if we will reach dst code
+        for (size_t i = 0; i < codes[dst].size(); ++i) {
+            for (size_t j = 0; j < codes[dst][i].size(); ++j) {
+                if (cur_set.find(codes[dst][i][j]) != cur_set.end()) {
+                    est_dist += codes[dst][i].size() - j;
+                    return est_dist; 
+                }
+            }
+        }
+
+        est_dist ++;
+    }
+
+    return est_dist; // should never reach here
+}
+
 template <typename id_type, typename dist_type>
 dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
     id_type cur = src, next = src;
@@ -284,7 +285,6 @@ dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
 
     return est_dist; // should never reach here
 }
-#endif
 
 template <typename id_type, typename dist_type>
 vector< pair<id_type, dist_type> > ds_cent<id_type, dist_type>::
@@ -378,12 +378,10 @@ void ds_cent<id_type, dist_type>::test() {
     ifstream in(tcfilename.c_str());
     TBreathFS<PGRAPH_TYPE> BFS(net);
     size_t cnt = 0;
-    clock_t last_tick = 0;
-    clock_t last_comp_tick = 0;
-    clock_t comp_tick_diff = 0;
-    clock_t tick_diff = 0;
 
     while (cnt < num_exp) {
+        if (cnt % 100 == 99)
+            cout << "." << flush;
         id_type src;
         id_type dst;
         dist_type real_dist;
@@ -393,24 +391,28 @@ void ds_cent<id_type, dist_type>::test() {
 
         id_type lca = -1;
         dist_type obv_dist = get_dist(src, dst, lca);
-        total_obv += obv_dist;
+        total_obv += (obv_dist - real_dist) / real_dist;
 
-        last_comp_tick = clock();
         dist_type comp_dist = tree_sketch(src, dst);
-        comp_tick_diff += clock() - last_comp_tick;
-        total_comp_tick += comp_tick_diff;
-        total_comp += comp_dist;
+        total_comp += (comp_dist - real_dist) / real_dist;
 
-        last_tick = clock();
         dist_type est_dist_1 = do_search(src, dst);
         dist_type est_dist_2 = do_search(dst, src);
         dist_type est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
-        tick_diff += clock() - last_tick;
-        total_tick += tick_diff;
-        total_est += est_dist;
-        // cout << src << " " << dst << " " << real_dist << " " << comp_dist << " " << est_dist << " " << obv_dist << " " << comp_tick_diff << " " << tick_diff << endl;
+        total_est += (est_dist - real_dist) / real_dist;
+
+        est_dist_1 = do_search_multi(src, dst);
+        est_dist_2 = do_search_multi(dst, src);
+        est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
+        total_est_multi += (est_dist - real_dist) / real_dist;
+        
+        est_dist_1 = do_search_all(src, dst);
+        est_dist_2 = do_search_all(dst, src);
+        est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
+        total_est_all += (est_dist - real_dist) / real_dist;
     }
     in.close();
+    cout << endl;
 }
 
 template <typename id_type, typename dist_type>
@@ -427,12 +429,11 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
         case 2:
             out << "Number of experiments: " << num_exp << endl;
             out << "Avg real: " << double(total_real) / num_exp << endl;
+            out << "Avg est all: " << double(total_est_all) / num_exp << endl;
+            out << "Avg est multi: " << double(total_est_multi) / num_exp << endl;
             out << "Avg est: " << double(total_est) / num_exp << endl;
             out << "Avg comp: " << double(total_comp) / num_exp << endl;
             out << "Avg obv: " << double(total_obv) / num_exp << endl;
-            out << "Avg pc: " << double(total_path_cnt) / num_exp << endl;
-            out << "total tick: " << total_tick << endl;
-            out << "total comp tick: " << total_comp_tick << endl;
             out << endl;
             break;
         default:

@@ -282,9 +282,12 @@ class query_handler{
 #ifdef BIDIRECTIONAL_SEARCH
                     std::map<size_t, gsInstance>::iterator temp = iter++;
                     if (temp->second.path.size() == iter->second.path.size())
-                        iter->second.tie_cnt += temp_iter->second.tie_cnt;
-                    if (temp->second.path.size() < iter->second.path.size()) 
+                        iter->second.tie_cnt += temp->second.tie_cnt;
+                    if (temp->second.path.size() < iter->second.path.size()) {
                         std::swap(temp->second.path, iter->second.path);
+                        iter->second.tie_cnt = temp->second.tie_cnt;
+                    }
+
 #endif
                     sum_real_dist += iter->second.real_dist;
                     if (iter->second.real_dist == 0) {
