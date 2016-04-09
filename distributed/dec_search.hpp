@@ -51,14 +51,24 @@ struct hop_msg_type {
 struct mc_instance{
     size_t id;
     distance_type dist;
+#ifdef TIE_HEUR
+    std::map<graphlab::vertex_id_type, 
+        graphlab::vertex_id_type> vids;
+#else
     std::set<graphlab::vertex_id_type> vids;
+#endif
 
     mc_instance(size_t id = -1, distance_type dist = 
             std::numeric_limits<distance_type>::max()):
         id(id), dist(dist) { }
 
     mc_instance(size_t id, distance_type dist, 
+#ifdef TIE_HEUR
+            std::map<graphlab::vertex_id_type, 
+            graphlab::vertex_id_type>& vids):
+#else
             std::set<graphlab::vertex_id_type>& vids):
+#endif
         id(id), dist(dist), vids(vids) { }
 
     void save(graphlab::oarchive& oarc) const {
@@ -95,14 +105,27 @@ struct min_code_distance_type {
             const label_type& vcode, 
             const std::vector<gsInstance>& inst_set) {
 #ifdef TIE_FULL
+#ifdef TIE_HEUR
+        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> vids;
+#else
         std::set<graphlab::vertex_id_type> vids;
         vids.insert(vid);
+#endif
 #endif //TIE_FULL
         for(std::vector<gsInstance>::const_iterator 
                 iter = inst_set.begin();
                 iter != inst_set.end(); ++iter) {
+#ifdef TIE_HEUR
+            graphlab::vertex_id_type lca = -1;
+            distance_type dist = 
+                get_code_dist_wlca(vcode, iter->dst_code, lca);
+            vids.clear();
+            vids[lca] = vid;
+#else
             distance_type dist = 
                 get_code_dist(vcode, iter->dst_code);
+#endif
+
 #ifdef TIE_FULL
             mc_instance mcInst(iter->id, dist, vids);
 #else
@@ -123,9 +146,10 @@ struct min_code_distance_type {
             if (iter->dist < mc_inst_set[pos].dist) 
                 mc_inst_set[pos] = *iter;
 #ifdef TIE_FULL
-            else if (iter->dist == mc_inst_set[pos].dist)
+            else if (iter->dist == mc_inst_set[pos].dist) {
                 mc_inst_set[pos].vids.insert(iter->vids.begin(), 
                         iter->vids.end());
+            }
 #endif //TIE_FULL
             pos ++;
         }
@@ -211,6 +235,19 @@ class dec_search :
 
             // mc_inst_set and inst_set are in same order and same size
             while(mcIter != min_code_dist.mc_inst_set.end()) {
+#ifdef TIE_FULL
+#ifdef TIE_HEUR
+                std::set<graphlab::vertex_id_type> vids;
+                for (typename std::map<graphlab::vertex_id_type, 
+                        graphlab::vertex_id_type>::const_iterator convert_iter =
+                        mcIter->vids.begin();
+                        convert_iter != mcIter->vids.end();
+                        ++ convert_iter)
+                    vids.insert(convert_iter->second);
+#else
+                std::set<graphlab::vertex_id_type> vids = mcIter->vids;
+#endif
+#endif
 #ifdef EARLY_TERMINATION
                 //try to find next step node in code[dst] 
                 bool found = false;
@@ -218,8 +255,7 @@ class dec_search :
                         !found; ++t) {
                     for (size_t i = 0; i < iter->dst_code[t].size(); ++i) {
 #ifdef TIE_FULL
-                        if (*(mcIter->vids.begin()) == 
-                                iter->dst_code[t][i]){
+                        if (vids.find(iter->dst_code[t][i]) != vids.end()){
 #else
                         if (mcIter->vid == iter->dst_code[t][i]){
 #endif //TIE_FULL
@@ -246,10 +282,9 @@ class dec_search :
                 // regular update, update record with next hop
                 else if (mcIter->dist < iter->min_dist) {
 #ifdef TIE_FULL
-                    std::set<graphlab::vertex_id_type> vids;
-                    if (iter->state == Main || 
-                            iter->min_dist > mcIter->dist+1)
-                        vids = mcIter->vids;
+                    if (iter->state != Main &&
+                            iter->min_dist <= mcIter->dist + 1)
+                        vids.clear();
 #endif
                     iter->min_dist = mcIter->dist;
 #ifdef TIE_FULL

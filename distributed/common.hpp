@@ -12,10 +12,10 @@
 
 #define EARLY_TERMINATION //Never turn off
 #define BIDIRECTIONAL_SEARCH
-//#define TIE_FULL
+#define TIE_FULL
+#define TIE_HEUR // require tie full to work
 //#define LABEL_DEG
 //#define SELECTIVE_LCA
-//#define TIE_HEUR
 
 //#define CALC_REAL //Turn off all the others when turn this on
 
@@ -113,6 +113,31 @@ struct gsInstance {
             src_id >> dst_id >> src_code >> dst_code >> path;
     }
 };
+
+#ifdef TIE_HEUR
+inline distance_type get_code_dist_wlca(const label_type& src_code, 
+        const label_type& dst_code, graphlab::vertex_id_type &lca) {
+    distance_type dist = std::numeric_limits<distance_type>::max();
+    for (size_t t = 0; t < src_code.size(); t++){
+        size_t range = std::min(src_code[t].size(), dst_code[t].size());
+        size_t i = 0;
+        graphlab::vertex_id_type local_lca = src_code[t][i];
+        while (i < range) { 
+            if (src_code[t][i] != dst_code[t][i])
+                break;
+            local_lca = src_code[t][i];
+            i++;
+        }
+        distance_type lca_dist = src_code[t].size() + 
+            dst_code[t].size() - 2 * i;
+        if (i != 0 && lca_dist < dist) {
+            dist = lca_dist;
+            lca = local_lca;
+        }
+    }
+    return dist;
+}
+#endif
 
 inline distance_type get_code_dist(const label_type& src_code, 
         const label_type& dst_code) {
