@@ -42,11 +42,14 @@ mv ds_dist binary/ds_dist_test
 
 hostname > /local/PowerGraph/release/apps/ds_dist/machines
 
+mv /local/snap /local/Snap
 mkdir /local/Snap/examples/ds_cent
 ln -s /mydata /local/Snap/examples/ds_cent/datasets
 ln -s /local/DecSearch/centralized/ds_cent.cpp /local/Snap/examples/ds_cent/ds_cent.cpp
 ln -s /local/DecSearch/centralized/ds_cent.h /local/Snap/examples/ds_cent/ds_cent.h
 ln -s /local/DecSearch/centralized/utils/Makefile /local/Snap/examples/ds_cent/Makefile
 cp /local/DecSearch/centralized/utils/Makefile.ex /local/Snap/examples/ds_cent/Makefile.ex
+cd /local/Snap
+make
 
 echo "You are all set."
