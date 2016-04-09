@@ -1,11 +1,7 @@
 ssh-keygen
 ssh-copy-id lanterns2.eecs.utk.edu
 
-sudo chown zlu12 /local
 sudo chown zlu12 /mydata
-
-# svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/DecSearch /local/DecSearch
-# svn co --password Xiaoyan0308 https://com1333.eecs.utk.edu:8443/svn/source/Codes/Scripts /local/Scripts
 
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
 scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
@@ -16,6 +12,7 @@ sudo apt-get -y install vim ssh gcc g++ build-essential libopenmpi-dev openmpi-b
 
 cd /local
 git clone https://github.com/dato-code/PowerGraph.git
+git clone https://github.com/snap-stanford/snap.git
 cd /local/PowerGraph/apps
 mkdir ds_dist
 cd /local/PowerGraph/apps/ds_dist
@@ -34,7 +31,7 @@ cd /local/PowerGraph
 cp /local/DecSearch/distributed/utils/boost_1_53_0.tar.gz /local/PowerGraph/deps/boost/src/
 cp /local/DecSearch/distributed/utils/libevent-2.0.18-stable.tar.gz /local/PowerGraph/deps/event/src/
 cd /local/PowerGraph/release/apps/ds_dist/
-make -j8
+# make -j8
 
 ln -s /mydata /local/PowerGraph/release/apps/ds_dist/datasets
 ln -s /local/DecSearch/results /local/PowerGraph/release/apps/ds_dist/results
@@ -44,5 +41,12 @@ mkdir binary
 mv ds_dist binary/ds_dist_test
 
 hostname > /local/PowerGraph/release/apps/ds_dist/machines
+
+mkdir /local/Snap/examples/ds_cent
+ln -s /mydata /local/Snap/examples/ds_cent/datasets
+ln -s /local/DecSearch/centralized/ds_cent.cpp /local/Snap/examples/ds_cent/ds_cent.cpp
+ln -s /local/DecSearch/centralized/ds_cent.h /local/Snap/examples/ds_cent/ds_cent.h
+ln -s /local/DecSearch/centralized/utils/Makefile /local/Snap/examples/ds_cent/Makefile
+cp /local/DecSearch/centralized/utils/Makefile.ex /local/Snap/examples/ds_cent/Makefile.ex
 
 echo "You are all set."
