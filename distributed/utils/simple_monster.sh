@@ -1,4 +1,4 @@
-#gn_array=("wiki" "skitter" "bio" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
+#gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
 gn_array=("wiki")
 
 data_folder="datasets"
@@ -35,13 +35,7 @@ do
             for ((l=0; l<${#n_exp[@]}; l++));
             do
                 cm1_mod5=${cm1_mod4//n_exp/${n_exp[$l]}} 
-                ./load.sh &
-                PIDLOAD=$!
-                echo $PIDLOAD
                 ${cm1_mod5//class/$class}
-                # PID=$!
-                # wait $PID
-                kill $PIDLOAD
                 cm2_mod3=${cm2_mod2//n_exp/${n_exp[$l]}}
                 ${cm2_mod3//class/$class}
             done
