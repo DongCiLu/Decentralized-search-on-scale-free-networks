@@ -152,10 +152,6 @@ bfs_ds_type bfs_dst_set;
 std::vector< std::map<size_t, distance_type> > real_results;
 #endif
 boost::mutex mtx;
-#ifdef DEBUG_SHOW_STEP
-std::vector< std::vector<int> > step_flags;
-boost::mutex step_mtx;
-#endif
 size_t procid;
 
 /******************* Others *******************/
