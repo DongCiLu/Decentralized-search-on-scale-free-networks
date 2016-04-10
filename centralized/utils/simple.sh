@@ -1,0 +1,9 @@
+./ds_cent dataset/wiki_wcc.txt &> log_wiki &
+./ds_cent dataset/skitter_wcc.txt &> log_skitter &
+./ds_cent dataset/baidu_wcc.txt &> log_baidu &
+./ds_cent dataset/Livejournal_wcc.txt &> log_Livejournal &
+./ds_cent dataset/hollywood_wcc.txt &> log_hollywood &
+./ds_cent dataset/orkut_wcc.txt &> log_orkut &
+./ds_cent dataset/sinaweibo_wcc.txt &> log_sinaweibo &
+./ds_cent dataset/webuk_wcc.txt &> log_webuk &
+./ds_cent dataset/friendster_wcc.txt &> log_friendster &
