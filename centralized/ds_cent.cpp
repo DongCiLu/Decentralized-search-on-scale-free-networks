@@ -396,6 +396,7 @@ void ds_cent<id_type, dist_type>::test() {
         dist_type comp_dist = tree_sketch(src, dst);
         total_comp += (comp_dist - real_dist) / real_dist;
 
+        /*
         dist_type est_dist_1 = do_search(src, dst);
         dist_type est_dist_2 = do_search(dst, src);
         dist_type est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
@@ -410,6 +411,7 @@ void ds_cent<id_type, dist_type>::test() {
         est_dist_2 = do_search_all(dst, src);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est_all += (est_dist - real_dist) / real_dist;
+        */
     }
     in.close();
     cout << endl;
