@@ -26,7 +26,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile) :
     total_tick(0), total_comp_tick(0), total_path_cnt(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
     total_est(0), total_comp(0), total_obv(0),
-    num_tree(2), num_exp(3000) {
+    num_tree(2), num_exp(100000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -391,10 +391,10 @@ void ds_cent<id_type, dist_type>::test() {
 
         id_type lca = -1;
         dist_type obv_dist = get_dist(src, dst, lca);
-        total_obv += (obv_dist - real_dist) / real_dist;
+        total_obv += double(obv_dist - real_dist) / real_dist;
 
         dist_type comp_dist = tree_sketch(src, dst);
-        total_comp += (comp_dist - real_dist) / real_dist;
+        total_comp += double(comp_dist - real_dist) / real_dist;
 
         /*
         dist_type est_dist_1 = do_search(src, dst);

@@ -67,11 +67,11 @@ class ds_cent {
         size_t total_path_cnt;
 
         dist_type total_real;
-        dist_type total_est_all;
-        dist_type total_est_multi;
-        dist_type total_est;
-        dist_type total_comp;
-        dist_type total_obv;
+        double total_est_all;
+        double total_est_multi;
+        double total_est;
+        double total_comp;
+        double total_obv;
 
         const size_t num_tree;
         size_t num_exp;
