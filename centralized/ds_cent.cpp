@@ -396,21 +396,24 @@ void ds_cent<id_type, dist_type>::test() {
         dist_type comp_dist = tree_sketch(src, dst);
         total_comp += double(comp_dist - real_dist) / real_dist;
 
+        dist_type est_dist_1, est_dist_2, est_dist;
         /*
-        dist_type est_dist_1 = do_search(src, dst);
-        dist_type est_dist_2 = do_search(dst, src);
-        dist_type est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
-        total_est += (est_dist - real_dist) / real_dist;
+        est_dist_1 = do_search(src, dst);
+        est_dist_2 = do_search(dst, src);
+        est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
+        total_est += double(est_dist - real_dist) / real_dist;
+        */
 
         est_dist_1 = do_search_multi(src, dst);
         est_dist_2 = do_search_multi(dst, src);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
-        total_est_multi += (est_dist - real_dist) / real_dist;
+        total_est_multi += double(est_dist - real_dist) / real_dist;
         
+        /*
         est_dist_1 = do_search_all(src, dst);
         est_dist_2 = do_search_all(dst, src);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
-        total_est_all += (est_dist - real_dist) / real_dist;
+        total_est_all += double(est_dist - real_dist) / real_dist;
         */
     }
     in.close();
@@ -431,11 +434,11 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
         case 2:
             out << "Number of experiments: " << num_exp << endl;
             out << "Avg real: " << double(total_real) / num_exp << endl;
-            out << "Avg est all: " << double(total_est_all) / num_exp << endl;
-            out << "Avg est multi: " << double(total_est_multi) / num_exp << endl;
-            out << "Avg est: " << double(total_est) / num_exp << endl;
-            out << "Avg comp: " << double(total_comp) / num_exp << endl;
-            out << "Avg obv: " << double(total_obv) / num_exp << endl;
+            out << "Avg est all: " << total_est_all / num_exp << endl;
+            out << "Avg est multi: " << total_est_multi / num_exp << endl;
+            out << "Avg est: " << total_est / num_exp << endl;
+            out << "Avg comp: " << total_comp / num_exp << endl;
+            out << "Avg obv: " << total_obv / num_exp << endl;
             out << endl;
             break;
         default:
