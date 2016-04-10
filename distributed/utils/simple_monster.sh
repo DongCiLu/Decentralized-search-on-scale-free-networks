@@ -1,4 +1,4 @@
-#gn_array=("wiki" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
+#gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
 gn_array=("wiki")
 
 data_folder="datasets"

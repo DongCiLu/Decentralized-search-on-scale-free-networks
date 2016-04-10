@@ -380,7 +380,7 @@ void ds_cent<id_type, dist_type>::test() {
     size_t cnt = 0;
 
     while (cnt < num_exp) {
-        if (cnt % 100 == 99)
+        if (cnt % 1000 == 999)
             cout << "." << flush;
         id_type src;
         id_type dst;
