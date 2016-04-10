@@ -69,9 +69,16 @@ int main(int argc, char** argv) {
 
     // start the handler here
 #ifdef TIE_FULL
+#ifdef TIE_HEUR
+    size_t n_query_batch = 10000;
+#else
     size_t n_query_batch = 1000;
+#endif
 #else
     size_t n_query_batch = 50000;
+#endif
+#ifdef BIDIRECTIONAL_SEARCH
+    n_query_batch /= 2;
 #endif
     query_handler qh(n_tree, n_query,
             &dc, &clopts, &graph, 
