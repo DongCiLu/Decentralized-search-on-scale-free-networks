@@ -33,7 +33,7 @@ In order to evaluate the performance of decentralized search and various optimiz
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/accuracy_dec.pdf}
+    \includegraphics[width=\linewidth]{./figures/accuracy_dec.pdf}
     \caption{The accuracy of the approximated distance of decentralized search and various optimizations compared to LCA distance.}
     \label{fig:accuracy_dec}
 \end{figure*}
@@ -42,7 +42,7 @@ We first compare the accuracy of decentralized search and LCA distance. For the 
 
 %\begin{figure}[t]
     %\centering
-    %\includegraphics[width=\linewidth]{../figures/accuracy_compare.pdf}
+    %\includegraphics[width=\linewidth]{./figures/accuracy_compare.pdf}
     %\caption{The accuracy of estimated distance of decentralized search compared to code comparison when number of landmarks increase.}
     %\label{fig:accuracy_compare}
 %\end{figure}
@@ -51,7 +51,7 @@ We first compare the accuracy of decentralized search and LCA distance. For the 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/accuracy_index.pdf}
+    \includegraphics[width=\linewidth]{./figures/accuracy_index.pdf}
     \caption{Impact of index quality on the accuracy of both decentralized search and label comparison.}
     \label{fig:accuracy_index}
 \end{figure}
@@ -65,7 +65,7 @@ We study the preprocessing and online search overhead of decentralized search in
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/overhead_index.pdf}
+    \includegraphics[width=\linewidth]{./figures/overhead_index.pdf}
     \caption{The time and space overhead for preprocessing for a single landmark by heuristic and random index construction}
     \label{fig:overhead_index}
 \end{figure}
@@ -74,7 +74,7 @@ Since whenever the shortest path to the landmark are indexed, they have the same
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/overhead_search.pdf}
+    \includegraphics[width=\linewidth]{./figures/overhead_search.pdf}
     \caption{The average search time of decentralized search with various optimizations.}
     \label{fig:overhead_search}
 \end{figure}
@@ -88,7 +88,7 @@ Since our algorithm is designed for large-scale networks, scalability is another
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/scale_machine.pdf}
+    \includegraphics[width=\linewidth]{./figures/scale_machine.pdf}
     \caption{The average search time as the number of machines increase}
     \label{fig:scale_machine}
 \end{figure}
@@ -97,37 +97,37 @@ We first evaluate the search time when number of machines increasing. Results sh
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/scale_query.pdf}
+    \includegraphics[width=\linewidth]{./figures/scale_query.pdf}
     \caption{The average search time as the number of queries increase}
     \label{fig:scale_query}
 \end{figure}
 
-%\begin{table*} [ht]
-    %\centering
-    %\begin{tabular}{cccccccccc} \hline
-				%&Google&Wiki&Skitter&Gene&Baidu&Facebook&Livejournal&Hollywood&Friendster \\ \hline
-				%Tie(centralized)&85.0&96.9&33.0&41.1&143.29&31.1&36.6&12.7&N/A \\ \hline
-				%Tie(distributed)&3.6&40.3&12.4&6.73&43.8&2.8&3.9&3.2&2.1 \\ \hline
-    %\end{tabular}
-    %\caption{Number of paths returned by decentralized search with different tie breaking strategies}
-    %\label{table:NOP}
-%\end{table*}
+\begin{table*} [ht]
+    \centering
+    \begin{tabular}{cccccccccc} \hline
+				&Google&Wiki&Skitter&Gene&Baidu&Facebook&Livejournal&Hollywood&Friendster \\ \hline
+				Tie(centralized)&85.0&96.9&33.0&41.1&143.29&31.1&36.6&12.7&N/A \\ \hline
+				Tie(distributed)&3.6&40.3&12.4&6.73&43.8&2.8&3.9&3.2&2.1 \\ \hline
+    \end{tabular}
+    \caption{Number of paths returned by decentralized search with different tie breaking strategies}
+    \label{table:NOP}
+\end{table*}
 
 We then examine average search time as number of queries running in parallel increases. All experiments are carried on 20 machines in this part. We can see in Fig. \ref{fig:scale_query} that the average search time quickly goes down when the number of queries is small. The reason is that there are some fixed overheads to start and stop the engine for a batch of queries. When the number of queries increases, the average overhead for each query will decrease. But when the number of queries becomes larger, the average search time begins to go up.  Because too many searches will reach the memory and communication limits, that slow down the search speed.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{../figures/scale_graph.pdf}
+    \includegraphics[width=\linewidth]{./figures/scale_graph.pdf}
     \caption{The average search time for different size of graphs}
     \label{fig:scale_graph}
 \end{figure}
 
 In the last experiment, we evaluate the search time as the size of graph increases. Unlike BFS which needs to traverse neighbors of $O(n)$ vertices, decentralized search only needs to exam neighbors of $O(log(n))$ vertices for complex networks due to the small world property. We can clearly see in Fig. \ref{fig:scale_graph} that as the number of vertices increases, average search time of decentralized search does not follow the same trend. The graph friendster which have sixty-five millions vertices have average search time only $2.05$ times more than graph mouse-gene which only have forty-three thousand vertices.
 
-%\subsection{Path Diversity}
-%\label{eval_diversity}
-%
-%The number of paths returned by decentralized search are heavily relied on tie breaking strategies. The more vertices the search selects when tie happens, the more paths it will return. Fig. \ref{table:NOP} shows average number paths returned by two tie breaking strategies. The first one is used in our centralized implementation, where all neighbors with same LCA distance are selected. The second one is used in our distributed implementation, where only one neighbor is marked as "main" candidate. We can see that the tie strategy we used in centralized settings can return far more paths than the strategy we used in distributed settings because of the larger search space. We don't have centralized version for graph friendster because it is too large to fit in one machine.
+\subsection{Path Diversity}
+\label{eval_diversity}
+
+The number of paths returned by decentralized search are heavily relied on tie breaking strategies. The more vertices the search selects when tie happens, the more paths it will return. Fig. \ref{table:NOP} shows average number paths returned by two tie breaking strategies. The first one is used in our centralized implementation, where all neighbors with same LCA distance are selected. The second one is used in our distributed implementation, where only one neighbor is marked as "main" candidate. We can see that the tie strategy we used in centralized settings can return far more paths than the strategy we used in distributed settings because of the larger search space. We don't have centralized version for graph friendster because it is too large to fit in one machine.
 
 %\subsection{for dynamic graphs}
 %The robustness of decentralized search against graph changes mainly comes from the property that decentralized search can explore multiple paths at the same time. Usually for an arbitrary source and target pair, there are not only one unique paths among them but several paths with various length. Since decentralized search is not exact algorithm, so it may not find the shortest one most of the time. But it can find several paths with same approximation length. So even for dynamic graphs where edges appear and disappear as time changes, decentralized search is still able to find valid paths.
@@ -136,7 +136,7 @@ In the last experiment, we evaluate the search time as the size of graph increas
 %
 %\begin{figure}[t]
     %\centering
-    %\includegraphics[width=\linewidth]{../figures/empty.pdf}
+    %\includegraphics[width=\linewidth]{./figures/empty.pdf}
     %\caption{Distribution of errors of different length}
     %\label{fig:distribution}
 %\end{figure}
