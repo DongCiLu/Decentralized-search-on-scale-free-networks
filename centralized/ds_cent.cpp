@@ -26,7 +26,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile) :
     total_tick(0), total_comp_tick(0), total_path_cnt(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
     total_est(0), total_comp(0), total_obv(0),
-    num_tree(2), num_exp(100000) {
+    num_tree(2), num_exp(1000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -157,9 +157,15 @@ void ds_cent<id_type, dist_type>::build_code_sys() {
 template <typename id_type, typename dist_type>
 dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, id_type dst) {
     set<id_type> cur_set, next_set;
+    map<id_type, size_t> path_cnt;
+    map<id_type, size_t> new_path_cnt;
+    size_t pair_path_cnt = 0;
     cur_set.insert(src);
+    path_cnt[src] = 1;
     dist_type est_dist = 0, min_dist = -1; // max dist
-    while (*(cur_set.begin()) != dst) {
+    dist_type min_est_dist = -1; // max dist
+    while (!cur_set.empty()) {
+        new_path_cnt.clear();
         next_set.clear();
         for (typename set<id_type>::iterator iter = cur_set.begin(); 
                 iter != cur_set.end(); ++iter) {
@@ -171,28 +177,45 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, id_type dst) {
                     min_dist = dist;
                     next_set.clear();
                     next_set.insert(cur_vertex.GetNbrNId(i));
+                    new_path_cnt.clear();
+                    new_path_cnt[cur_vertex.GetNbrNId(i)] = 
+                        path_cnt[cur_vertex.GetId()];
                 }
                 if (dist == min_dist) {
+                    if (new_path_cnt.find(cur_vertex.GetNbrNId(i)) == 
+                            new_path_cnt.end())
+                        new_path_cnt[cur_vertex.GetNbrNId(i)] = 0;
+                    new_path_cnt[cur_vertex.GetNbrNId(i)] += 
+                        path_cnt[cur_vertex.GetId()];
                     next_set.insert(cur_vertex.GetNbrNId(i));
                 }
             }
         }
         cur_set = next_set;
+        path_cnt = new_path_cnt;
             
         // if we will reach dst code
         for (size_t i = 0; i < codes[dst].size(); ++i) {
             for (size_t j = 0; j < codes[dst][i].size(); ++j) {
                 if (cur_set.find(codes[dst][i][j]) != cur_set.end()) {
-                    est_dist += codes[dst][i].size() - j;
-                    return est_dist; 
+                    dist_type local_est_dist = 
+                        est_dist + codes[dst][i].size() - j;
+                    if (local_est_dist < min_est_dist) {
+                        min_est_dist = local_est_dist;
+                        pair_path_cnt = 0;
+                    }
+                    cur_set.erase(codes[dst][i][j]);
+                    pair_path_cnt += path_cnt[codes[dst][i][j]];
+                    path_cnt.erase(codes[dst][i][j]);
                 }
             }
         }
 
-        est_dist ++;
+        est_dis ++;
     }
 
-    return est_dist; // should never reach here
+    total_path_cnt += pair_path_cnt;
+    return min_est_dist; // should never reach here
 }
 template <typename id_type, typename dist_type>
 dist_type ds_cent<id_type, dist_type>::do_search_multi(id_type src, id_type dst) {
@@ -372,7 +395,8 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(id_type src, id_type dst) {
 
 template <typename id_type, typename dist_type>
 void ds_cent<id_type, dist_type>::test() {
-    string tcfilename = "./datasets/testcases/withreal/";
+    //string tcfilename = "./datasets/testcases/withreal/";
+    string tcfilename = "./datasets/testcases/regular/";
     tcfilename += graphname + "_testcases.txt";
     cout << tcfilename << endl;
     ifstream in(tcfilename.c_str());
@@ -404,17 +428,17 @@ void ds_cent<id_type, dist_type>::test() {
         total_est += double(est_dist - real_dist) / real_dist;
         */
 
+        /*
         est_dist_1 = do_search_multi(src, dst);
         est_dist_2 = do_search_multi(dst, src);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est_multi += double(est_dist - real_dist) / real_dist;
+        */
         
-        /*
         est_dist_1 = do_search_all(src, dst);
         est_dist_2 = do_search_all(dst, src);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est_all += double(est_dist - real_dist) / real_dist;
-        */
     }
     in.close();
     cout << endl;
@@ -439,6 +463,7 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
             out << "Avg est: " << total_est / num_exp << endl;
             out << "Avg comp: " << total_comp / num_exp << endl;
             out << "Avg obv: " << total_obv / num_exp << endl;
+            out << "Avg path count: " << double(total_path_cnt) / num_exp << endl;
             out << endl;
             break;
         default:
