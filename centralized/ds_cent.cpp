@@ -23,10 +23,10 @@ string ds_cent<id_type, dist_type>::get_time() {
 
 template <typename id_type, typename dist_type>
 ds_cent<id_type, dist_type>::ds_cent(string graphfile) : 
-    total_tick(0), total_comp_tick(0), total_path_cnt(0),
+    total_path_cnt(0), total_comp_path_cnt(0), total_out_ratio(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
     total_est(0), total_comp(0), total_obv(0),
-    num_tree(2), num_exp(1000) {
+    num_tree(2), num_exp(10000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -35,7 +35,8 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile) :
 
     root_id.resize(num_tree, 0);
     vector< vector<id_type> > init_code(num_tree); 
-    for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); NI < net->EndNI(); NI++) {
+    for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); 
+            NI < net->EndNI(); NI ++) {
         codes.insert(make_pair(NI.GetId(), init_code));
         unlabeled_degree[NI.GetId()] = NI.GetDeg();
     }
@@ -155,68 +156,101 @@ void ds_cent<id_type, dist_type>::build_code_sys() {
 }
 
 template <typename id_type, typename dist_type>
-dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, id_type dst) {
+dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, id_type dst,
+        set< vector<id_type> > &pair_path) {
     set<id_type> cur_set, next_set;
-    map<id_type, size_t> path_cnt;
-    map<id_type, size_t> new_path_cnt;
-    size_t pair_path_cnt = 0;
+    map< id_type, set< vector<id_type> > > partial_path;
+    map< id_type, set< vector<id_type> > > new_partial_path;
     cur_set.insert(src);
-    path_cnt[src] = 1;
-    dist_type est_dist = 0, min_dist = -1; // max dist
-    dist_type min_est_dist = -1; // max dist
+    vector<id_type> p;
+    p.push_back(src);
+    set< vector<id_type> > pp;
+    pp.insert(p);
+    partial_path[src] = pp;
+    id_type lca = -1;
+    dist_type est_dist = 0, min_dist = get_dist(src, dst, lca); 
+    dist_type min_est_dist = min_dist; 
     while (!cur_set.empty()) {
-        new_path_cnt.clear();
+        new_partial_path.clear();
         next_set.clear();
         for (typename set<id_type>::iterator iter = cur_set.begin(); 
                 iter != cur_set.end(); ++iter) {
             TGRAPH_TYPE::TNodeI cur_vertex = net->GetNI(*iter);
             for (size_t i = 0; i < cur_vertex.GetDeg(); ++ i) {
                 id_type lca = -1;
-                dist_type dist = get_dist(cur_vertex.GetNbrNId(i), dst, lca);
+                id_type cur = cur_vertex.GetId();
+                id_type nbr = cur_vertex.GetNbrNId(i);
+                dist_type dist = get_dist(nbr, dst, lca);
                 if (dist < min_dist) {
                     min_dist = dist;
                     next_set.clear();
-                    next_set.insert(cur_vertex.GetNbrNId(i));
-                    new_path_cnt.clear();
-                    new_path_cnt[cur_vertex.GetNbrNId(i)] = 
-                        path_cnt[cur_vertex.GetId()];
+                    next_set.insert(nbr);
+                    new_partial_path.clear();
+                    new_partial_path[nbr] = partial_path[cur];
                 }
-                if (dist == min_dist) {
-                    if (new_path_cnt.find(cur_vertex.GetNbrNId(i)) == 
-                            new_path_cnt.end())
-                        new_path_cnt[cur_vertex.GetNbrNId(i)] = 0;
-                    new_path_cnt[cur_vertex.GetNbrNId(i)] += 
-                        path_cnt[cur_vertex.GetId()];
-                    next_set.insert(cur_vertex.GetNbrNId(i));
+                else if (dist == min_dist) {
+                    if (new_partial_path.find(nbr) 
+                            == new_partial_path.end())
+                        new_partial_path[nbr] = set< vector<id_type> >();
+                    new_partial_path[nbr].insert(
+                            partial_path[cur].begin(),
+                            partial_path[cur].end());
+                    next_set.insert(nbr);
                 }
             }
         }
         cur_set = next_set;
-        path_cnt = new_path_cnt;
+        // compose new paths by append nodes to their related path
+        partial_path.clear();
+        for (typename map< id_type, set< vector<id_type> > >::iterator
+                miter = new_partial_path.begin();
+                miter != new_partial_path.end();
+                ++miter) {
+            partial_path[miter->first] = set< vector<id_type> >();
+            for (typename set< vector<id_type> >::iterator 
+                    siter = miter->second.begin(); 
+                    siter != miter->second.end(); 
+                    ++siter) {
+                vector<id_type> temp = *siter;
+                temp.push_back(miter->first);
+                partial_path[miter->first].insert(temp);
+            }
+        }
+        est_dist ++;
             
-        // if we will reach dst code
+        // if we reach dst code
         for (size_t i = 0; i < codes[dst].size(); ++i) {
             for (size_t j = 0; j < codes[dst][i].size(); ++j) {
                 if (cur_set.find(codes[dst][i][j]) != cur_set.end()) {
+                    id_type nid = codes[dst][i][j];
                     dist_type local_est_dist = 
-                        est_dist + codes[dst][i].size() - j;
-                    if (local_est_dist < min_est_dist) {
-                        min_est_dist = local_est_dist;
-                        pair_path_cnt = 0;
+                        est_dist + codes[dst][i].size() - j - 1;
+                    if (local_est_dist <= min_est_dist) {
+                        if (local_est_dist < min_est_dist) {
+                            min_est_dist = local_est_dist;
+                            pair_path.clear();
+                        }
+                        for (typename set< vector<id_type> >::iterator 
+                                siter = partial_path[nid].begin(); 
+                                siter != partial_path[nid].end(); 
+                                ++siter) {
+                            vector<id_type> temp = *siter;
+                            temp.insert(temp.end(), 
+                                    codes[dst][i].begin() + j + 1, 
+                                    codes[dst][i].end());
+                            pair_path.insert(temp);
+                        }
                     }
-                    cur_set.erase(codes[dst][i][j]);
-                    pair_path_cnt += path_cnt[codes[dst][i][j]];
-                    path_cnt.erase(codes[dst][i][j]);
+                    partial_path.erase(nid);
+                    cur_set.erase(nid);
                 }
             }
         }
-
-        est_dis ++;
     }
 
-    total_path_cnt += pair_path_cnt;
-    return min_est_dist; // should never reach here
+    return min_est_dist; 
 }
+
 template <typename id_type, typename dist_type>
 dist_type ds_cent<id_type, dist_type>::do_search_multi(id_type src, id_type dst) {
     set<id_type> cur_set, next_set;
@@ -240,7 +274,7 @@ dist_type ds_cent<id_type, dist_type>::do_search_multi(id_type src, id_type dst)
                     size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
                     lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
                 }
-                if (dist == min_dist) {
+                else if (dist == min_dist) {
                     size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
                     if (lca_vertex.find(lca) == lca_vertex.end()) {
                         lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
@@ -257,21 +291,21 @@ dist_type ds_cent<id_type, dist_type>::do_search_multi(id_type src, id_type dst)
                 iter = lca_vertex.begin();
                 iter != lca_vertex.end(); ++iter)
             cur_set.insert(iter->second.second);
+
+        est_dist ++;
             
-        // if we will reach dst code
+        // if we reach dst code
         for (size_t i = 0; i < codes[dst].size(); ++i) {
             for (size_t j = 0; j < codes[dst][i].size(); ++j) {
                 if (cur_set.find(codes[dst][i][j]) != cur_set.end()) {
-                    est_dist += codes[dst][i].size() - j;
+                    est_dist += codes[dst][i].size() - j - 1;
                     return est_dist; 
                 }
             }
         }
-
-        est_dist ++;
     }
 
-    return est_dist; // should never reach here
+    return est_dist; 
 }
 
 template <typename id_type, typename dist_type>
@@ -294,7 +328,7 @@ dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
             }
         }
         cur = next;
-        // if we will reach dst code
+        // if we reach dst code
         for (size_t i = 0; i < codes[dst].size(); i++) {
             for (size_t j = 0; j < codes[dst][i].size(); j++) {
                 if (cur == codes[dst][i][j]) {
@@ -306,7 +340,7 @@ dist_type ds_cent<id_type, dist_type>::do_search(id_type src, id_type dst) {
         est_dist ++;
     }
 
-    return est_dist; // should never reach here
+    return est_dist; // should never reach here for single tie
 }
 
 template <typename id_type, typename dist_type>
@@ -339,7 +373,8 @@ get_bfs_order(vector< vector<id_type> > sketch) {
 }
 
 template <typename id_type, typename dist_type>
-dist_type ds_cent<id_type, dist_type>::tree_sketch(id_type src, id_type dst) {
+dist_type ds_cent<id_type, dist_type>::tree_sketch(
+        id_type src, id_type dst, size_t &path_cnt) {
     vector< pair<id_type, dist_type> > bfs_src;
     vector< pair<id_type, dist_type> > bfs_dst;
     dist_type l_shortest = -1;
@@ -370,8 +405,13 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(id_type src, id_type dst) {
             for (size_t i = 0; i < v_src.size(); i++) {
                 if (net->IsEdge(v_src[i].first, v) or net->IsEdge(v, v_src[i].first)) {
                     dist_type l = v_src[i].second + d_dv + 1;
-                    if (l < l_shortest)
+                    if (l < l_shortest) {
                         l_shortest = l;
+                        path_cnt = 1;
+                    }
+                    else if (l == l_shortest) {
+                        path_cnt ++;
+                    }
                 }
             }
         }
@@ -380,8 +420,13 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(id_type src, id_type dst) {
             for (size_t i = 0; i < v_dst.size(); i++) {
                 if (net->IsEdge(v_dst[i].first, u) or net->IsEdge(u, v_dst[i].first)) {
                     dist_type l = v_dst[i].second + d_su + 1;
-                    if (l < l_shortest)
+                    if (l < l_shortest) {
                         l_shortest = l;
+                        path_cnt = 1;
+                    }
+                    else if (l == l_shortest) {
+                        path_cnt ++;
+                    }
                 }
             }
         }
@@ -404,7 +449,7 @@ void ds_cent<id_type, dist_type>::test() {
     size_t cnt = 0;
 
     while (cnt < num_exp) {
-        if (cnt % 1000 == 999)
+        if (cnt % 100 == 99)
             cout << "." << flush;
         id_type src;
         id_type dst;
@@ -417,8 +462,10 @@ void ds_cent<id_type, dist_type>::test() {
         dist_type obv_dist = get_dist(src, dst, lca);
         total_obv += double(obv_dist - real_dist) / real_dist;
 
-        dist_type comp_dist = tree_sketch(src, dst);
+        size_t path_cnt = 0;
+        dist_type comp_dist = tree_sketch(src, dst, path_cnt);
         total_comp += double(comp_dist - real_dist) / real_dist;
+        total_comp_path_cnt += path_cnt;
 
         dist_type est_dist_1, est_dist_2, est_dist;
         /*
@@ -435,9 +482,59 @@ void ds_cent<id_type, dist_type>::test() {
         total_est_multi += double(est_dist - real_dist) / real_dist;
         */
         
-        est_dist_1 = do_search_all(src, dst);
-        est_dist_2 = do_search_all(dst, src);
-        est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
+        set< vector<id_type> > pair_path;
+        set< vector<id_type> > pair_path1;
+        set< vector<id_type> > pair_path2;
+        est_dist_1 = do_search_all(src, dst, pair_path1);
+        est_dist_2 = do_search_all(dst, src, pair_path2);
+        if (est_dist_1 < est_dist_2) {
+            est_dist = est_dist_1;
+            pair_path = pair_path1;
+        }
+        else if (est_dist_1 > est_dist_2) {
+            est_dist = est_dist_2;
+            pair_path = pair_path2;
+        }
+        else { // equal
+            est_dist = est_dist_1;
+            pair_path = pair_path1;
+            for (typename set< vector<id_type> >::iterator 
+                    siter = pair_path2.begin(); 
+                    siter != pair_path2.end(); 
+                    ++siter) {
+                vector<id_type> temp = *siter;
+                reverse(temp.begin(), temp.end());
+                pair_path.insert(temp);
+            }
+        }
+        total_path_cnt += pair_path.size();
+
+        set<id_type> vertex_in_label;
+        for (size_t i = 0; i < codes[src].size(); i++) {
+            for (size_t j = 0; j < codes[src][i].size(); j++) {
+                vertex_in_label.insert(codes[src][i][j]);
+            }
+        }
+        for (size_t i = 0; i < codes[dst].size(); i++) {
+            for (size_t j = 0; j < codes[dst][i].size(); j++) {
+                vertex_in_label.insert(codes[src][i][j]);
+            }
+        }
+        for (typename set< vector<id_type> >::iterator 
+                siter = pair_path.begin(); 
+                siter != pair_path.end(); 
+                ++siter) {
+            size_t out_size = 0;
+            for (size_t i = 0; i < siter->size(); i++){
+                if (vertex_in_label.find((*siter)[i]) == 
+                        vertex_in_label.end())
+                    out_size ++;
+            }
+            double ratio = double(out_size) / siter->size();
+            total_out_ratio += ratio;
+        }
+
+
         total_est_all += double(est_dist - real_dist) / real_dist;
     }
     in.close();
@@ -459,11 +556,17 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
             out << "Number of experiments: " << num_exp << endl;
             out << "Avg real: " << double(total_real) / num_exp << endl;
             out << "Avg est all: " << total_est_all / num_exp << endl;
-            out << "Avg est multi: " << total_est_multi / num_exp << endl;
+            out << "Avg est multi: " << 
+                total_est_multi / num_exp << endl;
             out << "Avg est: " << total_est / num_exp << endl;
             out << "Avg comp: " << total_comp / num_exp << endl;
             out << "Avg obv: " << total_obv / num_exp << endl;
-            out << "Avg path count: " << double(total_path_cnt) / num_exp << endl;
+            out << "Avg path count: " << 
+                double(total_path_cnt) / num_exp << endl;
+            out << "Avg comp path count: " << 
+                double(total_comp_path_cnt) / num_exp << endl;
+            out << "Avg out ratio: " << 
+                total_out_ratio / total_path_cnt << endl;
             out << endl;
             break;
         default:
