@@ -203,9 +203,12 @@ class dec_search :
                 if (len > 1 && vertex.id() == other.data().code[i][len - 2])
                     ignore_tree_cnt ++;
             }
-            other.data().ignore_cnt += inst_set.size() * ignore_tree_cnt;
+            //other.data().ignore_cnt += 
+            //    inst_set.size() * ignore_tree_cnt;
 #endif
-            other.data().check_cnt += inst_set.size() * other.data().code.size();
+            //other.data().check_cnt += 
+            //    inst_set.size() * other.data().code.size();
+            other.data().check_cnt += inst_set.size();
             return min_code_distance_type(other.id(), 
                     other.data().code, inst_set);
         } // end of gather function
@@ -229,6 +232,7 @@ class dec_search :
 
         void apply(icontext_type& context, vertex_type& vertex,
                 const min_code_distance_type& min_code_dist) {
+            vertex.data().visit_cnt += min_code_dist.mc_inst_set.size();
             std::vector<mc_instance>::const_iterator mcIter = 
                 min_code_dist.mc_inst_set.begin();
             std::vector<gsInstance>::iterator iter = inst_set.begin();
@@ -255,6 +259,10 @@ class dec_search :
                         !found; ++t) {
                     for (size_t i = 0; i < iter->dst_code[t].size(); ++i) {
 #ifdef TIE_FULL
+                        /* 
+                         * this is not totally correct,
+                         * but have good effort and outcome tradeoff
+                         */
                         if (vids.find(iter->dst_code[t][i]) != vids.end()){
 #else
                         if (mcIter->vid == iter->dst_code[t][i]){

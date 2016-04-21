@@ -50,6 +50,7 @@ class query_handler{
             this->n_query_batch = 
                 std::min(this->n_query, this->n_query_batch);
             procid = this->dc->procid();
+            numprocs = this->dc->numprocs();
             in.open(this->input_file.c_str());
         }
 
@@ -157,7 +158,7 @@ class query_handler{
             temp_set.swap(inst_set[masterid]);
             for (size_t i = 0; i < temp_set.size(); ++i) {
                 if (procid == graphlab::graph_hash::hash_vertex(
-                            temp_set[i].dst_id)%dc->numprocs()) {
+                            temp_set[i].dst_id) % dc->numprocs()) {
                     gsInstance inst(temp_set[i]);
                     inst.dst_code = graph->vertex(inst.dst_id).data().code;
                     dst_set[procid].push_back(inst);
@@ -171,7 +172,7 @@ class query_handler{
             for (size_t i = 0; i < dst_set.size(); ++i) {
                 for (size_t j = 0; j < dst_set[i].size(); ++j) {
                     if (procid == graphlab::graph_hash::hash_vertex(
-                                dst_set[i][j].src_id)%dc->numprocs()) {
+                                dst_set[i][j].src_id) % dc->numprocs()) {
                         gsInstance inst(dst_set[i][j]);
                         inst.src_code = 
                             graph->vertex(inst.src_id).data().code;
@@ -323,12 +324,16 @@ class query_handler{
                     bfs_runtime << " seconds." << std::endl;
                 out << "GS total running time (powergraph timer) is " << 
                     gs_runtime << " seconds." << std::endl;
-                out << "Overheads(code, search, [reduced]) are " << 
+                out << "Overheads(code, search, [r], comp) are " << 
                     r.code_overhead << " ";
                 out << r.search_overhead / (n_query - err_cnt) << " ";
 #ifdef SELECTIVE_LCA
                 out << r.reduced_overhead / (n_query - err_cnt) << " ";
 #endif
+                out << "(";
+                for (size_t i = 0; i < r.comp_overhead.size(); i++)
+                    out << r.comp_overhead[i] << " ";
+                out << ")";
                 out << std::endl;
                 out << "Avg dist and est errors are (real, appr, obv): " << 
                     avg_real_dist << ", " << 
