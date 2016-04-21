@@ -75,6 +75,7 @@ int main(int argc, char** argv) {
     size_t n_query_batch = 1000;
 #endif
 #else
+    //size_t n_query_batch = n_query * 2;
     size_t n_query_batch = 50000;
 #endif
 #ifdef BIDIRECTIONAL_SEARCH
