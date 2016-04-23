@@ -8,7 +8,7 @@ testcase_folder="datasets/testcases/withreal" # only enable when you need accura
 # testcase_folder="datasets/testcases/regular"
 
 n_cores=(4)
-n_exp=(10000)
+n_exp=(300000)
 n_machines=(1)
 n_tree=(1)
 posfix=("test") # if use real, dont forget to change the testcase directory

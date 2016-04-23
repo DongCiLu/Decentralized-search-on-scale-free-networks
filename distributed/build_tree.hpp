@@ -81,9 +81,6 @@ class build_code_sys :
                     changed = true;
                     vertex.data().code.push_back(code);
                     vertex.data().code[tree_id].push_back(vertex.id());
-#ifdef TIE_HEUR
-                    vertex.data().potential += potential;
-#endif
                 }
             }
 
