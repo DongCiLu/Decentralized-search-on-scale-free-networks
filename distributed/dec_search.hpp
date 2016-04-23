@@ -2,9 +2,6 @@
 #define DEC_SEARCH_H
 
 #include "common.hpp"
-#ifdef DEBUG_SHOW_STEP
-#include <time.h>
-#endif
 
 struct hop_msg_type {
     std::vector<gsInstance> inst_set; // instance id to instance
@@ -54,14 +51,24 @@ struct hop_msg_type {
 struct mc_instance{
     size_t id;
     distance_type dist;
+#ifdef TIE_HEUR
+    std::map<graphlab::vertex_id_type, 
+        graphlab::vertex_id_type> vids;
+#else
     std::set<graphlab::vertex_id_type> vids;
+#endif
 
     mc_instance(size_t id = -1, distance_type dist = 
             std::numeric_limits<distance_type>::max()):
         id(id), dist(dist) { }
 
     mc_instance(size_t id, distance_type dist, 
+#ifdef TIE_HEUR
+            std::map<graphlab::vertex_id_type, 
+            graphlab::vertex_id_type>& vids):
+#else
             std::set<graphlab::vertex_id_type>& vids):
+#endif
         id(id), dist(dist), vids(vids) { }
 
     void save(graphlab::oarchive& oarc) const {
@@ -94,29 +101,33 @@ struct min_code_distance_type {
     min_code_distance_type() { } 
 
     // create an gather instance from one point to all gsInstance
-#ifdef TIE_HEUR
-    min_code_distance_type(graphlab::vertex_id_type vid, 
-            const label_type& vcode, 
-            const std::vector<gsInstance>& inst_set,
-            long potential) {
-#else
     min_code_distance_type(graphlab::vertex_id_type vid, 
             const label_type& vcode, 
             const std::vector<gsInstance>& inst_set) {
-#endif
 #ifdef TIE_FULL
+#ifdef TIE_HEUR
+        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> vids;
+#else
         std::set<graphlab::vertex_id_type> vids;
         vids.insert(vid);
+#endif
 #endif //TIE_FULL
         for(std::vector<gsInstance>::const_iterator 
                 iter = inst_set.begin();
                 iter != inst_set.end(); ++iter) {
+#ifdef TIE_HEUR
+            graphlab::vertex_id_type lca = -1;
+            distance_type dist = 
+                get_code_dist_wlca(vcode, iter->dst_code, lca);
+            vids.clear();
+            vids[lca] = vid;
+#else
             distance_type dist = 
                 get_code_dist(vcode, iter->dst_code);
-#if defined(TIE_FULL)
+#endif
+
+#ifdef TIE_FULL
             mc_instance mcInst(iter->id, dist, vids);
-#elif defined(TIE_HEUR)
-            mc_instance mcInst(iter->id, dist, vid, potential);
 #else
             mc_instance mcInst(iter->id, dist, vid);
 #endif // TIE_FULL
@@ -134,16 +145,11 @@ struct min_code_distance_type {
             // both vector generate from same set so they are in same order
             if (iter->dist < mc_inst_set[pos].dist) 
                 mc_inst_set[pos] = *iter;
-#ifdef TIE_HEUR
-            else if (iter->dist == mc_inst_set[pos].dist) {
-                if (iter->potential > mc_inst_set[pos].potential)
-                    mc_inst_set[pos] = *iter;
-            }
-#endif //TIE_FULL
 #ifdef TIE_FULL
-            else if (iter->dist == mc_inst_set[pos].dist)
+            else if (iter->dist == mc_inst_set[pos].dist) {
                 mc_inst_set[pos].vids.insert(iter->vids.begin(), 
                         iter->vids.end());
+            }
 #endif //TIE_FULL
             pos ++;
         }
@@ -181,19 +187,6 @@ class dec_search :
 
         edge_dir_type gather_edges(icontext_type& context, 
                 const vertex_type& vertex) const { 
-#ifdef DEBUG_SHOW_STEP
-            if (procid == 0) {
-                step_mtx.lock();
-                int super_step = inst_set.begin()->path.size();
-                if (step_flags[super_step][0] == 0) {
-                    time_t timer = time(NULL);
-                    std::cout << super_step << " gather: " << timer << std::endl;
-                    step_flags[super_step][0] = 1;
-                }
-                step_mtx.unlock();
-            }
-#endif
-
             return DIRECTED_GRAPH? graphlab::OUT_EDGES : 
                 graphlab::ALL_EDGES; 
         } // end of gather_edges 
@@ -210,16 +203,14 @@ class dec_search :
                 if (len > 1 && vertex.id() == other.data().code[i][len - 2])
                     ignore_tree_cnt ++;
             }
-            other.data().ignore_cnt += inst_set.size() * ignore_tree_cnt;
+            //other.data().ignore_cnt += 
+            //    inst_set.size() * ignore_tree_cnt;
 #endif
-            other.data().check_cnt += inst_set.size() * other.data().code.size();
-#ifdef TIE_HEUR
-            return min_code_distance_type(other.id(), 
-                    other.data().code, inst_set, other.data().potential);
-#else
+            //other.data().check_cnt += 
+            //    inst_set.size() * other.data().code.size();
+            other.data().check_cnt += inst_set.size();
             return min_code_distance_type(other.id(), 
                     other.data().code, inst_set);
-#endif
         } // end of gather function
 
         void store_result(std::vector<gsInstance>::iterator iter) {
@@ -241,24 +232,26 @@ class dec_search :
 
         void apply(icontext_type& context, vertex_type& vertex,
                 const min_code_distance_type& min_code_dist) {
-#ifdef DEBUG_SHOW_STEP
-            if (procid == 0) {
-                step_mtx.lock();
-                int super_step = inst_set.begin()->path.size();
-                if (step_flags[super_step][1] == 0) {
-                    time_t timer = time(NULL);
-                    std::cout << super_step << " apply: " << timer << std::endl;
-                    step_flags[super_step][1] = 1;
-                }
-                step_mtx.unlock();
-            }
-#endif
+            vertex.data().visit_cnt += min_code_dist.mc_inst_set.size();
             std::vector<mc_instance>::const_iterator mcIter = 
                 min_code_dist.mc_inst_set.begin();
             std::vector<gsInstance>::iterator iter = inst_set.begin();
 
             // mc_inst_set and inst_set are in same order and same size
             while(mcIter != min_code_dist.mc_inst_set.end()) {
+#ifdef TIE_FULL
+#ifdef TIE_HEUR
+                std::set<graphlab::vertex_id_type> vids;
+                for (typename std::map<graphlab::vertex_id_type, 
+                        graphlab::vertex_id_type>::const_iterator convert_iter =
+                        mcIter->vids.begin();
+                        convert_iter != mcIter->vids.end();
+                        ++ convert_iter)
+                    vids.insert(convert_iter->second);
+#else
+                std::set<graphlab::vertex_id_type> vids = mcIter->vids;
+#endif
+#endif
 #ifdef EARLY_TERMINATION
                 //try to find next step node in code[dst] 
                 bool found = false;
@@ -266,8 +259,11 @@ class dec_search :
                         !found; ++t) {
                     for (size_t i = 0; i < iter->dst_code[t].size(); ++i) {
 #ifdef TIE_FULL
-                        if (*(mcIter->vids.begin()) == 
-                                iter->dst_code[t][i]){
+                        /* 
+                         * this is not totally correct,
+                         * but have good effort and outcome tradeoff
+                         */
+                        if (vids.find(iter->dst_code[t][i]) != vids.end()){
 #else
                         if (mcIter->vid == iter->dst_code[t][i]){
 #endif //TIE_FULL
@@ -294,10 +290,9 @@ class dec_search :
                 // regular update, update record with next hop
                 else if (mcIter->dist < iter->min_dist) {
 #ifdef TIE_FULL
-                    std::set<graphlab::vertex_id_type> vids;
-                    if (iter->state == Main || 
-                            iter->min_dist > mcIter->dist+1)
-                        vids = mcIter->vids;
+                    if (iter->state != Main &&
+                            iter->min_dist <= mcIter->dist + 1)
+                        vids.clear();
 #endif
                     iter->min_dist = mcIter->dist;
 #ifdef TIE_FULL
@@ -324,24 +319,6 @@ class dec_search :
 
         edge_dir_type scatter_edges(icontext_type& context, 
                 const vertex_type& vertex) const {
-#ifdef DEBUG_SHOW_STEP
-            if (procid == 0) {
-                step_mtx.lock();
-                int super_step = 0;
-                for (int i = 1; i < 20; i++) {
-                    if (step_flags[i][1] == 1)
-                        super_step = i;
-                    else
-                        break;
-                }
-                if (step_flags[super_step][2] == 0) {
-                    time_t timer = time(NULL);
-                    std::cout << super_step << " scatter: " << timer << std::endl;
-                    step_flags[super_step][2] = 1;
-                }
-                step_mtx.unlock();
-            }
-#endif
             if (!inst_set.empty())
                 return DIRECTED_GRAPH? graphlab::OUT_EDGES : 
                     graphlab::ALL_EDGES; 

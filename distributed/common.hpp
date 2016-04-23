@@ -13,14 +13,11 @@
 #define EARLY_TERMINATION //Never turn off
 #define BIDIRECTIONAL_SEARCH
 //#define TIE_FULL
+//#define TIE_HEUR // require tie full to work
 //#define LABEL_DEG
 //#define SELECTIVE_LCA
-//#define TIE_HEUR
 
 //#define CALC_REAL //Turn off all the others when turn this on
-
-//#define DEBUG
-//#define DEBUG_SHOW_STEP
 
 /******************* Declear basic types for graph *******************/
 bool DIRECTED_GRAPH = false;
@@ -31,25 +28,21 @@ typedef std::vector< std::vector<code_type> > label_type;
 
 struct vertex_data {
     label_type code;
-#ifdef TIE_HEUR
-    long potential;
-#endif
 #ifdef CALC_REAL
     size_t flag;
 #endif
     size_t check_cnt;
+    size_t visit_cnt;
 #ifdef SELECTIVE_LCA
     size_t ignore_cnt;
 #endif
 
     vertex_data() {
-#ifdef TIE_HEUR
-        potential = 0;
-#endif
 #ifdef CALC_REAL
         flag = 0;
 #endif
         check_cnt = 0;
+        visit_cnt = 0;
 #ifdef SELECTIVE_LCA
         ignore_cnt = 0;
 #endif
@@ -57,13 +50,10 @@ struct vertex_data {
 
     void save(graphlab::oarchive& oarc) const {
         oarc << code;
-#ifdef TIE_HEUR
-        oarc << potential;
-#endif
 #ifdef CALC_REAL
         oarc << flag;
 #endif
-        oarc << check_cnt;
+        oarc << check_cnt << visit_cnt;
 #ifdef SELECTIVE_LCA
         oarc << ignore_cnt;
 #endif
@@ -71,13 +61,10 @@ struct vertex_data {
 
     void load(graphlab::iarchive& iarc) {
         iarc >> code;
-#ifdef TIE_HEUR
-        iarc >> potential;
-#endif
 #ifdef CALC_REAL
         iarc >> flag;
 #endif
-        iarc >> check_cnt;
+        iarc >> check_cnt >> visit_cnt;
 #ifdef SELECTIVE_LCA
         iarc >> ignore_cnt;
 #endif
@@ -129,6 +116,31 @@ struct gsInstance {
     }
 };
 
+#ifdef TIE_HEUR
+inline distance_type get_code_dist_wlca(const label_type& src_code, 
+        const label_type& dst_code, graphlab::vertex_id_type &lca) {
+    distance_type dist = std::numeric_limits<distance_type>::max();
+    for (size_t t = 0; t < src_code.size(); t++){
+        size_t range = std::min(src_code[t].size(), dst_code[t].size());
+        size_t i = 0;
+        graphlab::vertex_id_type local_lca = src_code[t][i];
+        while (i < range) { 
+            if (src_code[t][i] != dst_code[t][i])
+                break;
+            local_lca = src_code[t][i];
+            i++;
+        }
+        distance_type lca_dist = src_code[t].size() + 
+            dst_code[t].size() - 2 * i;
+        if (i != 0 && lca_dist < dist) {
+            dist = lca_dist;
+            lca = local_lca;
+        }
+    }
+    return dist;
+}
+#endif
+
 inline distance_type get_code_dist(const label_type& src_code, 
         const label_type& dst_code) {
     distance_type dist = std::numeric_limits<distance_type>::max();
@@ -155,11 +167,8 @@ bfs_ds_type bfs_dst_set;
 std::vector< std::map<size_t, distance_type> > real_results;
 #endif
 boost::mutex mtx;
-#ifdef DEBUG_SHOW_STEP
-std::vector< std::vector<int> > step_flags;
-boost::mutex step_mtx;
-#endif
 size_t procid;
+size_t numprocs;
 
 /******************* Others *******************/
 struct select_root_reducer: public graphlab::IS_POD_TYPE {
@@ -192,13 +201,18 @@ select_root_reducer calc_root_rank(const graph_type::vertex_type vtx) {
 struct calc_overhead_reducer {
     size_t code_overhead;
     size_t search_overhead;
+    std::vector<size_t> comp_overhead;
 #ifdef SELECTIVE_LCA
     size_t reduced_overhead;
 #endif
 
-    calc_overhead_reducer& operator+=(const calc_overhead_reducer& other) {
+    calc_overhead_reducer& operator+=(
+            const calc_overhead_reducer& other) {
         code_overhead += other.code_overhead;
         search_overhead += other.search_overhead;
+        for (size_t i = 0; i < comp_overhead.size(); i++) {
+            comp_overhead[i] += other.comp_overhead[i];
+        }
 #ifdef SELECTIVE_LCA
         reduced_overhead += other.reduced_overhead;
 #endif
@@ -206,14 +220,14 @@ struct calc_overhead_reducer {
     }
 
     void save(graphlab::oarchive& oarc) const {
-        oarc << code_overhead << search_overhead;
+        oarc << code_overhead << search_overhead << comp_overhead;
 #ifdef SELECTIVE_LCA
         oarc << reduced_overhead;
 #endif
     }
 
     void load(graphlab::iarchive& iarc) {
-        iarc >> code_overhead >> search_overhead;
+        iarc >> code_overhead >> search_overhead >> comp_overhead;
 #ifdef SELECTIVE_LCA
         iarc >> reduced_overhead;
 #endif
@@ -224,6 +238,10 @@ calc_overhead_reducer calc_overhead(const graph_type::vertex_type vtx) {
     calc_overhead_reducer red;
     red.code_overhead = 0;
     red.search_overhead = vtx.data().check_cnt;
+    size_t vertex_procid = 
+        graphlab::graph_hash::hash_vertex(vtx.id()) % numprocs;
+    red.comp_overhead.resize(numprocs, 0);
+    red.comp_overhead[vertex_procid] += vtx.data().visit_cnt;
 #ifdef SELECTIVE_LCA
     red.reduced_overhead = vtx.data().ignore_cnt;
 #endif

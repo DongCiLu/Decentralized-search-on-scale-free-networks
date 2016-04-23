@@ -44,10 +44,12 @@ class ds_cent {
         dist_type get_dist(id_type src_id, id_type dst_id, id_type& lca);
         dist_type do_search(id_type src, id_type dst); 
         dist_type do_search_multi(id_type src, id_type dst); 
-        dist_type do_search_all(id_type src, id_type dst); 
+        dist_type do_search_all(id_type src, id_type dst, 
+                std::set< std::vector<id_type> > &pair_path); 
         std::vector< std::pair<id_type, dist_type> > 
             get_bfs_order(std::vector< std::vector<id_type> > sketch);
-        dist_type tree_sketch(id_type src, id_type dst);
+        dist_type tree_sketch(
+                id_type src, id_type dst, size_t &path_cnt);
         id_type select_root(size_t t);
 
         void bfs(size_t t, id_type rid);
@@ -62,16 +64,18 @@ class ds_cent {
         std::ofstream out;
         std::vector<id_type> root_id;
 
-        clock_t total_tick;
-        clock_t total_comp_tick;
         size_t total_path_cnt;
+        size_t total_comp_path_cnt;
+        double total_out_ratio;
 
         dist_type total_real;
-        dist_type total_est_all;
-        dist_type total_est_multi;
-        dist_type total_est;
-        dist_type total_comp;
-        dist_type total_obv;
+        double total_est_all;
+        double total_est_multi;
+        double total_est;
+        double total_comp;
+        double total_obv;
+
+        size_t index_oh;
 
         const size_t num_tree;
         size_t num_exp;
