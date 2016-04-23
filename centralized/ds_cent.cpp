@@ -26,7 +26,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile) :
     total_path_cnt(0), total_comp_path_cnt(0), total_out_ratio(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
     total_est(0), total_comp(0), total_obv(0),
-    num_tree(2), num_exp(10000) {
+    index_oh(0), num_tree(2), num_exp(10000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -440,8 +440,8 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(
 
 template <typename id_type, typename dist_type>
 void ds_cent<id_type, dist_type>::test() {
-    //string tcfilename = "./datasets/testcases/withreal/";
-    string tcfilename = "./datasets/testcases/regular/";
+    string tcfilename = "./datasets/testcases/withreal/";
+    //string tcfilename = "./datasets/testcases/regular/";
     tcfilename += graphname + "_testcases.txt";
     cout << tcfilename << endl;
     ifstream in(tcfilename.c_str());
@@ -449,7 +449,7 @@ void ds_cent<id_type, dist_type>::test() {
     size_t cnt = 0;
 
     while (cnt < num_exp) {
-        if (cnt % 100 == 99)
+        if (cnt % 1000 == 999)
             cout << "." << flush;
         id_type src;
         id_type dst;
@@ -467,7 +467,7 @@ void ds_cent<id_type, dist_type>::test() {
         total_comp += double(comp_dist - real_dist) / real_dist;
         total_comp_path_cnt += path_cnt;
 
-        dist_type est_dist_1, est_dist_2, est_dist;
+        //dist_type est_dist_1, est_dist_2, est_dist;
         /*
         est_dist_1 = do_search(src, dst);
         est_dist_2 = do_search(dst, src);
@@ -482,6 +482,7 @@ void ds_cent<id_type, dist_type>::test() {
         total_est_multi += double(est_dist - real_dist) / real_dist;
         */
         
+        /*
         set< vector<id_type> > pair_path;
         set< vector<id_type> > pair_path1;
         set< vector<id_type> > pair_path2;
@@ -536,6 +537,7 @@ void ds_cent<id_type, dist_type>::test() {
 
 
         total_est_all += double(est_dist - real_dist) / real_dist;
+        */
     }
     in.close();
     cout << endl;
@@ -567,6 +569,16 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
                 double(total_comp_path_cnt) / num_exp << endl;
             out << "Avg out ratio: " << 
                 total_out_ratio / total_path_cnt << endl;
+
+            for (typename code_type::iterator iter = codes.begin();
+                    iter != codes.end(); ++iter){
+                for (size_t t = 0; t < iter->second.size(); t++){
+                    index_oh += iter->second[t].size();
+                }
+            }
+            out << "Index overhead: " << 
+                double(index_oh) * sizeof(id_type) / 1000000000 <<
+                "GB" << endl;
             out << endl;
             break;
         default:

@@ -75,6 +75,8 @@ class ds_cent {
         double total_comp;
         double total_obv;
 
+        size_t index_oh;
+
         const size_t num_tree;
         size_t num_exp;
         dist_type max_dist;
