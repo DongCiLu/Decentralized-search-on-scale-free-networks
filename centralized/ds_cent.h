@@ -34,11 +34,12 @@ class ds_cent {
         typedef std::map< id_type, std::vector< std::vector<id_type> > > 
             code_type;
 
-        ds_cent(std::string graphfile);
+        ds_cent(std::string graphfile, size_t n_tree);
         ~ds_cent();
-        void build_code_sys(); // build code system
-        void test(); // performing decentralized search
+        void build_index(size_t t);
+        void test();
         void print_info(int stage);
+        void reset();
 
     private:
         dist_type get_dist(id_type src_id, id_type dst_id, id_type& lca);
@@ -77,8 +78,8 @@ class ds_cent {
 
         size_t index_oh;
 
-        const size_t num_tree;
-        size_t num_exp;
+        size_t n_tree;
+        size_t n_exp;
         dist_type max_dist;
 
         std::map<id_type, long> unlabeled_degree;

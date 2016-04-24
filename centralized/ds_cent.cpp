@@ -22,19 +22,19 @@ string ds_cent<id_type, dist_type>::get_time() {
 }
 
 template <typename id_type, typename dist_type>
-ds_cent<id_type, dist_type>::ds_cent(string graphfile) : 
+ds_cent<id_type, dist_type>::ds_cent(string graphfile, size_t n_tree) : 
     total_path_cnt(0), total_comp_path_cnt(0), total_out_ratio(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
     total_est(0), total_comp(0), total_obv(0),
-    index_oh(0), num_tree(2), num_exp(10000) {
+    index_oh(0), n_tree(0), n_exp(100000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
     size_t max_exp = max_dist * max_dist;
-    num_exp = min(num_exp, max_exp);
+    n_exp = min(n_exp, max_exp);
 
-    root_id.resize(num_tree, 0);
-    vector< vector<id_type> > init_code(num_tree); 
+    root_id.resize(n_tree, 0);
+    vector< vector<id_type> > init_code(n_tree); 
     for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); 
             NI < net->EndNI(); NI ++) {
         codes.insert(make_pair(NI.GetId(), init_code));
@@ -56,7 +56,7 @@ template <typename id_type, typename dist_type>
 dist_type ds_cent<id_type, dist_type> ::
 get_dist(id_type src_id, id_type dst_id, id_type& lca) {
     dist_type dist = max_dist; 
-    for (size_t t = 0; t < num_tree; t++) {
+    for (size_t t = 0; t < n_tree; t++) {
         size_t range = min(codes[src_id][t].size(), 
                 codes[dst_id][t].size());
         size_t i = 0;
@@ -82,7 +82,7 @@ template <typename id_type, typename dist_type>
 id_type ds_cent<id_type, dist_type>::select_root(size_t t) {
     size_t max_deg = 0;
     id_type next_root_id = -1;
-    for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); NI < net->EndNI(); NI ++){
+    for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); NI < net->EndNI(); NI++){
         id_type id = NI.GetId();
         size_t root_deg = 1;
         for (size_t k = 0; k < t; k++)
@@ -142,22 +142,15 @@ bfs(size_t t, id_type rid){
 
 
 template <typename id_type, typename dist_type>
-void ds_cent<id_type, dist_type>::build_code_sys() {
-    clock_t start_tick = clock();
-
-    for (size_t t = 0; t < num_tree; t++) {
-        cout << "processing " << t+1 << " tree" << endl;
-        root_id[t] = select_root(t);
-        bfs(t, root_id[t]);
-    }
-
-    out << "Building coding system time: " << 
-        clock() - start_tick << "\n" << endl;
+void ds_cent<id_type, dist_type>::build_index(size_t t) {
+    cout << "processing " << t+1 << " tree" << endl;
+    root_id[t] = select_root(t);
+    bfs(t, root_id[t]);
 }
 
 template <typename id_type, typename dist_type>
-dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, id_type dst,
-        set< vector<id_type> > &pair_path) {
+dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, 
+        id_type dst, set< vector<id_type> > &pair_path) {
     set<id_type> cur_set, next_set;
     map< id_type, set< vector<id_type> > > partial_path;
     map< id_type, set< vector<id_type> > > new_partial_path;
@@ -448,7 +441,7 @@ void ds_cent<id_type, dist_type>::test() {
     TBreathFS<PGRAPH_TYPE> BFS(net);
     size_t cnt = 0;
 
-    while (cnt < num_exp) {
+    while (cnt < n_exp) {
         if (cnt % 1000 == 999)
             cout << "." << flush;
         id_type src;
@@ -547,7 +540,7 @@ template <typename id_type, typename dist_type>
 void ds_cent<id_type, dist_type>::print_info(int stage) {
     switch (stage) {
         case 1:
-            for (size_t t = 0; t  < num_tree; t ++) {
+            for (size_t t = 0; t  < n_tree; t ++) {
                 out << "Set" << t << ": " << endl;
                 out << "Root ID: " << root_id[t] << endl;
                 out << "Root Deg: " << 
@@ -555,18 +548,18 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
             }
             break;
         case 2:
-            out << "Number of experiments: " << num_exp << endl;
-            out << "Avg real: " << double(total_real) / num_exp << endl;
-            out << "Avg est all: " << total_est_all / num_exp << endl;
+            out << "Number of experiments: " << n_exp << endl;
+            out << "Avg real: " << double(total_real) / n_exp << endl;
+            out << "Avg est all: " << total_est_all / n_exp << endl;
             out << "Avg est multi: " << 
-                total_est_multi / num_exp << endl;
-            out << "Avg est: " << total_est / num_exp << endl;
-            out << "Avg comp: " << total_comp / num_exp << endl;
-            out << "Avg obv: " << total_obv / num_exp << endl;
+                total_est_multi / n_exp << endl;
+            out << "Avg est: " << total_est / n_exp << endl;
+            out << "Avg comp: " << total_comp / n_exp << endl;
+            out << "Avg obv: " << total_obv / n_exp << endl;
             out << "Avg path count: " << 
-                double(total_path_cnt) / num_exp << endl;
+                double(total_path_cnt) / n_exp << endl;
             out << "Avg comp path count: " << 
-                double(total_comp_path_cnt) / num_exp << endl;
+                double(total_comp_path_cnt) / n_exp << endl;
             out << "Avg out ratio: " << 
                 total_out_ratio / total_path_cnt << endl;
 
@@ -579,34 +572,57 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
             out << "Index overhead: " << 
                 double(index_oh) * sizeof(id_type) / 1000000000 <<
                 "GB" << endl;
-            out << endl;
+            out << "------------------" << endl;
             break;
         default:
             break;
     }
 }
 
+template <typename id_type, typename dist_type>
+void ds_cent<id_type, dist_type>::reset() {
+    total_path_cnt = 0;
+    total_comp_path_cnt = 0;
+    total_out_ratio = 0;
+    total_real = 0;
+    total_est_all = 0; 
+    total_est_multi = 0;
+    total_est = 0;
+    total_comp = 0;
+    total_obv = 0;
+    index_oh = 0;
+}
+
 int main(int argc, char** argv){
-    cerr << "Step 1: Setting Environment and loading graphs." << endl;
-    string graphfile;
-    if (argc < 2){
-        cout << "Please input graph file name: " << endl;
-        cin >> graphfile;
+    cout << "Step 1: Setting Environment and loading graphs." << endl;
+    string graphfile = argv[1];
+    string stepy = argv[2];
+    size_t n_tree = 20;
+
+    ds_cent<unsigned long, unsigned long> m(graphfile, n_tree);
+
+    if (stepy == "1"){
+        for (size_t t = 0; t < n_tree; t++){
+            cout << "Step 2: Build index." << endl;
+            m.build_index(t);
+            cout << "Step 3: Perform dec search." << endl;
+            m.test();
+            m.print_info(2);
+            m.reset();
+        }
     }
     else {
-        graphfile = argv[1];
+        cout << "Step 2: Build index." << endl;
+        for (size_t t = 0; t < n_tree; t++){
+            m.build_index(t);
+        }
+        m.print_info(1);
+        cout << "Step 3: Perform dec search." << endl;
+        m.test();
+        m.print_info(2);
     }
-    ds_cent<unsigned long, unsigned long> m(graphfile);
 
-    cerr << "Step 2: Building code system." << endl;
-    m.build_code_sys();
-    m.print_info(1);
-
-    cerr << "Step 3: Test coordinate system with simple search." << endl;
-    m.test();
-    m.print_info(2);
-
-    cerr << "Done." << endl;
+    cout << "Done." << endl;
     return 0;
 }
 
