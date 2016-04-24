@@ -4,19 +4,20 @@ gn_array=("wiki")
 data_folder="datasets"
 exec_folder="binary"
 res_folder="results"
-testcase_folder="datasets/testcases/withreal" # only enable when you need accuracy
+testcase_folder="datasets/testcases/withreal" # use when need accuracy
 # testcase_folder="datasets/testcases/regular"
 
-n_cores=(4)
-n_exp=(300000)
+n_cores=4
+n_exp=(10000)
 n_machines=(1)
-n_tree=(1)
+n_tree=(3)
+stepy_flag=1
 posfix=("test") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /home/$USER/PowerGraph/scripts/mpirsync"
-cmd1="mpiexec -n n_machines --hostfile /home/$USER/machines ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --ncpus ${n_cores} --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
-cmd2="mv graphname_class_n_machinesm_n_expq.txt ./${res_folder}/class/"
+cmd1="mpiexec -n n_machines --hostfile /home/$USER/machines ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --ncpus ${n_cores} --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --stepy ${stepy_flag} --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
+cmd2="mv graphname_class_n_machinesm_n_expq* ./${res_folder}/class/"
 
 #$pre2
 for i in "${gn_array[@]}"
@@ -37,6 +38,7 @@ do
             for ((l=0; l<${#n_exp[@]}; l++));
             do
                 cm1_mod5=${cm1_mod4//n_exp/${n_exp[$l]}} 
+                echo ${cm1_mod5//class/$class}
                 # ./load.sh &
                 # PIDLOAD=$!
                 # echo $PIDLOAD

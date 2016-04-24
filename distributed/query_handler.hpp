@@ -59,11 +59,12 @@ class query_handler{
         }
 
         void ds_query_batch() {
-            dc->cout() << "\n1 Start building label system..." << std::endl;
+            dc->cout() << "\n1 Start building label system..." << 
+                std::endl;
             build_label(n_tree);
 
             for (size_t i = 0; i < n_query; i += n_query_batch) {
-                dc->cout() << "\n2 Perform ds for queries..." << std::endl;
+                dc->cout() << "\n2 Perform DS..." << std::endl;
                 dc->cout() << "\t2.0 Reading test cases..." << std::endl;
                 results.resize(dc->numprocs());
                 inst_set.resize(dc->numprocs());
@@ -75,10 +76,10 @@ class query_handler{
                 dst_set.resize(dc->numprocs());
                 gather_dst();
 
-                dc->cout() << "\t2.2 Create gs instances..." << std::endl;
+                dc->cout() << "\t2.2 Create gs inst..." << std::endl;
                 create_instances();
 
-                dc->cout() << "\t2.3 Start greedy search... " << std::endl;
+                dc->cout() << "\t2.3 Start dec search... " << std::endl;
                 start_ds_search();
 
                 dc->cout() << "\t2.4 Gathering results..." << std::endl;
@@ -96,7 +97,7 @@ class query_handler{
 
 #ifdef CALC_REAL
         void real_query_serial() {
-            dc->cout() << "\n1 Perform bfs for real dist..." << std::endl;
+            dc->cout() << "\n1 Perform BFS..." << std::endl;
             dc->cout() << "\t1.0 Reading test cases..." << std::endl;
             results.resize(dc->numprocs());
             inst_set.resize(dc->numprocs());
@@ -115,13 +116,11 @@ class query_handler{
 #endif
 
     private:
-        void build_label(size_t n_tree_to_build) {
+        void build_label(size_t n_tree) {
             graphlab::omni_engine<build_code_sys> bfs_engine(
                     *dc, *graph, "synchronous", *clopts); // asyn won't work 
             bfs_engine.elapsed_seconds(); // clear timer
-            for(size_t t = n_tree_built; 
-                    t < n_tree_built + n_tree_to_build; 
-                    t++) {
+            for(size_t t = n_tree_built; t < n_tree; t++) {
                 select_root_reducer r = 
                     graph->map_reduce_vertices<select_root_reducer>(
                             calc_root_rank);
@@ -133,7 +132,6 @@ class query_handler{
             bfs_runtime += bfs_engine.elapsed_seconds();
             dc->cout() << "\tFinished building code system in " << 
                 bfs_runtime << " seconds." << std::endl;
-            n_tree_built += n_tree_to_build;
         }
 
         void read_tcs(size_t n_query_to_perform) {

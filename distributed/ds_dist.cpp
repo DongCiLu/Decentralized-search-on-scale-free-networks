@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 #include <cstdlib>
 #include <time.h>
@@ -42,6 +43,10 @@ int main(int argc, char** argv) {
     size_t n_tree = 1;
     clopts.attach_option("num_tree", n_tree,
             "Number of trees.");
+
+    int stepy = 0;
+    clopts.attach_option("stepy", stepy,
+            "Normal mode or stepy mode.");
    
     size_t n_query = 0;
     clopts.attach_option("num_query", n_query,
@@ -81,15 +86,37 @@ int main(int argc, char** argv) {
 #ifdef BIDIRECTIONAL_SEARCH
     n_query_batch /= 2;
 #endif
-    query_handler qh(n_tree, n_query,
+
+#ifndef CALC_REAL
+    if (stepy == 0) {
+        query_handler qh(n_tree, n_query, 
+                &dc, &clopts, &graph, 
+                input_file, exec_type, 
+                saveprefix, graph_dir,
+                n_query_batch);
+        qh.ds_query_batch();
+    }
+    else {
+        for (size_t n_tree_built = 0; 
+                n_tree_built < n_tree; 
+                n_tree_built ++) {
+            std::ostringstream oss;
+            oss << saveprefix << "_" << n_tree_built + 1 << "t";
+            std::string saveprefix_mod = oss.str();
+            query_handler qh(n_tree_built + 1, n_query, 
+                    &dc, &clopts, &graph, 
+                    input_file, exec_type, 
+                    saveprefix_mod, graph_dir,
+                    n_query_batch, n_tree_built);
+            qh.ds_query_batch();
+        }
+    }
+#else
+    query_handler qh(n_tree, n_query, 
             &dc, &clopts, &graph, 
             input_file, exec_type, 
             saveprefix, graph_dir,
             n_query_batch);
-
-#ifndef CALC_REAL
-    qh.ds_query_batch();
-#else
     qh.real_query_serial();
 #endif
 
