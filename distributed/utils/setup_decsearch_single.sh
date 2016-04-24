@@ -51,7 +51,7 @@ ln -s /local/DecSearch/centralized/ds_cent.h /local/Snap/examples/ds_cent/ds_cen
 ln -s /local/DecSearch/centralized/utils/Makefile /local/Snap/examples/ds_cent/Makefile
 cp /local/DecSearch/centralized/utils/Makefile.ex /local/Snap/examples/ds_cent/Makefile.ex
 ln -s /local/DecSearch/centralized/utils/simple.sh /local/Snap/examples/ds_cent/simple.sh
-cd /local/Snap
+cd /local/Snap/examples/ds_cent
 make
 
 echo "You are all set."
