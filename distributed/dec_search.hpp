@@ -62,11 +62,12 @@ struct mc_instance{
             std::numeric_limits<distance_type>::max()):
         id(id), dist(dist) { }
 
-    mc_instance(size_t id, distance_type dist, 
 #ifdef TIE_HEUR
+    mc_instance(size_t id, distance_type dist, 
             std::map<graphlab::vertex_id_type, 
             graphlab::vertex_id_type>& vids):
 #else
+    mc_instance(size_t id, distance_type dist, 
             std::set<graphlab::vertex_id_type>& vids):
 #endif
         id(id), dist(dist), vids(vids) { }
@@ -104,14 +105,21 @@ struct min_code_distance_type {
     min_code_distance_type(graphlab::vertex_id_type vid, 
             const label_type& vcode, 
             const std::vector<gsInstance>& inst_set) {
+#ifdef DEBUG_STEP_TIMER
+        clock_t timer = clock();
+#endif
+
 #ifdef TIE_FULL
 #ifdef TIE_HEUR
-        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> vids;
+        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> 
+            vids;
 #else
         std::set<graphlab::vertex_id_type> vids;
         vids.insert(vid);
 #endif
 #endif //TIE_FULL
+        //mc_inst_set.reserve(inst_set.size());
+        //size_t mc_cnt = 0;
         for(std::vector<gsInstance>::const_iterator 
                 iter = inst_set.begin();
                 iter != inst_set.end(); ++iter) {
@@ -132,12 +140,24 @@ struct min_code_distance_type {
             mc_instance mcInst(iter->id, dist, vid);
 #endif // TIE_FULL
             mc_inst_set.push_back(mcInst);
+            //mc_inst_set[mc_cnt] = mcInst;
+            //mc_cnt ++;
         }
+
+#ifdef DEBUG_STEP_TIMER
+        timer = clock() - timer;
+        step_mtx.lock();
+        agg_step_timer[4] += timer;
+        step_mtx.unlock();
+#endif
     } 
 
     // combine gather instance from all neighbors
     min_code_distance_type& operator+=(
             const min_code_distance_type& other) {
+#ifdef DEBUG_STEP_TIMER
+        clock_t timer = clock();
+#endif
         size_t pos = 0;
         for(std::vector<mc_instance>::const_iterator 
                 iter = other.mc_inst_set.begin(); 
@@ -153,6 +173,12 @@ struct min_code_distance_type {
 #endif //TIE_FULL
             pos ++;
         }
+#ifdef DEBUG_STEP_TIMER
+        timer = clock() - timer;
+        step_mtx.lock();
+        agg_step_timer[5] += timer;
+        step_mtx.unlock();
+#endif
         return *this;
     }
 
@@ -183,6 +209,16 @@ class dec_search :
         void init(icontext_type& context, const vertex_type& vertex,
                 const hop_msg_type& msg) {
             inst_set = msg.inst_set;
+#ifdef DEBUG_STEP_TIMER
+            step_mtx.lock();
+            if (step_cnt < inst_set.begin()->path.size()) {
+                if (last_step != 0)
+                    agg_step_timer[0] += clock() - last_step;
+                last_step = clock();
+                step_cnt ++;
+            }
+            step_mtx.unlock();
+#endif
         } 
 
         edge_dir_type gather_edges(icontext_type& context, 
@@ -195,6 +231,9 @@ class dec_search :
         min_code_distance_type gather(icontext_type& context, 
                 const vertex_type& vertex, 
                 edge_type& edge) const {
+#ifdef DEBUG_STEP_TIMER
+            clock_t gather_timer = clock();
+#endif
             vertex_type other = get_other_vertex(edge, vertex);
 #ifdef SELECTIVE_LCA
             size_t ignore_tree_cnt = 0;
@@ -209,6 +248,12 @@ class dec_search :
             //other.data().check_cnt += 
             //    inst_set.size() * other.data().code.size();
             other.data().check_cnt += inst_set.size();
+#ifdef DEBUG_STEP_TIMER
+            gather_timer = clock() - gather_timer;
+            step_mtx.lock();
+            agg_step_timer[3] += gather_timer;
+            step_mtx.unlock();
+#endif
             return min_code_distance_type(other.id(), 
                     other.data().code, inst_set);
         } // end of gather function
@@ -232,6 +277,12 @@ class dec_search :
 
         void apply(icontext_type& context, vertex_type& vertex,
                 const min_code_distance_type& min_code_dist) {
+#ifdef DEBUG_STEP_TIMER
+            clock_t timer = clock();
+            clock_t timer1_sum = 0;
+            clock_t timer2_sum = 0;
+            clock_t timer3_sum = 0;
+#endif
             vertex.data().visit_cnt += min_code_dist.mc_inst_set.size();
             std::vector<mc_instance>::const_iterator mcIter = 
                 min_code_dist.mc_inst_set.begin();
@@ -252,6 +303,11 @@ class dec_search :
                 std::set<graphlab::vertex_id_type> vids = mcIter->vids;
 #endif
 #endif
+
+#ifdef DEBUG_STEP_TIMER
+                clock_t timer1 = clock();
+#endif
+
 #ifdef EARLY_TERMINATION
                 //try to find next step node in code[dst] 
                 bool found = false;
@@ -277,18 +333,34 @@ class dec_search :
                 }
 #endif //ET
 
+#ifdef DEBUG_STEP_TIMER
+                timer1_sum += clock() - timer1;
+#endif
+
                 // test if finished - termination condition 1
 #ifdef EARLY_TERMINATION
                 if(found || vertex.id() == iter->dst_id) {
 #else
                 if(vertex.id() == iter->dst_id) {
 #endif //ET
+
+#ifdef DEBUG_STEP_TIMER
+                    clock_t timer2 = clock();
+#endif
                     iter->state = Finished;
                     store_result(iter);
-                    iter = inst_set.erase(iter);
+                    ++iter;
+                    //iter = inst_set.erase(iter);
+                    
+#ifdef DEBUG_STEP_TIMER
+                    timer2_sum += clock() - timer2;
+#endif
                 }
                 // regular update, update record with next hop
                 else if (mcIter->dist < iter->min_dist) {
+#ifdef DEBUG_STEP_TIMER
+                    clock_t timer3 = clock();
+#endif
 #ifdef TIE_FULL
                     if (iter->state != Main &&
                             iter->min_dist <= mcIter->dist + 1)
@@ -308,6 +380,9 @@ class dec_search :
                     iter->path.push_back(mcIter->vid);
                     ++iter;
 #endif //TIE_FULL
+#ifdef DEBUG_STEP_TIMER
+                    timer3_sum += clock() - timer3;
+#endif
                 }
                 else {
                     std::cout << "FATAL: Not correct branch!" << std::endl;
@@ -315,6 +390,26 @@ class dec_search :
                 }
                 ++mcIter;
             }
+
+            std::vector<gsInstance> new_inst_set;
+            for (std::vector<gsInstance>::iterator iter = inst_set.begin();
+                    iter != inst_set.end();
+                    ++ iter) {
+                if (iter->state != Finished)
+                    new_inst_set.push_back(*iter);
+            }
+            inst_set.swap(new_inst_set);
+
+
+#ifdef DEBUG_STEP_TIMER
+            timer = clock() - timer;
+            step_mtx.lock();
+            agg_step_timer[1] += timer;
+            agg_step_timer[6] += timer1_sum;
+            agg_step_timer[7] += timer2_sum;
+            agg_step_timer[8] += timer3_sum;
+            step_mtx.unlock();
+#endif
         }
 
         edge_dir_type scatter_edges(icontext_type& context, 
@@ -327,8 +422,10 @@ class dec_search :
 
         void scatter(icontext_type& context, const vertex_type& vertex,
                 edge_type& edge) const {
+#ifdef DEBUG_STEP_TIMER
+            clock_t scatter_timer = clock();
+#endif
             const vertex_type other = get_other_vertex(edge, vertex);
-
             hop_msg_type msg;
 #ifdef TIE_FULL
             size_t pos = 0;
@@ -356,6 +453,12 @@ class dec_search :
             }
             if (!msg.inst_set.empty())
                 context.signal(other, msg);
+#ifdef DEBUG_STEP_TIMER
+            scatter_timer = clock() - scatter_timer;
+            step_mtx.lock();
+            agg_step_timer[2] += scatter_timer;
+            step_mtx.unlock();
+#endif
         } // end of scatter
 
         void save(graphlab::oarchive& oarc) const {

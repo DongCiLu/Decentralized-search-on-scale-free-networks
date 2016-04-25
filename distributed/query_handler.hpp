@@ -310,20 +310,22 @@ class query_handler{
                 double avg_appr_err = 0, avg_real_dist = 0, 
                        avg_obv_err = 0, avg_tie_cnt = 0;
 
-                avg_real_dist = double(sum_real_dist) / (n_query - err_cnt);
-                avg_appr_err = double(sum_appr_err) / (n_query - err_cnt);
+                avg_real_dist = double(sum_real_dist) / 
+                    (n_query - err_cnt);
+                avg_appr_err = double(sum_appr_err) / 
+                    (n_query - err_cnt);
                 avg_obv_err = double(sum_obv_err) / (n_query - err_cnt);
                 avg_tie_cnt = double(sum_tie_cnt) / (n_query - err_cnt);
 
                 std::string ofilename = saveprefix + ".txt";
                 std::ofstream out(ofilename.c_str(), std::ios::out);
-                out << "------- " << graph_dir << " -------" << std::endl;
+                out << "------ " << graph_dir << " ------" << std::endl;
                 out << "BFS coding time is " << 
                     bfs_runtime << " seconds." << std::endl;
-                out << "GS total running time (powergraph timer) is " << 
-                    gs_runtime << " seconds." << std::endl;
-                out << "Overheads(code, search, [r], comp) are " << 
-                    r.code_overhead << " ";
+                out << "GS total running time (powergraph timer) is " 
+                    << gs_runtime << " seconds." << std::endl;
+                out << "Overheads(code, search, [r], comp) are " 
+                    << r.code_overhead << " ";
                 out << r.search_overhead / (n_query - err_cnt) << " ";
 #ifdef SELECTIVE_LCA
                 out << r.reduced_overhead / (n_query - err_cnt) << " ";
@@ -333,11 +335,21 @@ class query_handler{
                     out << r.comp_overhead[i] << " ";
                 out << ")";
                 out << std::endl;
-                out << "Avg dist and est errors are (real, appr, obv): " << 
-                    avg_real_dist << ", " << 
-                    avg_appr_err << ", " <<
-                    avg_obv_err << std::endl;
-                out << "Average tie count is: " << avg_tie_cnt << std::endl;
+                out << "Avg dist and est errs are (real, appr, obv): " 
+                    << avg_real_dist << ", " 
+                    << avg_appr_err << ", " 
+                    << avg_obv_err << std::endl;
+                out << "Average tie count is: " 
+                    << avg_tie_cnt << std::endl;
+#ifdef DEBUG_STEP_TIMER
+                out << "Step timer: ";
+                for (size_t i = 0; i < agg_step_timer.size(); i++) {
+                    out << double(agg_step_timer[i]) 
+                        / CLOCKS_PER_SEC << " ";
+                }
+                out << std::endl;
+                out << "Step cnt: " << step_cnt << std::endl;
+#endif
                 out << std::endl;
                 out.close();
             }

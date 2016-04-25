@@ -18,6 +18,12 @@
 //#define SELECTIVE_LCA
 
 //#define CALC_REAL //Turn off all the others when turn this on
+#define DEBUG_STEP_TIMER
+
+#ifdef DEBUG_STEP_TIMER
+#include <time.h>
+#endif
+
 
 /******************* Declear basic types for graph *******************/
 bool DIRECTED_GRAPH = false;
@@ -81,7 +87,8 @@ typedef graphlab::distributed_graph<vertex_data, edge_data> graph_type;
 inline graph_type::vertex_type
 get_other_vertex(const graph_type::edge_type& edge,
         const graph_type::vertex_type& vertex) {
-    return vertex.id() == edge.source().id()? edge.target() : edge.source();
+    return vertex.id() == 
+        edge.source().id() ? edge.target() : edge.source();
 }
 
 /******************* For Greedy search *******************/
@@ -169,6 +176,12 @@ std::vector< std::map<size_t, distance_type> > real_results;
 boost::mutex mtx;
 size_t procid;
 size_t numprocs;
+#ifdef DEBUG_STEP_TIMER
+std::vector<clock_t> agg_step_timer(9, 0);
+boost::mutex step_mtx;
+size_t step_cnt = 0;
+clock_t last_step = 0;
+#endif
 
 /******************* Others *******************/
 struct select_root_reducer: public graphlab::IS_POD_TYPE {
