@@ -118,8 +118,8 @@ struct min_code_distance_type {
         vids.insert(vid);
 #endif
 #endif //TIE_FULL
-        //mc_inst_set.reserve(inst_set.size());
-        //size_t mc_cnt = 0;
+        mc_inst_set.resize(inst_set.size());
+        size_t mc_cnt = 0;
         for(std::vector<gsInstance>::const_iterator 
                 iter = inst_set.begin();
                 iter != inst_set.end(); ++iter) {
@@ -134,14 +134,17 @@ struct min_code_distance_type {
                 get_code_dist(vcode, iter->dst_code);
 #endif
 
+            mc_inst_set[mc_cnt].id = iter->id;
+            mc_inst_set[mc_cnt].dist = dist;
 #ifdef TIE_FULL
-            mc_instance mcInst(iter->id, dist, vids);
+            mc_inst_set[mc_cnt].vids.swap(vids);
 #else
-            mc_instance mcInst(iter->id, dist, vid);
+            mc_inst_set[mc_cnt].vid = vid;
+
 #endif // TIE_FULL
-            mc_inst_set.push_back(mcInst);
+            //mc_inst_set.push_back(mcInst);
             //mc_inst_set[mc_cnt] = mcInst;
-            //mc_cnt ++;
+            mc_cnt ++;
         }
 
 #ifdef DEBUG_STEP_TIMER

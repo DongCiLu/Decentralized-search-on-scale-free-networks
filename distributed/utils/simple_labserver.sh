@@ -8,7 +8,7 @@ testcase_folder="datasets/testcases/withreal" # use when need accuracy
 # testcase_folder="datasets/testcases/regular"
 
 n_cores=2
-n_exp=(10000)
+n_exp=(100000)
 n_machines=(1)
 n_tree=(1)
 stepy_flag=0
