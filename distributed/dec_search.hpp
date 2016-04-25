@@ -285,7 +285,8 @@ class dec_search :
 #endif //ET
                     iter->state = Finished;
                     store_result(iter);
-                    iter = inst_set.erase(iter);
+                    //iter = inst_set.erase(iter);
+                    ++ iter;
                 }
                 // regular update, update record with next hop
                 else if (mcIter->dist < iter->min_dist) {
@@ -315,6 +316,13 @@ class dec_search :
                 }
                 ++mcIter;
             }
+            std::vector<gsInstance> new_inst_set;
+            for (std::vector<gsInstance>::iterator iter = inst_set.begin();
+                    iter != inst_set.end(); ++iter) {
+                if (iter->state != Finished)
+                    new_inst_set.push_back(*iter);
+            }
+            inst_set.swap(new_inst_set);
         }
 
         edge_dir_type scatter_edges(icontext_type& context, 
