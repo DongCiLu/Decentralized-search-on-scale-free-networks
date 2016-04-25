@@ -112,6 +112,8 @@ struct min_code_distance_type {
         vids.insert(vid);
 #endif
 #endif //TIE_FULL
+        mc_inst_set.resize(inst_set.size());
+        size_t mc_index = 0;
         for(std::vector<gsInstance>::const_iterator 
                 iter = inst_set.begin();
                 iter != inst_set.end(); ++iter) {
@@ -126,12 +128,14 @@ struct min_code_distance_type {
                 get_code_dist(vcode, iter->dst_code);
 #endif
 
+            mc_inst_set[mc_index].id = iter->id;
+            mc_inst_set[mc_index].dist = dist;
 #ifdef TIE_FULL
-            mc_instance mcInst(iter->id, dist, vids);
+            mc_inst_set[mc_index].vids.swap(vids);
 #else
-            mc_instance mcInst(iter->id, dist, vid);
+            mc_inst_set[mc_index].vid = vid;
 #endif // TIE_FULL
-            mc_inst_set.push_back(mcInst);
+            mc_index ++;
         }
     } 
 

@@ -73,6 +73,7 @@ int main(int argc, char** argv) {
         "\t#edges:     " << graph.num_edges() << std::endl;
 
     // start the handler here
+/*
 #ifdef TIE_FULL
 #ifdef TIE_HEUR
     size_t n_query_batch = 10000;
@@ -86,6 +87,8 @@ int main(int argc, char** argv) {
 #ifdef BIDIRECTIONAL_SEARCH
     n_query_batch /= 2;
 #endif
+*/
+    size_t n_query_batch = n_query;
 
 #ifndef CALC_REAL
     if (stepy == 0) {
