@@ -106,9 +106,10 @@ struct min_code_distance_type {
             const label_type& vcode, 
             const std::vector<gsInstance>& inst_set) {
 #ifdef DEBUG_STEP_TIMER
-        clock_t timer = clock();
+        clock_t timer_sum = 0;
 #endif
 
+/*
 #ifdef TIE_FULL
 #ifdef TIE_HEUR
         std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> 
@@ -118,11 +119,16 @@ struct min_code_distance_type {
         vids.insert(vid);
 #endif
 #endif //TIE_FULL
+*/
+#ifdef DEBUG_STEP_TIMER
+        clock_t timer = clock();
+#endif
         mc_inst_set.resize(inst_set.size());
         size_t mc_cnt = 0;
         for(std::vector<gsInstance>::const_iterator 
                 iter = inst_set.begin();
                 iter != inst_set.end(); ++iter) {
+/*
 #ifdef TIE_HEUR
             graphlab::vertex_id_type lca = -1;
             distance_type dist = 
@@ -130,27 +136,30 @@ struct min_code_distance_type {
             vids.clear();
             vids[lca] = vid;
 #else
+*/
             distance_type dist = 
                 get_code_dist(vcode, iter->dst_code);
-#endif
+//#endif
 
             mc_inst_set[mc_cnt].id = iter->id;
             mc_inst_set[mc_cnt].dist = dist;
+/*
 #ifdef TIE_FULL
             mc_inst_set[mc_cnt].vids.swap(vids);
 #else
+*/
             mc_inst_set[mc_cnt].vid = vid;
-
-#endif // TIE_FULL
+//#endif // TIE_FULL
             //mc_inst_set.push_back(mcInst);
             //mc_inst_set[mc_cnt] = mcInst;
             mc_cnt ++;
         }
 
 #ifdef DEBUG_STEP_TIMER
-        timer = clock() - timer;
+        timer_sum += clock() - timer;
+        //timer = clock() - timer;
         step_mtx.lock();
-        agg_step_timer[4] += timer;
+        agg_step_timer[4] += timer_sum;
         step_mtx.unlock();
 #endif
     } 

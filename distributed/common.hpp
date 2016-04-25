@@ -151,7 +151,7 @@ inline distance_type get_code_dist_wlca(const label_type& src_code,
 inline distance_type get_code_dist(const label_type& src_code, 
         const label_type& dst_code) {
     distance_type dist = std::numeric_limits<distance_type>::max();
-    for (size_t t = 0; t < src_code.size(); t++){
+    for (size_t t = 0; t < src_code.size(); t++) {
         size_t range = std::min(src_code[t].size(), dst_code[t].size());
         size_t i = 0;
         while (i < range) { // we use while because we need i later
