@@ -106,7 +106,8 @@ struct min_code_distance_type {
             const std::vector<gsInstance>& inst_set) {
 #ifdef TIE_FULL
 #ifdef TIE_HEUR
-        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> vids;
+        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> 
+            vids;
 #else
         std::set<graphlab::vertex_id_type> vids;
         vids.insert(vid);
@@ -139,9 +140,59 @@ struct min_code_distance_type {
         }
     } 
 
+#ifdef SELECTIVE_LCA
+    min_code_distance_type(graphlab::vertex_id_type vid, 
+            const label_type& vcode, 
+            const std::vector<gsInstance>& inst_set,
+            const std::vector<size_t>& index_array) {
+#ifdef TIE_FULL
+#ifdef TIE_HEUR
+        std::map<graphlab::vertex_id_type, graphlab::vertex_id_type> 
+            vids;
+#else
+        std::set<graphlab::vertex_id_type> vids;
+        vids.insert(vid);
+#endif
+#endif //TIE_FULL
+        mc_inst_set.resize(inst_set.size());
+        size_t mc_index = 0;
+        for(std::vector<gsInstance>::const_iterator 
+                iter = inst_set.begin();
+                iter != inst_set.end(); ++iter) {
+#ifdef TIE_HEUR
+            graphlab::vertex_id_type lca = -1;
+            distance_type dist = 
+                get_code_dist_wlca(vcode, iter->dst_code, lca);
+            vids.clear();
+            vids[lca] = vid;
+#else
+            distance_type dist = 
+                get_code_dist_fast(vcode, iter->dst_code, index_array);
+#endif
+
+            mc_inst_set[mc_index].id = iter->id;
+            mc_inst_set[mc_index].dist = dist;
+#ifdef TIE_FULL
+            mc_inst_set[mc_index].vids.swap(vids);
+#else
+            mc_inst_set[mc_index].vid = vid;
+#endif // TIE_FULL
+            mc_index ++;
+        }
+    }
+#endif
+
     // combine gather instance from all neighbors
     min_code_distance_type& operator+=(
             const min_code_distance_type& other) {
+#ifdef SELECTIVE_LCA
+        if (other.mc_inst_set.empty())
+            return *this;
+        if (mc_inst_set.empty()) {
+            mc_inst_set = other.mc_inst_set;
+            return *this;
+        }
+#endif
         size_t pos = 0;
         for(std::vector<mc_instance>::const_iterator 
                 iter = other.mc_inst_set.begin(); 
@@ -201,20 +252,45 @@ class dec_search :
                 edge_type& edge) const {
             vertex_type other = get_other_vertex(edge, vertex);
 #ifdef SELECTIVE_LCA
+            /*
             size_t ignore_tree_cnt = 0;
             for (size_t i = 0; i < other.data().code.size(); i++) {
                 size_t len = other.data().code[i].size();
-                if (len > 1 && vertex.id() == other.data().code[i][len - 2])
+                if (len > 1 && vertex.id() == 
+                        other.data().code[i][len - 2])
                     ignore_tree_cnt ++;
             }
-            //other.data().ignore_cnt += 
-            //    inst_set.size() * ignore_tree_cnt;
-#endif
-            //other.data().check_cnt += 
-            //    inst_set.size() * other.data().code.size();
+            */
+            std::vector<size_t> index_array;
+            for (size_t i = 0; i < other.data().code.size(); i++) {
+                size_t len = other.data().code[i].size();
+                if (len > 1 && vertex.id() == 
+                        other.data().code[i][len - 2])
+                    continue;
+                index_array.push_back(i);
+            }
+            if (index_array.empty()) {
+                return min_code_distance_type();
+            }
+            else if (index_array.size() == other.data().code.size()) {
+                other.data().check_cnt += 
+                    inst_set.size() * other.data().code.size();
+                return min_code_distance_type(
+                        other.id(), other.data().code, inst_set);
+            }
+            else {
+                other.data().check_cnt += 
+                    inst_set.size() * index_array.size();
+                return min_code_distance_type(other.id(),
+                        other.data().code, inst_set, index_array);
+            }
+#else
+            other.data().check_cnt += 
+                inst_set.size() * other.data().code.size();
             other.data().check_cnt += inst_set.size();
             return min_code_distance_type(other.id(), 
                     other.data().code, inst_set);
+#endif
         } // end of gather function
 
         void store_result(std::vector<gsInstance>::iterator iter) {

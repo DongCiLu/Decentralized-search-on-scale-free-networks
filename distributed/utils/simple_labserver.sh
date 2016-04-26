@@ -8,11 +8,11 @@ testcase_folder="datasets/testcases/withreal" # use when need accuracy
 # testcase_folder="datasets/testcases/regular"
 
 n_cores=2
-n_exp=(1000000)
+n_exp=(300000)
 n_machines=(1)
-n_tree=(1)
+n_tree=(3 3)
 stepy_flag=0
-posfix=("test") # if use real, dont forget to change the testcase directory
+posfix=("test" "slca") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /home/$USER/PowerGraph/scripts/mpirsync"
