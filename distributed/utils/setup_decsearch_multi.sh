@@ -1,5 +1,28 @@
 hostname_master=$HOSTNAME
-hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
+# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
+hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15" "node-16" "node-17" "node-18" "node-19" )
+
+sudo chown zlu12 /mydata
+
+sudo chmod 600 /local/DecSearch/distributed/utils/others/cloud_zlu12_pkey_openssh
+
+# prompts first
+for hostname_node in "${hostname_prefix_array[@]}"
+do
+    ssh -i /local/DecSearch/distributed/utils/others/cloud_zlu12_pkey_openssh ${hostname_master//node-0/$hostname_node} 'sh' < /local/DecSearch/distributed/utils/setup_decsearch_remote.sh
+done
+ssh-copy-id lanterns2.eecs.utk.edu
+
+for hostname_node in "${hostname_prefix_array[@]}"
+do
+    ssh ${hostname_master//node-0/$hostname_node} 'sudo apt-get update'
+    ssh ${hostname_master//node-0/$hostname_node} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
+    ssh ${hostname_master//node-0/$hostname_node} 'sudo chown zlu12 /local'
+done
+
+scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
+scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/regular/* /mydata
+scp -r lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/testcases /mydata
 
 sudo apt-get update
 sudo apt-get -y install vim ssh gcc g++ build-essential cmake zlib1g-dev git automake  
