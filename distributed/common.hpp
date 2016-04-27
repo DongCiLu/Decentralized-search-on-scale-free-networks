@@ -12,10 +12,11 @@
 
 #define EARLY_TERMINATION //Never turn off
 #define BIDIRECTIONAL_SEARCH
+#define SELECTIVE_LCA
+
 //#define TIE_FULL
 //#define TIE_HEUR // require tie full to work
 //#define LABEL_DEG
-//#define SELECTIVE_LCA
 
 //#define CALC_REAL //Turn off all the others when turn this on
 
@@ -136,6 +137,28 @@ inline distance_type get_code_dist_wlca(const label_type& src_code,
             dist = lca_dist;
             lca = local_lca;
         }
+    }
+    return dist;
+}
+#endif
+
+#ifdef SELECTIVE_LCA
+inline distance_type get_code_dist_fast(const label_type& src_code, 
+        const label_type& dst_code,
+        const std::vector<size_t> & index_array) {
+    distance_type dist = std::numeric_limits<distance_type>::max();
+    for (size_t ia_index = 0; ia_index < index_array.size(); ia_index++){
+        size_t t = index_array[ia_index];
+        size_t range = std::min(src_code[t].size(), dst_code[t].size());
+        size_t i = 0;
+        while (i < range) { // we use while because we need i later
+            if (src_code[t][i] != dst_code[t][i])
+                break;
+            i++;
+        }
+        if (i != 0)
+            dist = std::min(dist, src_code[t].size() 
+                    + dst_code[t].size() - 2 * i);
     }
     return dist;
 }
