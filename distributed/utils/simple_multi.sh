@@ -9,11 +9,11 @@ exec_folder="binary"
 res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
-n_cores=(8)
+n_cores=6
 n_exp=(10000)
-n_machines=(8)
-n_tree=(1)
-posfix=("test") # if use real, dont forget to change the testcase directory
+n_machines=(1 2 3 4 5 6 7 8)
+n_tree=(2)
+posfix=("bi") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /local/PowerGraph/scripts/mpirsync"
