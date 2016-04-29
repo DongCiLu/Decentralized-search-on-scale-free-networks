@@ -11,7 +11,7 @@
 #include "graphlab.hpp"
 
 #define EARLY_TERMINATION //Never turn off
-#define BIDIRECTIONAL_SEARCH
+//#define BIDIRECTIONAL_SEARCH
 #define SELECTIVE_LCA
 
 //#define TIE_FULL
