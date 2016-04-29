@@ -242,7 +242,8 @@ class query_handler{
                             iter = results[i].begin();
                             iter != results[i].end(); ++iter) {
                         // calc number of same length path
-                        if (comb_res.find(iter->first) != comb_res.end() &&
+                        if (comb_res.find(iter->first) != 
+                                comb_res.end() &&
                                 comb_res[iter->first].path.size() ==
                                 iter->second.path.size())
                             comb_res[iter->first].tie_cnt += 
@@ -274,9 +275,11 @@ class query_handler{
                     }
 #ifdef BIDIRECTIONAL_SEARCH
                     std::map<size_t, gsInstance>::iterator temp = iter++;
-                    if (temp->second.path.size() == iter->second.path.size())
+                    if (temp->second.path.size() == 
+                            iter->second.path.size())
                         iter->second.tie_cnt += temp->second.tie_cnt;
-                    if (temp->second.path.size() < iter->second.path.size()) {
+                    if (temp->second.path.size() < 
+                            iter->second.path.size()) {
                         std::swap(temp->second.path, iter->second.path);
                         iter->second.tie_cnt = temp->second.tie_cnt;
                     }

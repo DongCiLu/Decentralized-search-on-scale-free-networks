@@ -87,7 +87,8 @@ struct mc_instance : graphlab::IS_POD_TYPE {
     long potential;
 
     mc_instance(size_t id = -1,
-            distance_type dist = std::numeric_limits<distance_type>::max(),
+            distance_type dist = 
+            std::numeric_limits<distance_type>::max(),
             graphlab::vertex_id_type vid = -1, 
             long potential = 0):
         id(id), dist(dist), vid(vid), potential(potential) { }
@@ -197,7 +198,7 @@ struct min_code_distance_type {
         for(std::vector<mc_instance>::const_iterator 
                 iter = other.mc_inst_set.begin(); 
                 iter != other.mc_inst_set.end(); ++iter) {
-            // both vector generate from same set so they are in same order
+            // both vector generate from same set so in same order
             if (iter->dist < mc_inst_set[pos].dist) 
                 mc_inst_set[pos] = *iter;
 #ifdef TIE_FULL
@@ -237,7 +238,41 @@ class dec_search :
 
         void init(icontext_type& context, const vertex_type& vertex,
                 const hop_msg_type& msg) {
+#ifdef EARLY_TERMINATION
+            if (msg.inst_set[0].path.size() == 1) {
+                for (std::vector<gsInstance>::const_iterator 
+                        iter = msg.inst_set.begin();
+                        iter != msg.inst_set.end();
+                        iter ++) {
+                    bool found = false;
+                    gsInstance inst = *iter;
+                    for (size_t t = 0; t < inst.dst_code.size() && 
+                            !found; t ++) {
+                        for (size_t i = 0; i < inst.dst_code[t].size();
+                                i ++) {
+                            if (vertex.id() == inst.dst_code[t][i]){
+                                found = true;
+                                // vertex already in path
+                                for (i ++; i < inst.dst_code[t].size(); 
+                                        i ++)
+                                    inst.path.push_back(
+                                            inst.dst_code[t][i]);
+                            }
+                        }
+                    }
+                    if (!found) {
+                        inst_set.push_back(inst);
+                    }
+                    else {
+                        store_result(inst);
+                    }
+                }
+            }
+            else
+                inst_set = msg.inst_set;
+#else
             inst_set = msg.inst_set;
+#endif //ET
         } 
 
         edge_dir_type gather_edges(icontext_type& context, 
@@ -252,15 +287,6 @@ class dec_search :
                 edge_type& edge) const {
             vertex_type other = get_other_vertex(edge, vertex);
 #ifdef SELECTIVE_LCA
-            /*
-            size_t ignore_tree_cnt = 0;
-            for (size_t i = 0; i < other.data().code.size(); i++) {
-                size_t len = other.data().code[i].size();
-                if (len > 1 && vertex.id() == 
-                        other.data().code[i][len - 2])
-                    ignore_tree_cnt ++;
-            }
-            */
             std::vector<size_t> index_array;
             for (size_t i = 0; i < other.data().code.size(); i++) {
                 size_t len = other.data().code[i].size();
@@ -293,19 +319,21 @@ class dec_search :
 #endif
         } // end of gather function
 
-        void store_result(std::vector<gsInstance>::iterator iter) {
+        void store_result(const gsInstance& inst) {
             mtx.lock();
 #ifdef TIE_FULL
-            if (results[procid].find(iter->id) != results[procid].end() && 
-                    results[procid][iter->id].path.size() ==
-                    iter->path.size()) 
-                results[procid][iter->id].tie_cnt ++;
-            if (results[procid].find(iter->id) == results[procid].end() || 
-                    results[procid][iter->id].path.size() > 
-                    iter->path.size()) 
-                results[procid][iter->id] = *iter;
+            if (results[procid].find(inst.id) != 
+                    results[procid].end() && 
+                    results[procid][inst.id].path.size() ==
+                    inst.path.size()) 
+                results[procid][inst.id].tie_cnt ++;
+            if (results[procid].find(inst.id) == 
+                    results[procid].end() || 
+                    results[procid][inst.id].path.size() > 
+                    inst.path.size()) 
+                results[procid][inst.id] = inst;
 #else
-            results[procid].insert(std::make_pair(iter->id, *iter));
+            results[procid].insert(std::make_pair(inst.id, inst));
 #endif //TIE_FULL
             mtx.unlock();
         }
@@ -337,21 +365,26 @@ class dec_search :
                 bool found = false;
                 for (size_t t = 0; t < iter->dst_code.size() &&
                         !found; ++t) {
-                    for (size_t i = 0; i < iter->dst_code[t].size(); ++i) {
+                    for (size_t i = 0; i < 
+                            iter->dst_code[t].size(); ++i) {
 #ifdef TIE_FULL
                         /* 
                          * this is not totally correct,
                          * but have good effort and outcome tradeoff
                          */
-                        if (vids.find(iter->dst_code[t][i]) != vids.end()){
+                        if (vids.find(iter->dst_code[t][i]) != 
+                                vids.end()){
 #else
                         if (mcIter->vid == iter->dst_code[t][i]){
 #endif //TIE_FULL
                             found = true;
+                            /*
                             if (vertex.id() == iter->dst_id)
                                 i = iter->dst_code[t].size();
+                                */
                             for (; i < iter->dst_code[t].size(); ++i)
-                                iter->path.push_back(iter->dst_code[t][i]);
+                                iter->path.push_back(
+                                        iter->dst_code[t][i]);
                         }
                     }
                 }
@@ -364,7 +397,7 @@ class dec_search :
                 if(vertex.id() == iter->dst_id) {
 #endif //ET
                     iter->state = Finished;
-                    store_result(iter);
+                    store_result(*iter);
                     //iter = inst_set.erase(iter);
                     ++ iter;
                 }
@@ -391,13 +424,15 @@ class dec_search :
 #endif //TIE_FULL
                 }
                 else {
-                    std::cout << "FATAL: Not correct branch!" << std::endl;
+                    std::cout << 
+                        "FATAL: Not correct branch!" << std::endl;
                     ++iter;
                 }
                 ++mcIter;
             }
             std::vector<gsInstance> new_inst_set;
-            for (std::vector<gsInstance>::iterator iter = inst_set.begin();
+            for (std::vector<gsInstance>::iterator 
+                    iter = inst_set.begin();
                     iter != inst_set.end(); ++iter) {
                 if (iter->state != Finished)
                     new_inst_set.push_back(*iter);

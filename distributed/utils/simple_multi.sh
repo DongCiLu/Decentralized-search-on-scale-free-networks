@@ -1,9 +1,9 @@
-# gn_array=("wiki" "skitter" "bio" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
-gn_array=("wiki")
+# gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
+gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
 
 hostname_master=$HOSTNAME
-# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
-hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-5")
+hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
+# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-5")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -11,8 +11,8 @@ res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
 n_cores=6
-n_exp=(100000)
-n_machines=(5)
+n_exp=(1000000)
+n_machines=(8 4 2 1)
 n_tree=(2)
 posfix=("bi") # if use real, dont forget to change the testcase directory
 
