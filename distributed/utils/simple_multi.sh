@@ -2,7 +2,8 @@
 gn_array=("wiki")
 
 hostname_master=$HOSTNAME
-hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
+# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
+hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-5")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -11,13 +12,13 @@ testcase_folder="datasets/testcases/regular"
 
 n_cores=6
 n_exp=(100000)
-n_machines=(16)
+n_machines=(5)
 n_tree=(2)
 posfix=("bi") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /local/PowerGraph/scripts/mpirsync"
-cmd1="mpiexec -n n_machines --hostfile ./machines ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --ncpus ${n_cores} --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
+cmd1="mpiexec -n n_machines --hostfile ./machines env GRAPHLAB_SUBNET_ID=10.10.1.0 GRAPHLAB_SUBNET_MASK=255.255.255.0 ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --ncpus ${n_cores} --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
 cmd2="mv graphname_class_n_machinesm_n_expq.txt ./${res_folder}/class/"
 
 $pre2
