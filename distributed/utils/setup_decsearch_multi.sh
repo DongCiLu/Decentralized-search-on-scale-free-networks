@@ -18,6 +18,8 @@ do
     ssh ${hostname_master//node-0/$hostname_node} 'sudo apt-get update'
     ssh ${hostname_master//node-0/$hostname_node} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
     ssh ${hostname_master//node-0/$hostname_node} 'sudo chown zlu12 /local'
+    scp /local/DecSearch/distributed/utils/sshd_config ${hostname_master//node-0/$hostname_node}:~/
+    ssh ${hostname_master//node-0/$hostname_node} 'sudo mv /users/zlu12/sshd_config /etc/ssh/'
 done
 
 # scp lanterns2.eecs.utk.edu:/local_scratch/Datasets/graph_datasets/large/* /mydata
