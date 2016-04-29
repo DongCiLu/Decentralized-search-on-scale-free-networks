@@ -2,7 +2,7 @@
 gn_array=("wiki")
 
 hostname_master=$HOSTNAME
-hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
+hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -10,8 +10,8 @@ res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
 n_cores=6
-n_exp=(10000)
-n_machines=(1 2 3 4 5 6 7 8)
+n_exp=(100000)
+n_machines=(16)
 n_tree=(2)
 posfix=("bi") # if use real, dont forget to change the testcase directory
 
