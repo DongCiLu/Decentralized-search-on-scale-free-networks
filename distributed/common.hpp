@@ -13,6 +13,7 @@
 #define EARLY_TERMINATION //Never turn off
 //#define BIDIRECTIONAL_SEARCH
 #define SELECTIVE_LCA
+#define SAVE_SPACE // dont use with bi search
 
 //#define TIE_FULL
 //#define TIE_HEUR // require tie full to work
@@ -97,7 +98,9 @@ struct gsInstance {
     size_t tie_cnt;
     graphlab::vertex_id_type src_id;
     graphlab::vertex_id_type dst_id;
+#ifndef SAVE_SPACE
     label_type src_code;
+#endif
     label_type dst_code;
     std::vector<code_type> path;
 
@@ -108,12 +111,20 @@ struct gsInstance {
 
     void save(graphlab::oarchive& oarc) const {
         oarc << id << min_dist << real_dist << state << tie_cnt << 
-            src_id << dst_id << src_code << dst_code << path;
+            src_id << dst_id << 
+#ifndef SAVE_SPACE
+            src_code << 
+#endif
+            dst_code << path;
     }
 
     void load(graphlab::iarchive& iarc) {
         iarc >> id >> min_dist >> real_dist >> state >> tie_cnt >>
-            src_id >> dst_id >> src_code >> dst_code >> path;
+            src_id >> dst_id >> 
+#ifndef SAVE_SPACE
+            src_code >> 
+#endif
+            dst_code >> path;
     }
 };
 

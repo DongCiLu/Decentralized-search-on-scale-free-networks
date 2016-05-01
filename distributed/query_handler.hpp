@@ -73,7 +73,6 @@ class query_handler{
                 read_tcs(n_query_to_perform);
 
                 dc->cout() << "\t2.1 Gather dest codes..." << std::endl;
-                dst_set.resize(dc->numprocs());
                 gather_dst();
 
                 dc->cout() << "\t2.2 Create gs inst..." << std::endl;
@@ -138,10 +137,10 @@ class query_handler{
             if (procid == masterid) {
                 for (size_t i = 0; i < n_query_to_perform; i++) {
                     gsInstance inst;
-#ifndef CALC_REAL
-                    in >> inst.src_id >> inst.dst_id >> inst.real_dist;
-#else
+#ifdef CALC_REAL
                     in >> inst.src_id >> inst.dst_id;
+#else
+                    in >> inst.src_id >> inst.dst_id >> inst.real_dist;
 #endif
                     inst_set[procid].push_back(inst);
                 }
@@ -159,24 +158,36 @@ class query_handler{
                             temp_set[i].dst_id) % dc->numprocs()) {
                     gsInstance inst(temp_set[i]);
                     inst.dst_code = graph->vertex(inst.dst_id).data().code;
-                    dst_set[procid].push_back(inst);
+                    inst_set[procid].push_back(inst);
                 }
             }
+            std::vector<gsInstance>(inst_set[procid].begin(),
+                    inst_set[procid].end()).swap(inst_set[procid]);
             dc->barrier();
-            dc->all_gather(dst_set);
+            dc->all_gather(inst_set);
         }
 
         void create_instances() {
-            for (size_t i = 0; i < dst_set.size(); ++i) {
-                for (size_t j = 0; j < dst_set[i].size(); ++j) {
+            std::vector< std::vector<gsInstance> > temp_set;
+            temp_set.swap(inst_set);
+            inst_set.resize(dc->numprocs());
+            for (size_t i = 0; i < temp_set.size(); ++i) {
+                for (size_t j = 0; j < temp_set[i].size(); ++j) {
                     if (procid == graphlab::graph_hash::hash_vertex(
-                                dst_set[i][j].src_id) % dc->numprocs()) {
-                        gsInstance inst(dst_set[i][j]);
+                                temp_set[i][j].src_id) % dc->numprocs()) {
+                        gsInstance inst(temp_set[i][j]);
+#ifdef SAVE_SPACE
+                        label_type src_code = 
+                            graph->vertex(inst.src_id).data().code;
+                        inst.min_dist = 
+                            get_code_dist(src_code, inst.dst_code);
+#else
                         inst.src_code = 
                             graph->vertex(inst.src_id).data().code;
-                        inst.path.push_back(inst.src_id);
                         inst.min_dist = 
                             get_code_dist(inst.src_code, inst.dst_code);
+#endif
+                        inst.path.push_back(inst.src_id);
                         // unique id, even for orig, odd for reverse
                         inst.id = (inst_set[procid].size() * 
                                 dc->numprocs() + procid) * 2;
@@ -190,6 +201,8 @@ class query_handler{
                 }
             }
 
+            std::vector<gsInstance>(inst_set[procid].begin(),
+                    inst_set[procid].end()).swap(inst_set[procid]);
             dc->barrier();
             dc->all_gather(inst_set);
         }
@@ -217,6 +230,11 @@ class query_handler{
 #endif
                 }
             }
+            std::vector<graphlab::vertex_id_type>(src_set.begin(),
+                    src_set.end()).swap(src_set);
+            std::vector<hop_msg_type>(msg_set.begin(),
+                    msg_set.end()).swap(msg_set);
+            inst_set.clear();
             graphlab::omni_engine<dec_search> gs_engine(
                     *dc, *graph, exec_type, *clopts);
 
@@ -293,10 +311,12 @@ class query_handler{
                     else {
                         sum_appr_err += double(iter->second.path.size() - 1) /
                             iter->second.real_dist - 1;
+#ifndef SAVE_SPACE
                         sum_obv_err += double(get_code_dist(
                                     iter->second.src_code, 
                                     iter->second.dst_code)) /
                             iter->second.real_dist - 1;
+#endif
                     }
                     sum_tie_cnt += iter->second.tie_cnt;
                 }
@@ -347,13 +367,7 @@ class query_handler{
         }
 
         void post_processing() {
-            for (size_t i = 0; i < dc->numprocs(); i++) {
-                results[i].clear();
-                dst_set[i].clear();
-                inst_set[i].clear();
-            }
             results.clear();
-            dst_set.clear();
             inst_set.clear();
         }
 
@@ -438,7 +452,6 @@ class query_handler{
         std::string graph_dir;
 
         std::ifstream in;
-        std::vector < std::vector<gsInstance> > dst_set;
         std::vector < std::vector<gsInstance> > inst_set;
 
         long sum_real_dist;

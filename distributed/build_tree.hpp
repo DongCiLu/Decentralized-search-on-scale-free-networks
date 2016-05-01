@@ -81,6 +81,11 @@ class build_code_sys :
                     changed = true;
                     vertex.data().code.push_back(code);
                     vertex.data().code[tree_id].push_back(vertex.id());
+                    std::vector<code_type>(vertex.data().code[tree_id].begin(),
+                            vertex.data().code[tree_id].end()).swap(
+                            vertex.data().code[tree_id]);
+                    label_type(vertex.data().code.begin(), 
+                            vertex.data().code.end()).swap(vertex.data().code);
                 }
             }
 

@@ -1,5 +1,5 @@
-# gn_array=("webuk" "friendster")
-gn_array=("wiki")
+gn_array=("friendster")
+# gn_array=("wiki")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -9,10 +9,10 @@ testcase_folder="datasets/testcases/regular"
 n_cores=6
 # n_exp=(400000 800000 1600000 1000000)
 # n_machines=(16 16 16 16)
-n_exp=(4000000)
+n_exp=(1000000)
 n_machines=(16)
-n_tree=(2)
-posfix=("test") # if use real, dont forget to change the testcase directory
+n_tree=(1)
+posfix=("reduce_mem") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /local/PowerGraph/scripts/mpirsync"
