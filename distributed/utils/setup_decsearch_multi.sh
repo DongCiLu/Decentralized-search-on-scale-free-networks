@@ -56,6 +56,7 @@ ln -s /mydata /local/PowerGraph/release/apps/ds_dist/datasets
 ln -s /local/DecSearch/results /local/PowerGraph/release/apps/ds_dist/results
 ln -s /local/DecSearch/distributed/utils/simple_multi.sh /local/PowerGraph/release/apps/ds_dist/simple.sh
 cp /local/DecSearch/distributed/utils/load.sh /local/PowerGraph/release/apps/ds_dist/load.sh
+cp /local/DecSearch/distributed/utils/mpirsync /local/PowerGraph/scripts/mpirsync
 mkdir binary
 mv ds_dist binary/ds_dist_test
 
