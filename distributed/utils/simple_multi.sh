@@ -9,8 +9,8 @@ testcase_folder="datasets/testcases/regular"
 n_cores=6
 # n_exp=(400000 800000 1600000 1000000)
 # n_machines=(16 16 16 16)
-n_exp=(1000000)
-n_machines=(16)
+n_exp=(1600000)
+n_machines=(20)
 n_tree=(1)
 posfix=("reduce_mem") # if use real, dont forget to change the testcase directory
 
