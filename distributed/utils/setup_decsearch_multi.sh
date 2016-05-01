@@ -1,6 +1,6 @@
 hostname_master=$HOSTNAME
 # hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7")
-hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
+hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-4" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15" "node-16" "node-17" "node-18" "node-19")
 
 sudo chown zlu12 /mydata
 
@@ -49,7 +49,7 @@ cd /local/PowerGraph
 cp /local/DecSearch/distributed/utils/boost_1_53_0.tar.gz /local/PowerGraph/deps/boost/src/
 cp /local/DecSearch/distributed/utils/libevent-2.0.18-stable.tar.gz /local/PowerGraph/deps/event/src/
 cd /local/PowerGraph/release/apps/ds_dist/
-make -j2
+make -j4
 
 ln -s /local/DecSearch/distributed /local/PowerGraph/release/apps/ds_dist/src
 ln -s /mydata /local/PowerGraph/release/apps/ds_dist/datasets
