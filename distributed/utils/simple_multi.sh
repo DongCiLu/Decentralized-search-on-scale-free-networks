@@ -1,9 +1,5 @@
-# gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
-gn_array=("wiki" "skitter" "Livejournal" "hollywood" "orkut" "sinaweibo" "friendster")
-
-hostname_master=$HOSTNAME
-hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-5" "node-6" "node-7" "node-8" "node-9" "node-10" "node-11" "node-12" "node-13" "node-14" "node-15")
-# hostname_prefix_array=("node-0" "node-1" "node-2" "node-3" "node-5")
+# gn_array=("webuk" "friendster")
+gn_array=("wiki")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -11,10 +7,12 @@ res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
 n_cores=6
-n_exp=(1000000)
-n_machines=(8 4 2 1)
+# n_exp=(400000 800000 1600000 1000000)
+# n_machines=(16 16 16 16)
+n_exp=(4000000)
+n_machines=(16)
 n_tree=(2)
-posfix=("bi") # if use real, dont forget to change the testcase directory
+posfix=("test") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /local/PowerGraph/scripts/mpirsync"
@@ -37,25 +35,15 @@ do
         do
             cm1_mod4=${cm1_mod3//n_machines/${n_machines[$k]}} 
             cm2_mod2=${cm2_mod1//n_machines/${n_machines[$k]}}
-            for ((l=0; l<${#n_exp[@]}; l++));
-            do
-                for hostname_node in "${hostname_prefix_array[@]}"
-                do
-                    remote_node=${hostname_master//node-0/$hostname_node}
-                    ssh $remote_node '/local/PowerGraph/release/apps/ds_dist/load.sh' &
-                done
-                cm1_mod5=${cm1_mod4//n_exp/${n_exp[$l]}} 
+            # for ((l=0; l<${#n_exp[@]}; l++));
+            # do
+                cm1_mod5=${cm1_mod4//n_exp/${n_exp[$k]}} 
+                # cm1_mod5=${cm1_mod4//n_exp/${n_exp[$l]}} 
                 ${cm1_mod5//class/$class}
-                cm2_mod3=${cm2_mod2//n_exp/${n_exp[$l]}}
+                cm2_mod3=${cm2_mod2//n_exp/${n_exp[$k]}}
+                # cm2_mod3=${cm2_mod2//n_exp/${n_exp[$l]}}
                 ${cm2_mod3//class/$class}
-                mkdir results/load_logs
-                for hostname_node in "${hostname_prefix_array[@]}"
-                do
-                    remote_node=${hostname_master//node-0/$hostname_node}
-                    scp ${remote_node}:~/load.log results/load_logs/load_${hostname_node}.txt
-                    ssh $remote_node 'rm ~/load.log'
-                done
-            done
+            # done
         done
     done
 done
