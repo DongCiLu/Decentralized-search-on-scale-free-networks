@@ -1,5 +1,8 @@
 internal_ip_array=("10.142.0.2" "10.142.0.3")
 
+mkdir /home/luzheng0314/datasets
+sudo mount /dev/sdb1 /home/luzheng0314/datasets
+
 sudo chmod 600 /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh
 
 ssh-keygen -t rsa -b 2048
@@ -47,6 +50,7 @@ ln -s /home/luzheng0314/DecSearch/distributed /home/luzheng0314/PowerGraph/relea
 ln -s /home/luzheng0314/datasets /home/luzheng0314/PowerGraph/release/apps/ds_dist/datasets
 mkdir /home/luzheng0314/PowerGraph/release/apps/ds_dist/results
 ln -s /home/luzheng0314/DecSearch/distributed/utils/simple_gce.sh /home/luzheng0314/PowerGraph/release/apps/ds_dist/simple.sh
+cp /home/luzheng0314/DecSearch/distributed/utils/mpirsync_gce /home/luzheng0314/PowerGraph/scripts/mpirsync
 mkdir binary
 mv ds_dist binary/ds_dist_test
 
