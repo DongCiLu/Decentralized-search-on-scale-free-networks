@@ -1,21 +1,23 @@
 internal_ip_array=("10.142.0.2" "10.142.0.3")
 
-sudo chmod 600 /local/DecSearch/distributed/utils/others/gce_key_openssh
+sudo chmod 600 ~/DecSearch/distributed/utils/others/gce_key_openssh
 
+ssh-keygen -t rsa -b 2048
 # prompts first
 for internal_ip in "${internal_ip_array[@]}"
 do
-    ssh -i /local/DecSearch/distributed/utils/others/gce_key_openssh zlu12@${internal_ip} 'sh' < /local/DecSearch/distributed/utils/setup_decsearch_remote.sh
+    cat ~/.ssh/id_rsa.pub | ssh -i ~/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} "cat - >> ~/.ssh/authorized_key2"
 done
 ssh-copy-id zlu12@lanterns2.eecs.utk.edu
 
+exit(1)
+
 for internal_ip in "${internal_ip_array[@]}"
 do
-    ssh zlu12@${internal_ip} 'sudo apt-get update'
-    ssh zlu12@${internal_ip} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
-    ssh zlu12@${internal_ip} 'sudo chown zlu12 /local'
-    scp /local/DecSearch/distributed/utils/sshd_config zlu12@${internal_ip}:~/
-    ssh zlu12@${internal_ip} 'sudo mv /users/zlu12/sshd_config /etc/ssh/'
+    ssh ${internal_ip} 'sudo apt-get update'
+    ssh ${internal_ip} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
+    scp /local/DecSearch/distributed/utils/sshd_config ${internal_ip}:~/
+    ssh ${internal_ip} 'sudo mv /users/zlu12/sshd_config /etc/ssh/'
 done
 
 sudo apt-get update
