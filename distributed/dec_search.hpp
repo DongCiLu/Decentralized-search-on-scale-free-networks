@@ -133,7 +133,7 @@ struct min_code_distance_type {
             mc_inst_set[mc_index].id = iter->id;
             mc_inst_set[mc_index].dist = dist;
 #ifdef TIE_FULL
-            mc_inst_set[mc_index].vids.swap(vids);
+            mc_inst_set[mc_index].vids = vids;
 #else
             mc_inst_set[mc_index].vid = vid;
 #endif // TIE_FULL
@@ -174,7 +174,7 @@ struct min_code_distance_type {
             mc_inst_set[mc_index].id = iter->id;
             mc_inst_set[mc_index].dist = dist;
 #ifdef TIE_FULL
-            mc_inst_set[mc_index].vids.swap(vids);
+            mc_inst_set[mc_index].vids = vids;
 #else
             mc_inst_set[mc_index].vid = vid;
 #endif // TIE_FULL
@@ -378,10 +378,6 @@ class dec_search :
                         if (mcIter->vid == iter->dst_code[t][i]){
 #endif //TIE_FULL
                             found = true;
-                            /*
-                            if (vertex.id() == iter->dst_id)
-                                i = iter->dst_code[t].size();
-                                */
                             for (; i < iter->dst_code[t].size(); ++i)
                                 iter->path.push_back(
                                         iter->dst_code[t][i]);
@@ -406,18 +402,15 @@ class dec_search :
 #ifdef TIE_FULL
                     if (iter->state != Main &&
                             iter->min_dist <= mcIter->dist + 1)
-                        vids.clear();
+                        iter->state = Finished;
 #endif
                     iter->min_dist = mcIter->dist;
 #ifdef TIE_FULL
                     if (!vids.empty()) {
                         next_hop_set.push_back(vids);
                         main_search_vid.push_back(*(vids.begin()));
-                        iter ++;
                     }
-                    else {
-                        iter = inst_set.erase(iter);
-                    }
+                    ++iter;
 #else
                     iter->path.push_back(mcIter->vid);
                     ++iter;
