@@ -320,7 +320,7 @@ class query_handler{
                     else {
                         sum_appr_err += double(iter->second.path.size() - 1) /
                             iter->second.real_dist - 1;
-                        query_overhead += iter->second.path.capacity * 
+                        query_overhead += iter->second.path.capacity() * 
                             sizeof(graphlab::vertex_id_type);
 #ifndef SAVE_SPACE
                         sum_obv_err += double(get_code_dist(
@@ -467,7 +467,7 @@ class query_handler{
         long sum_tie_cnt;
         double sum_appr_err;
         double sum_obv_err; 
-        size_t search_overhead;
+        size_t query_overhead;
         double bfs_runtime;
         double gs_runtime;
 #ifdef CALC_REAL
