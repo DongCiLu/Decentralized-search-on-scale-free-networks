@@ -66,6 +66,6 @@ do
     echo ${hostname_master//node-0/$hostname_node} >> /local/PowerGraph/release/apps/ds_dist/machines
 done
 
-cp /local/PowerGraph/release/apps/ds_dist/machines /users/zlu12/machines
+ln -s /local/PowerGraph/release/apps/ds_dist/machines /users/zlu12/machines
 
 echo "You are all set."

@@ -6,7 +6,6 @@ exec_folder="binary"
 res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
-n_cores=6
 # n_exp=(400000 800000 1600000 1000000)
 # n_machines=(16 16 16 16)
 n_exp=(1600000)
@@ -16,7 +15,7 @@ posfix=("reduce_mem") # if use real, dont forget to change the testcase director
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /local/PowerGraph/scripts/mpirsync"
-cmd1="mpiexec -n n_machines --hostfile ./machines env GRAPHLAB_SUBNET_ID=10.10.1.0 GRAPHLAB_SUBNET_MASK=255.255.255.0 ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --ncpus ${n_cores} --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
+cmd1="mpiexec -n n_machines --hostfile ./machines env GRAPHLAB_SUBNET_ID=10.10.1.0 GRAPHLAB_SUBNET_MASK=255.255.255.0 ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
 cmd2="mv graphname_class_n_machinesm_n_expq.txt ./${res_folder}/class/"
 
 $pre2
