@@ -406,7 +406,7 @@ class dec_search :
 #endif
                     iter->min_dist = mcIter->dist;
 #ifdef TIE_FULL
-                    if (!vids.empty()) {
+                    if (iter->state != Finished) {
                         next_hop_set.push_back(vids);
                         main_search_vid.push_back(*(vids.begin()));
                     }
