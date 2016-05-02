@@ -35,9 +35,6 @@ struct vertex_data {
 #endif
     size_t check_cnt;
     size_t visit_cnt;
-#ifdef SELECTIVE_LCA
-    size_t ignore_cnt;
-#endif
 
     vertex_data() {
 #ifdef CALC_REAL
@@ -45,9 +42,6 @@ struct vertex_data {
 #endif
         check_cnt = 0;
         visit_cnt = 0;
-#ifdef SELECTIVE_LCA
-        ignore_cnt = 0;
-#endif
     }
 
     void save(graphlab::oarchive& oarc) const {
@@ -56,9 +50,6 @@ struct vertex_data {
         oarc << flag;
 #endif
         oarc << check_cnt << visit_cnt;
-#ifdef SELECTIVE_LCA
-        oarc << ignore_cnt;
-#endif
     }
 
     void load(graphlab::iarchive& iarc) {
@@ -67,9 +58,6 @@ struct vertex_data {
         iarc >> flag;
 #endif
         iarc >> check_cnt >> visit_cnt;
-#ifdef SELECTIVE_LCA
-        iarc >> ignore_cnt;
-#endif
     }
 }; // end of vertex data
 
@@ -236,9 +224,6 @@ struct calc_overhead_reducer {
     size_t code_overhead;
     size_t search_overhead;
     std::vector<size_t> comp_overhead;
-#ifdef SELECTIVE_LCA
-    size_t reduced_overhead;
-#endif
 
     calc_overhead_reducer& operator+=(
             const calc_overhead_reducer& other) {
@@ -247,24 +232,15 @@ struct calc_overhead_reducer {
         for (size_t i = 0; i < comp_overhead.size(); i++) {
             comp_overhead[i] += other.comp_overhead[i];
         }
-#ifdef SELECTIVE_LCA
-        reduced_overhead += other.reduced_overhead;
-#endif
         return (*this);
     }
 
     void save(graphlab::oarchive& oarc) const {
         oarc << code_overhead << search_overhead << comp_overhead;
-#ifdef SELECTIVE_LCA
-        oarc << reduced_overhead;
-#endif
     }
 
     void load(graphlab::iarchive& iarc) {
         iarc >> code_overhead >> search_overhead >> comp_overhead;
-#ifdef SELECTIVE_LCA
-        iarc >> reduced_overhead;
-#endif
     }
 };
 
@@ -276,11 +252,10 @@ calc_overhead_reducer calc_overhead(const graph_type::vertex_type vtx) {
         graphlab::graph_hash::hash_vertex(vtx.id()) % numprocs;
     red.comp_overhead.resize(numprocs, 0);
     red.comp_overhead[vertex_procid] += vtx.data().visit_cnt;
-#ifdef SELECTIVE_LCA
-    red.reduced_overhead = vtx.data().ignore_cnt;
-#endif
+    red.code_overhead += sizeof(label_type);
     for (size_t i = 0; i < vtx.data().code.size(); i++) 
-        red.code_overhead += vtx.data().code[i].size();
+        red.code_overhead += sizeof(std::vector<code_type>) + 
+            vtx.data().code[i].capacity() * sizeof(code_type);
     return red;
 }
 

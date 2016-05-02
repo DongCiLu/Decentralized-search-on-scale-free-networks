@@ -26,6 +26,7 @@ class query_handler{
                 long sum_tie_cnt = 0,
                 double sum_appr_err = 0,
                 double sum_obv_err = 0, 
+                size_t query_overhead = 0,
                 double bfs_runtime = 0,
                 double gs_runtime = 0,
 #ifdef CALC_REAL
@@ -39,6 +40,7 @@ class query_handler{
             saveprefix(saveprefix), graph_dir(graph_dir),
             sum_real_dist(sum_real_dist), sum_tie_cnt(sum_tie_cnt),
             sum_appr_err(sum_appr_err), sum_obv_err(sum_obv_err),
+            query_overhead(query_overhead),
             bfs_runtime(bfs_runtime), gs_runtime(gs_runtime),
 #ifdef CALC_REAL
             real_bfs_runtime(real_bfs_runtime),
@@ -197,6 +199,13 @@ class query_handler{
                         inst.state = Started;
 #endif
                         inst_set[procid].push_back(inst);
+
+                        query_overhead += sizeof(gsInstance);
+                        for(size_t k = 0; k < inst.dst_code.size(); k++)
+                            query_overhead += 
+                                sizeof(std::vector<code_type>) + 
+                                inst.dst_code[k].capacity() * 
+                                sizeof(code_type);
                     }
                 }
             }
@@ -311,6 +320,8 @@ class query_handler{
                     else {
                         sum_appr_err += double(iter->second.path.size() - 1) /
                             iter->second.real_dist - 1;
+                        query_overhead += iter->second.path.capacity * 
+                            sizeof(graphlab::vertex_id_type);
 #ifndef SAVE_SPACE
                         sum_obv_err += double(get_code_dist(
                                     iter->second.src_code, 
@@ -345,12 +356,10 @@ class query_handler{
                     bfs_runtime << " seconds." << std::endl;
                 out << "GS total running time (powergraph timer) is " << 
                     gs_runtime << " seconds." << std::endl;
-                out << "Overheads(code, search, [r], comp) are " << 
+                out << "Overheads(code, query, search, comp) are " << 
                     r.code_overhead << " ";
+                out << double(query_overhead) / (n_query - err_cnt) << " ";
                 out << r.search_overhead / (n_query - err_cnt) << " ";
-#ifdef SELECTIVE_LCA
-                out << r.reduced_overhead / (n_query - err_cnt) << " ";
-#endif
                 out << "(";
                 for (size_t i = 0; i < r.comp_overhead.size(); i++)
                     out << r.comp_overhead[i] << " ";
@@ -458,6 +467,7 @@ class query_handler{
         long sum_tie_cnt;
         double sum_appr_err;
         double sum_obv_err; 
+        size_t search_overhead;
         double bfs_runtime;
         double gs_runtime;
 #ifdef CALC_REAL
