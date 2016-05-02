@@ -11,11 +11,11 @@
 #include "graphlab.hpp"
 
 #define EARLY_TERMINATION //Never turn off
-//#define BIDIRECTIONAL_SEARCH
-#define SELECTIVE_LCA
-#define SAVE_SPACE // dont use with bi search
+#define BIDIRECTIONAL_SEARCH
+//#define SELECTIVE_LCA
+//#define SAVE_SPACE // dont use with bi search
 
-//#define TIE_FULL
+#define TIE_FULL
 //#define TIE_HEUR // require tie full to work
 //#define LABEL_DEG
 

@@ -1,7 +1,0 @@
-Graph:
-  Nodes:                    4843953
-  Edges:                    43362750
-  Zero Deg Nodes:           0
-  Zero InDeg Nodes:         0
-  Zero OutDeg Nodes:        0
-  NonZero In-Out Deg Nodes: 4843953

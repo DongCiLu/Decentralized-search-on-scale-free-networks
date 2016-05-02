@@ -102,11 +102,11 @@ int main(int argc, char** argv) {
     else {
         for (size_t n_tree_built = 0; 
                 n_tree_built < n_tree; 
-                n_tree_built ++) {
+                n_tree_built += stepy) {
             std::ostringstream oss;
-            oss << saveprefix << "_" << n_tree_built + 1 << "t";
+            oss << saveprefix << "_" << n_tree_built + stepy << "t";
             std::string saveprefix_mod = oss.str();
-            query_handler qh(n_tree_built + 1, n_query, 
+            query_handler qh(n_tree_built + stepy, n_query, 
                     &dc, &clopts, &graph, 
                     input_file, exec_type, 
                     saveprefix_mod, graph_dir,

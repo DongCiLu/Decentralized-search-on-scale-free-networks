@@ -1,5 +1,4 @@
-#gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
-gn_array=("wiki")
+gn_array=("wiki" "skitter" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -9,8 +8,8 @@ testcase_folder="datasets/testcases/withreal"
 n_cores=18
 n_exp=(100000)
 n_machines=(1)
-n_tree=(2)
-stepy_flag=1
+n_tree=(20)
+stepy_flag=5
 posfix=("test") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
