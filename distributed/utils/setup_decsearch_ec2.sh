@@ -50,6 +50,7 @@ make -j4
 ln -s /home/ubuntu/DecSearch/distributed /home/ubuntu/PowerGraph/release/apps/ds_dist/src
 ln -s /home/ubuntu/datasets /home/ubuntu/PowerGraph/release/apps/ds_dist/datasets
 mkdir /home/ubuntu/PowerGraph/release/apps/ds_dist/results
+cp /home/ubuntu/DecSearch/distributed/utils/mpirsync_ec2 /home/ubuntu/PowerGraph/scripts/mpirsync
 ln -s /home/ubuntu/DecSearch/distributed/utils/simple_ec2.sh /home/ubuntu/PowerGraph/release/apps/ds_dist/simple.sh
 mkdir binary
 mv ds_dist binary/ds_dist_test

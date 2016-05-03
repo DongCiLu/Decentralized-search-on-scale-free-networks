@@ -15,7 +15,7 @@ posfix=("test") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /home/ubuntu/PowerGraph/scripts/mpirsync"
-cmd1="mpiexec -n n_machines --hostfile ./machines ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
+cmd1="mpiexec -n n_machines --hostfile /home/ubuntu/machines ./${exec_folder}/ds_dist_opt --graph ./datasets/graphname_wcc.txt --saveprefix graphname_class_n_machinesm_n_expq --num_tree n_tree --num_query n_exp --input_file ./${testcase_folder}/graphname_testcases.txt"
 cmd2="mv graphname_class_n_machinesm_n_expq.txt ./${res_folder}/class/"
 
 $pre2
