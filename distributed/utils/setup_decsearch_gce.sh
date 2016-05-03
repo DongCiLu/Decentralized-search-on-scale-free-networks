@@ -6,13 +6,8 @@ sudo mount /dev/sdb1 /home/luzheng0314/datasets
 ssh-keygen -t rsa -b 2048
 sudo chmod 600 /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh
 
-# prompts first
-for internal_ip in "${internal_ip_array[@]}"
-do
-    scp -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh /local/DecSearch/distributed/utils/sshd_config ${internal_ip}:/home/luzheng0314/
-    ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} 'sudo mv /home/luzheng0314/sshd_config /etc/ssh/'
-    ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} 'sudo service ssh restart'
-done
+    sudo cp /home/luzheng0314/DecSearch/distributed/utils/sshd_config /etc/ssh/sshd_config
+    sudo service ssh restart
 
 for internal_ip in "${internal_ip_array[@]}"
 do
@@ -28,11 +23,6 @@ for internal_ip in "${internal_ip_array[@]}"
 do
     ssh ${internal_ip} 'sudo apt-get update'
     ssh ${internal_ip} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
-<<<<<<< HEAD
-=======
-    scp /home/luzheng0314/DecSearch/distributed/utils/sshd_config ${internal_ip}:/home/luzheng0314/
-    ssh ${internal_ip} 'sudo mv /home/luzheng0314/sshd_config /etc/ssh/'
->>>>>>> f26cd3b2312a48c9b2221815c322eb1c7def2ede
 done
 
 sudo apt-get update
