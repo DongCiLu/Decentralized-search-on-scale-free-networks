@@ -20,7 +20,7 @@ for internal_ip in "${internal_ip_array[@]}"
 do
     ssh ${internal_ip} 'sudo apt-get update'
     ssh ${internal_ip} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
-    scp /local/DecSearch/distributed/utils/sshd_config ${internal_ip}:/home/luzheng0314/
+    scp /home/luzheng0314/DecSearch/distributed/utils/sshd_config ${internal_ip}:/home/luzheng0314/
     ssh ${internal_ip} 'sudo mv /home/luzheng0314/sshd_config /etc/ssh/'
 done
 
