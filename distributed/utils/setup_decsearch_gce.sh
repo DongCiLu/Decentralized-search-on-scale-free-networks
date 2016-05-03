@@ -3,12 +3,11 @@ internal_ip_array=("10.142.0.2" "10.142.0.3" "10.142.0.4" "10.142.0.5" "10.142.0
 
 mkdir /home/luzheng0314/datasets
 sudo mount /dev/sdb1 /home/luzheng0314/datasets
-ssh-keygen -t rsa -b 2048
 sudo chmod 600 /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh
+sudo cp /home/luzheng0314/DecSearch/distributed/utils/sshd_config /etc/ssh/sshd_config
+sudo service ssh restart
 
-    sudo cp /home/luzheng0314/DecSearch/distributed/utils/sshd_config /etc/ssh/sshd_config
-    sudo service ssh restart
-
+ssh-keygen -t rsa -b 2048
 for internal_ip in "${internal_ip_array[@]}"
 do
     cat /home/luzheng0314/.ssh/id_rsa.pub | ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/authorized_keys2"
