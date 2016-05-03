@@ -5,9 +5,18 @@ mkdir /home/zlu12/datasets
 sudo mount /dev/sdb1 /home/zlu12/datasets
 ssh-keygen -t rsa -b 2048
 sudo chmod 600 /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh
+
 # prompts first
 for internal_ip in "${internal_ip_array[@]}"
 do
+    scp -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh /local/DecSearch/distributed/utils/sshd_config ${internal_ip}:/home/luzheng0314/
+    ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} 'sudo mv /home/luzheng0314/sshd_config /etc/ssh/'
+    ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} 'sudo service ssh restart'
+done
+
+for internal_ip in "${internal_ip_array[@]}"
+do
+    ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} ""
     cat /home/luzheng0314/.ssh/id_rsa.pub | ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/authorized_keys2"
     cat /home/luzheng0314/.ssh/id_rsa | ssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/id_rsa"
     ssh ${internal_ip} "sudo cat /home/luzheng0314/.ssh/authorized_keys2 > /home/luzheng0314/.ssh/id_rsa.pub"
@@ -20,8 +29,6 @@ for internal_ip in "${internal_ip_array[@]}"
 do
     ssh ${internal_ip} 'sudo apt-get update'
     ssh ${internal_ip} 'sudo apt-get -y install libopenmpi-dev openmpi-bin default-jdk'
-    scp /local/DecSearch/distributed/utils/sshd_config ${internal_ip}:/home/luzheng0314/
-    ssh ${internal_ip} 'sudo mv /home/luzheng0314/sshd_config /etc/ssh/'
 done
 
 sudo apt-get update
