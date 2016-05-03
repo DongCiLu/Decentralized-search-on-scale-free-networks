@@ -1,12 +1,15 @@
-gn_array=("wiki" "friendster" "skitter" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk")
+gn_array=("wiki")
+# gn_array=("wiki" "friendster" "skitter" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk")
 
 data_folder="datasets"
 exec_folder="binary"
 res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
-n_exp=(100000 200000 400000 800000 1600000 1000000)
-n_machines=(20 20 20 20 20 16)
+# n_exp=(100000 200000 400000 800000 1600000 1000000)
+# n_machines=(20 20 20 20 20 16)
+n_exp=(100000 1000000)
+n_machines=(20 20)
 n_tree=(1)
 posfix=("test") # if use real, dont forget to change testcase directory
 
