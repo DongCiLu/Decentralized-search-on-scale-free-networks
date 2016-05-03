@@ -16,7 +16,6 @@ done
 
 for internal_ip in "${internal_ip_array[@]}"
 do
-    ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} ""
     cat /home/luzheng0314/.ssh/id_rsa.pub | ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/authorized_keys2"
     cat /home/luzheng0314/.ssh/id_rsa | ssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/id_rsa"
     ssh ${internal_ip} "sudo cat /home/luzheng0314/.ssh/authorized_keys2 > /home/luzheng0314/.ssh/id_rsa.pub"
