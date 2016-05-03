@@ -1,15 +1,14 @@
 internal_ip_array=("10.142.0.2" "10.142.0.3")
 
-mkdir /home/luzheng0314/datasets
-sudo mount /dev/sdb1 /home/luzheng0314/datasets
-
-sudo chmod 600 /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh
-
 ssh-keygen -t rsa -b 2048
 # prompts first
 for internal_ip in "${internal_ip_array[@]}"
 do
-    cat /home/luzheng0314/.ssh/id_rsa.pub | ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} "cat - >> /home/luzheng0314/.ssh/authorized_key2"
+    cat /home/luzheng0314/.ssh/id_rsa.pub | ssh -i /home/luzheng0314/DecSearch/distributed/utils/others/gce_key_openssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/authorized_keys2"
+    cat /home/luzheng0314/.ssh/id_rsa | ssh ${internal_ip} "cat - > /home/luzheng0314/.ssh/id_rsa"
+    ssh ${internal_ip} "sudo cat /home/luzheng0314/.ssh/authorized_keys2 > /home/luzheng0314/.ssh/id_rsa.pub"
+    ssh ${internal_ip} "sudo chmod 600 /home/luzheng0314/.ssh/id_rsa"
+    ssh ${internal_ip} "sudo chmod 644 /home/luzheng0314/.ssh/authorized_keys2"
 done
 ssh-copy-id zlu12@lanterns2.eecs.utk.edu
 
