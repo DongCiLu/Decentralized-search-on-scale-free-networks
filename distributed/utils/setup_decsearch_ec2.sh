@@ -1,7 +1,7 @@
 # internal_ip_array=("10.142.0.2" "10.142.0.3" "10.142.0.4" "10.142.0.5")
 
 mkdir /home/ubuntu/datasets
-sudo mount /dev/sdb1 /home/ubuntu/datasets
+sudo mount /dev/xvdf /home/ubuntu/datasets
 sudo chmod 600 /home/ubuntu/DecSearch/distributed/utils/others/dc_ec2.pem
 sudo cp /home/ubuntu/DecSearch/distributed/utils/sshd_config /etc/ssh/sshd_config
 sudo service ssh restart
