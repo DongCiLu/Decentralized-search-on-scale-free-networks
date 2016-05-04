@@ -26,7 +26,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile, size_t n_tree) :
     total_path_cnt(0), total_comp_path_cnt(0), total_out_ratio(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
     total_est(0), total_comp(0), total_obv(0),
-    index_oh(0), n_tree(0), n_exp(100000) {
+    index_oh(0), n_tree(0), n_exp(100) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -146,6 +146,7 @@ void ds_cent<id_type, dist_type>::build_index(size_t t) {
     cout << "processing " << t+1 << " tree" << endl;
     root_id[t] = select_root(t);
     bfs(t, root_id[t]);
+    n_tree += 1;
 }
 
 template <typename id_type, typename dist_type>
@@ -170,7 +171,6 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src,
                 iter != cur_set.end(); ++iter) {
             TGRAPH_TYPE::TNodeI cur_vertex = net->GetNI(*iter);
             for (size_t i = 0; i < cur_vertex.GetDeg(); ++ i) {
-                id_type lca = -1;
                 id_type cur = cur_vertex.GetId();
                 id_type nbr = cur_vertex.GetNbrNId(i);
                 dist_type dist = get_dist(nbr, dst, lca);
@@ -193,6 +193,7 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src,
             }
         }
         cur_set = next_set;
+        cout << cur_set.size() << " " << min_dist << " " << min_est_dist << endl;
         // compose new paths by append nodes to their related path
         partial_path.clear();
         for (typename map< id_type, set< vector<id_type> > >::iterator
@@ -433,8 +434,8 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(
 
 template <typename id_type, typename dist_type>
 void ds_cent<id_type, dist_type>::test() {
-    string tcfilename = "./datasets/testcases/withreal/";
-    //string tcfilename = "./datasets/testcases/regular/";
+    //string tcfilename = "./datasets/testcases/withreal/";
+    string tcfilename = "./datasets/testcases/regular/";
     tcfilename += graphname + "_testcases.txt";
     cout << tcfilename << endl;
     ifstream in(tcfilename.c_str());
@@ -455,12 +456,12 @@ void ds_cent<id_type, dist_type>::test() {
         dist_type obv_dist = get_dist(src, dst, lca);
         total_obv += double(obv_dist - real_dist) / real_dist;
 
-        size_t path_cnt = 0;
-        dist_type comp_dist = tree_sketch(src, dst, path_cnt);
+        size_t comp_path_cnt = 0;
+        dist_type comp_dist = tree_sketch(src, dst, comp_path_cnt);
         total_comp += double(comp_dist - real_dist) / real_dist;
-        total_comp_path_cnt += path_cnt;
+        total_comp_path_cnt += comp_path_cnt;
 
-        //dist_type est_dist_1, est_dist_2, est_dist;
+        dist_type est_dist_1, est_dist_2, est_dist;
         /*
         est_dist_1 = do_search(src, dst);
         est_dist_2 = do_search(dst, src);
@@ -475,7 +476,6 @@ void ds_cent<id_type, dist_type>::test() {
         total_est_multi += double(est_dist - real_dist) / real_dist;
         */
         
-        /*
         set< vector<id_type> > pair_path;
         set< vector<id_type> > pair_path1;
         set< vector<id_type> > pair_path2;
@@ -502,6 +502,14 @@ void ds_cent<id_type, dist_type>::test() {
             }
         }
         total_path_cnt += pair_path.size();
+        /*
+        if (pair_path.size() < 1000) {
+            total_path_cnt += pair_path.size();
+        }
+        else {
+            cout << "too long " << pair_path.size() << endl;
+        }
+        */
 
         set<id_type> vertex_in_label;
         for (size_t i = 0; i < codes[src].size(); i++) {
@@ -524,13 +532,12 @@ void ds_cent<id_type, dist_type>::test() {
                         vertex_in_label.end())
                     out_size ++;
             }
-            double ratio = double(out_size) / siter->size();
+            double ratio = double(out_size) / (siter->size() - 2);
             total_out_ratio += ratio;
         }
 
 
         total_est_all += double(est_dist - real_dist) / real_dist;
-        */
     }
     in.close();
     cout << endl;
@@ -597,7 +604,7 @@ int main(int argc, char** argv){
     cout << "Step 1: Setting Environment and loading graphs." << endl;
     string graphfile = argv[1];
     string stepy = argv[2];
-    size_t n_tree = 20;
+    size_t n_tree = 5;
 
     ds_cent<unsigned long, unsigned long> m(graphfile, n_tree);
 
