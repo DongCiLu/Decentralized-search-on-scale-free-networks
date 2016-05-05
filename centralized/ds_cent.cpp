@@ -193,7 +193,6 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src,
             }
         }
         cur_set = next_set;
-        cout << cur_set.size() << " " << min_dist << " " << min_est_dist << endl;
         // compose new paths by append nodes to their related path
         partial_path.clear();
         for (typename map< id_type, set< vector<id_type> > >::iterator
@@ -502,6 +501,7 @@ void ds_cent<id_type, dist_type>::test() {
             }
         }
         total_path_cnt += pair_path.size();
+        //cout << pair_path.size() << endl;
         /*
         if (pair_path.size() < 1000) {
             total_path_cnt += pair_path.size();
@@ -519,7 +519,7 @@ void ds_cent<id_type, dist_type>::test() {
         }
         for (size_t i = 0; i < codes[dst].size(); i++) {
             for (size_t j = 0; j < codes[dst][i].size(); j++) {
-                vertex_in_label.insert(codes[src][i][j]);
+                vertex_in_label.insert(codes[dst][i][j]);
             }
         }
         for (typename set< vector<id_type> >::iterator 
@@ -533,6 +533,9 @@ void ds_cent<id_type, dist_type>::test() {
                     out_size ++;
             }
             double ratio = double(out_size) / (siter->size() - 2);
+            if (ratio > 1) {
+                cout << "-------------" << ratio << endl;
+            }
             total_out_ratio += ratio;
         }
 
@@ -604,7 +607,7 @@ int main(int argc, char** argv){
     cout << "Step 1: Setting Environment and loading graphs." << endl;
     string graphfile = argv[1];
     string stepy = argv[2];
-    size_t n_tree = 5;
+    size_t n_tree = 2;
 
     ds_cent<unsigned long, unsigned long> m(graphfile, n_tree);
 
