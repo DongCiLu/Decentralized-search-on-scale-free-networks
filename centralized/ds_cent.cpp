@@ -25,8 +25,9 @@ template <typename id_type, typename dist_type>
 ds_cent<id_type, dist_type>::ds_cent(string graphfile, size_t n_tree) : 
     total_path_cnt(0), total_comp_path_cnt(0), total_out_ratio(0),
     total_real(0), total_est_all(0), total_est_multi(0), 
-    total_est(0), total_comp(0), total_obv(0),
-    index_oh(0), n_tree(0), n_exp(100) {
+    total_est(0), total_comp(0), total_obv(0), 
+    total_single_time(0), total_full_time(0),
+    index_oh(0), n_tree(0), n_exp(500) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -461,12 +462,12 @@ void ds_cent<id_type, dist_type>::test() {
         total_comp_path_cnt += comp_path_cnt;
 
         dist_type est_dist_1, est_dist_2, est_dist;
-        /*
+        clock_t start_tick_single = clock();
         est_dist_1 = do_search(src, dst);
         est_dist_2 = do_search(dst, src);
+        total_single_time += clock() - start_tick_single;
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est += double(est_dist - real_dist) / real_dist;
-        */
 
         /*
         est_dist_1 = do_search_multi(src, dst);
@@ -478,8 +479,10 @@ void ds_cent<id_type, dist_type>::test() {
         set< vector<id_type> > pair_path;
         set< vector<id_type> > pair_path1;
         set< vector<id_type> > pair_path2;
+        clock_t start_tick_full = clock();
         est_dist_1 = do_search_all(src, dst, pair_path1);
         est_dist_2 = do_search_all(dst, src, pair_path2);
+        total_full_time += clock() - start_tick_full;
         if (est_dist_1 < est_dist_2) {
             est_dist = est_dist_1;
             pair_path = pair_path1;
@@ -582,7 +585,14 @@ void ds_cent<id_type, dist_type>::print_info(int stage) {
             out << "Index overhead: " << 
                 double(index_oh) * sizeof(id_type) / 1000000000 <<
                 "GB" << endl;
+            out << "Avg single time: " <<
+                double(total_single_time) / CLOCKS_PER_SEC / n_exp / 2 
+                << endl;
+            out << "Avg full time: " <<
+                double(total_full_time) / CLOCKS_PER_SEC / n_exp / 2 
+                << endl;
             out << "------------------" << endl;
+
             break;
         default:
             break;
@@ -607,7 +617,7 @@ int main(int argc, char** argv){
     cout << "Step 1: Setting Environment and loading graphs." << endl;
     string graphfile = argv[1];
     string stepy = argv[2];
-    size_t n_tree = 2;
+    size_t n_tree = 1;
 
     ds_cent<unsigned long, unsigned long> m(graphfile, n_tree);
 

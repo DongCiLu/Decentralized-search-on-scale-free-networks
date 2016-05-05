@@ -19,6 +19,7 @@
 #include <iterator>
 #include <fstream>
 #include <cstdlib>
+#include <time.h>
 
 #include "Snap.h"
 
@@ -75,6 +76,9 @@ class ds_cent {
         double total_est;
         double total_comp;
         double total_obv;
+
+        clock_t total_single_time;
+        clock_t total_full_time;
 
         size_t index_oh;
 

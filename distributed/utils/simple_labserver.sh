@@ -1,5 +1,5 @@
 # gn_array=("wiki" "skitter" "bio" "baidu" "Livejournal" "hollywood" "orkut" "sinaweibo" "webuk" "friendster")
-gn_array=("skitter")
+gn_array=("wiki")
 
 data_folder="datasets"
 exec_folder="binary"
@@ -8,11 +8,11 @@ res_folder="results"
 testcase_folder="datasets/testcases/regular"
 
 n_cores=2
-n_exp=(100000)
+n_exp=(1000)
 n_machines=(1)
 n_tree=(2)
 stepy_flag=0
-posfix=("bi") # if use real, dont forget to change the testcase directory
+posfix=("test") # if use real, dont forget to change the testcase directory
 
 pre1="mkdir ./${res_folder}/class/"
 pre2="bash -x /home/$USER/PowerGraph/scripts/mpirsync"
