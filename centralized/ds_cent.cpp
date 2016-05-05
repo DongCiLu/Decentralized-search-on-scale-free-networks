@@ -529,6 +529,8 @@ void ds_cent<id_type, dist_type>::test() {
                 siter = pair_path.begin(); 
                 siter != pair_path.end(); 
                 ++siter) {
+            if (siter->size() <= 2)
+                continue;
             size_t out_size = 0;
             for (size_t i = 0; i < siter->size(); i++){
                 if (vertex_in_label.find((*siter)[i]) == 
