@@ -22,11 +22,6 @@ T.~Akiba, C.~Sommer, and K.-i. Kawarabayashi.
 \newblock In {\em Proceedings of the 15th International Conference on Extending
   Database Technology}, EDBT '12, pages 144--155, New York, NY, USA, 2012. ACM.
 
-\bibitem{callaway2000network}
-D.~S. Callaway, M.~E. Newman, S.~H. Strogatz, and D.~J. Watts.
-\newblock Network robustness and fragility: Percolation on random graphs.
-\newblock {\em Physical review letters}, 85(25):5468, 2000.
-
 \bibitem{7004250}
 M.~Christoforaki and T.~Suel.
 \newblock Estimating pairwise distances in large graphs.
@@ -117,6 +112,12 @@ M.~Qiao, H.~Cheng, L.~Chang, and J.~Yu.
   landmark scheme.
 \newblock {\em Knowledge and Data Engineering, IEEE Transactions on},
   26(1):55--68, Jan 2014.
+
+\bibitem{RicciEide:login14}
+R.~Ricci, E.~Eide, and {The CloudLab Team}.
+\newblock Introducing {CloudLab}: Scientific infrastructure for advancing cloud
+  architectures and applications.
+\newblock {\em {USENIX} {;login:}}, 39(6), Dec. 2014.
 
 \bibitem{nr}
 R.~A. Rossi and N.~K. Ahmed.

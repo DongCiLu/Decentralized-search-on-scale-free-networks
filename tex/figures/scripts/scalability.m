@@ -12,7 +12,7 @@ markers = ['-+'; '-o'; '-*'; '-^'; '-x'; '-d'; '-s'; '-p'];
 n = 5;
 figure(1);
 for i = 1:n
-    plot(scal_m(i,:), markers(i,:), 'LineWidth', 2, 'Markers', 5); hold on;
+    plot(scal_m(i,:), markers(i,:), 'LineWidth', 2, 'Markers', 7); hold on;
 end
 
 set(gca,'FontSize',20);
@@ -28,7 +28,7 @@ set(legend_hand,'Fontname', 'Times New Roman', 'Fontsize', 24);
 n=8;
 figure(2);
 for i = 1:n
-    plot(scal_q(i,:), markers(i,:), 'LineWidth', 2, 'Markers', 5); hold on;
+    plot(scal_q(i,:), markers(i,:), 'LineWidth', 2, 'Markers', 7); hold on;
 end
 set(gca,'FontSize',20);
 set(gca,'XTick',(1:5));
@@ -43,7 +43,7 @@ set(legend_hand,'Fontname', 'Times New Roman', 'Fontsize', 24, 'Location', 'Nort
 n=8;
 figure(3);
 for i = 1:n
-    plot(scal_q_per(i,:), markers(i,:), 'LineWidth', 2, 'Markers', 5); hold on;
+    plot(scal_q_per(i,:), markers(i,:), 'LineWidth', 2, 'Markers', 7); hold on;
 end
 set(gca,'FontSize',20);
 set(gca,'XTick',(1:5));

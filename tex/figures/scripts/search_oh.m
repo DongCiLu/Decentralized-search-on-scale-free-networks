@@ -39,9 +39,9 @@ end
 set(gca, 'YScale', 'log');
 set(gca,'FontSize',20);
 set(gca, 'XTickLabel', label_string);
-ylim([0.0000099 10]);
+ylim([0.0000099 3]);
 
 ylabel_hand=ylabel('Average search run time (s)');
 set(ylabel_hand,'Fontname', 'Times New Roman', 'Fontsize', 24);
 legend_hand = legend(legend_string);
-set(legend_hand,'Fontname', 'Times New Roman', 'Fontsize', 24, 'Location', 'best');
+set(legend_hand,'Fontname', 'Times New Roman', 'Fontsize', 24, 'Location', 'best', 'Orientation', 'Horizontal');

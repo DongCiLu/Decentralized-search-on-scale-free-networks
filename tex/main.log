@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  5 MAY 2016 13:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  6 MAY 2016 06:53
 entering extended mode
 **./main.tex
 (main.tex
@@ -247,30 +247,33 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip46
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\threeparttable\threeparttable.sty"
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box32
 ) (main.aux
 
-LaTeX Warning: Label `table:NOP' multiply defined.
+LaTeX Warning: Label `table:ioh' multiply defined.
 
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
-LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count120
 \scratchdimen=\dimen123
-\scratchbox=\box32
+\scratchbox=\box33
 \nofMPsegments=\count121
 \nofMParguments=\count122
 \everyMPshowfont=\toks41
@@ -280,16 +283,16 @@ LaTeX Font Info:    ... okay on input line 54.
 \makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks42
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 151.
+LaTeX Font Info:    Try loading font information for U+msa on input line 152.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 151.
+LaTeX Font Info:    Try loading font information for U+msb on input line 152.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 151.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 152.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -297,17 +300,17 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 151.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 152.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) Excluding 'CCSXML' comment.
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 196.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 197.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 196.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
  (introduction.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -363,53 +366,51 @@ Underfull \vbox (badness 1337) has occurred while \output is active []
 
 LaTeX Warning: Reference `fig:system' on page \thepage  undefined on input line 6.
 
-[5 <./figures/new_illustrate/tie.pdf>]) (evaluation.tex
+[5 <./figures/new_illustrate/tie.pdf>]) (evaluation.tex [6 <./figures/new_illustrate/bfs_illustrate.pdf>]
+<./figures/accuracy_stepy.pdf, id=536, 1228.59pt x 722.7pt>
+File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
+ <use ./figures/accuracy_stepy.pdf>
+Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 50.
+(pdftex.def)             Requested size: 504.0pt x 296.47432pt.
 
-LaTeX Warning: Citation `RicciEide:login14' on page \thepage  undefined on input line 4.
-
-[6 <./figures/new_illustrate/bfs_illustrate.pdf>] <./figures/accuracy_dec.pdf, id=536, 1156.32pt x 433.62pt>
-File: ./figures/accuracy_dec.pdf Graphic file (type pdf)
-
-<use ./figures/accuracy_dec.pdf>
-Package pdftex.def Info: ./figures/accuracy_dec.pdf used on input line 39.
-(pdftex.def)             Requested size: 504.0pt x 189.00032pt.
- <./figures/accuracy_index.pdf, id=537, 614.295pt x 469.755pt>
-File: ./figures/accuracy_index.pdf Graphic file (type pdf)
-
-<use ./figures/accuracy_index.pdf>
-Package pdftex.def Info: ./figures/accuracy_index.pdf used on input line 48.
-(pdftex.def)             Requested size: 240.0pt x 183.52626pt.
-
-Overfull \hbox (1.10538pt too wide) in paragraph at lines 53--54
-\T1/aer/m/n/9 rithm com-pared to the ran-dom in-dex con-struc-tion al-go-rithm.
+Overfull \hbox (5.23598pt too wide) in paragraph at lines 65--66
+[]\T1/aer/m/n/9 Decentralized search car-ried on in-dex con-structed by greedy
  []
 
-<./figures/overhead_search.pdf, id=538, 614.295pt x 469.755pt>
+
+Overfull \hbox (1.59111pt too wide) in paragraph at lines 65--66
+\T1/aer/m/n/9 heuris-tic has much lower er-ror ra-tio than de-cen-tral-ized search
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
+<./figures/overhead_search.pdf, id=542, 1250.6725pt x 447.6725pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
-Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 102.
-(pdftex.def)             Requested size: 240.0pt x 183.52626pt.
+Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 119.
+(pdftex.def)             Requested size: 504.0pt x 180.40468pt.
 
-<./figures/scale_machine.pdf, id=539, 578.16pt x 433.62pt>
+Overfull \hbox (15.60353pt too wide) in paragraph at lines 124--125
+\T1/aer/m/n/9 both non-parallel mode and par-al-lel batch mode. [add treesketch
+ []
+
+<./figures/scale_machine.pdf, id=543, 578.16pt x 433.62pt>
 File: ./figures/scale_machine.pdf Graphic file (type pdf)
  <use ./figures/scale_machine.pdf>
-Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 116.
+Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 139.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-
-<./figures/scale_query.pdf, id=540, 614.295pt x 469.755pt>
+ [8 <./figures/accuracy_stepy.pdf>] <./figures/scale_query.pdf, id=551, 578.16pt x 433.62pt>
 File: ./figures/scale_query.pdf Graphic file (type pdf)
  <use ./figures/scale_query.pdf>
-Package pdftex.def Info: ./figures/scale_query.pdf used on input line 125.
-(pdftex.def)             Requested size: 240.0pt x 183.52626pt.
- [7]
-<./figures/scale_graph.pdf, id=546, 614.295pt x 469.755pt>
-File: ./figures/scale_graph.pdf Graphic file (type pdf)
- <use ./figures/scale_graph.pdf>
-Package pdftex.def Info: ./figures/scale_graph.pdf used on input line 134.
-(pdftex.def)             Requested size: 240.0pt x 183.52626pt.
-) (conclusion.tex) (main.bbl
-[8 <./figures/accuracy_dec.pdf>] [9 <./figures/accuracy_index.pdf> <./figures/overhead_search.pdf> <./figures/scale_mach
-ine.pdf> <./figures/scale_query.pdf>]) [10 <./figures/scale_graph.pdf>] (main.aux)
+Package pdftex.def Info: ./figures/scale_query.pdf used on input line 150.
+(pdftex.def)             Requested size: 240.0pt x 179.99525pt.
+) (conclusion.tex)
+(main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+) [10] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -418,11 +419,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3621 strings out of 493634
- 46971 string characters out of 3141303
- 123635 words of memory out of 3000000
- 6877 multiletter control sequences out of 15000+200000
- 54464 words of font info for 79 fonts, out of 3000000 for 9000
+ 3676 strings out of 493634
+ 47681 string characters out of 3141303
+ 121747 words of memory out of 3000000
+ 6928 multiletter control sequences out of 15000+200000
+ 57458 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  41i,15n,34p,1475b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
@@ -435,9 +436,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1152255 bytes).
+Output written on main.pdf (10 pages, 1160135 bytes).
 PDF statistics:
- 641 PDF objects out of 1000 (max. 8388607)
+ 630 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

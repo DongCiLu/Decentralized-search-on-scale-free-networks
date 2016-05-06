@@ -73,11 +73,11 @@
 \@writefile{toc}{\contentsline {section}{\numberline {6}Distributed Implementations}{\thepage }}
 \newlabel{implementation}{{6}{\thepage }}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Decentralized search vertex-program}{\thepage }}
+\citation{snapnets}
+\citation{nr}
 \citation{RicciEide:login14}
 \citation{180251}
 \citation{snapnets}
-\citation{snapnets}
-\citation{nr}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Heuristic algorithm that index shortest path with highest path degree during breadth first search}}{\thepage }}
 \newlabel{fig:bfs_illustrate}{{4}{\thepage }}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Algorithm decentralized search vertex program running on $u$}}{\thepage }}
@@ -86,54 +86,57 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7}Evaluations}{\thepage }}
 \newlabel{evaluation}{{7}{\thepage }}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Datasets}{\thepage }}
+\newlabel{eval_datasets}{{7.1}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}System settings}{\thepage }}
+\newlabel{eval_system}{{7.2}{\thepage }}
+\citation{Potamias:2009:FSP:1645953.1646063}
 \citation{Gubichev:2010:FAE:1871437.1871503}
+\citation{6399472}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Datasets}}{\thepage }}
 \newlabel{table:datasets}{{1}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Approximation Accuracy}{\thepage }}
-\newlabel{eval_accuracy}{{7.2}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Path Diversity}{\thepage }}
-\newlabel{eval_diversity}{{7.3}{\thepage }}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Number of paths returned by decentralized search with different tie breaking strategies}}{\thepage }}
-\newlabel{table:NOP}{{2}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Overhead}{\thepage }}
-\newlabel{eval_overhead}{{7.4}{\thepage }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Scalability}{\thepage }}
-\newlabel{eval_scalability}{{7.5}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Approximation Accuracy}{\thepage }}
+\newlabel{eval_accuracy}{{7.3}{\thepage }}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Path diversity (k = 2)}}{\thepage }}
+\newlabel{table:pdiv}{{2}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Path Diversity}{\thepage }}
+\newlabel{eval_diversity}{{7.4}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The accuracy of the approximated distance of decentralized search and various optimizations compared to TreeSketch.}}{\thepage }}
+\newlabel{fig:accuracy_stepy}{{5}{\thepage }}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Index overhead per landmark}}{\thepage }}
+\newlabel{table:ioh}{{3}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Overhead}{\thepage }}
+\newlabel{eval_overhead}{{7.5}{\thepage }}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Scalability}{\thepage }}
+\newlabel{eval_scalability}{{7.6}{\thepage }}
 \bibstyle{abbrv}
 \bibdata{reference}
 \bibcite{Abraham:2011:HLA:2008623.2008645}{1}
 \bibcite{Akiba:2013:FES:2463676.2465315}{2}
-\bibcite{Akiba:2012:SQC:2247596.2247614}{3}
-\bibcite{callaway2000network}{4}
-\bibcite{7004250}{5}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The accuracy of the approximated distance of decentralized search and various optimizations compared to LCA distance.}}{\thepage }}
-\newlabel{fig:accuracy_dec}{{5}{\thepage }}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Number of paths returned by decentralized search with different tie breaking strategies}}{\thepage }}
-\newlabel{table:NOP}{{3}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The average search time of decentralized search with various optimizations.}}{\thepage }}
+\newlabel{fig:overhead_search}{{6}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The average search time as the number of machines increase}}{\thepage }}
+\newlabel{fig:scale_machine}{{7}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{\thepage }}
 \newlabel{conclusion}{{8}{\thepage }}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The average search time as the number of queries increase}}{\thepage }}
+\newlabel{fig:scale_query}{{8}{\thepage }}
 \@writefile{toc}{\contentsline {section}{\numberline {9}References}{\thepage }}
-\bibcite{Cohen:2002:RDQ:545381.545503}{6}
-\bibcite{floreskul2014memory}{7}
-\bibcite{Fu:2013:IIB:2536336.2536346}{8}
-\bibcite{Goldberg:2005:CSP:1070432.1070455}{9}
-\bibcite{180251}{10}
-\bibcite{Gubichev:2010:FAE:1871437.1871503}{11}
-\bibcite{Jin:2012:HLA:2213836.2213887}{12}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Impact of index quality on the accuracy of both decentralized search and label comparison.}}{\thepage }}
-\newlabel{fig:accuracy_index}{{6}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The average search time of decentralized search with various optimizations.}}{\thepage }}
-\newlabel{fig:overhead_search}{{7}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The average search time as the number of machines increase}}{\thepage }}
-\newlabel{fig:scale_machine}{{8}{\thepage }}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The average search time as the number of queries increase}}{\thepage }}
-\newlabel{fig:scale_query}{{9}{\thepage }}
-\bibcite{Kempe:2003:MSI:956750.956769}{13}
-\bibcite{Kleinberg:2000p5066}{14}
-\bibcite{snapnets}{15}
-\bibcite{Maier:2011:INS:1993077.1993079}{16}
-\bibcite{Potamias:2009:FSP:1645953.1646063}{17}
-\bibcite{6399472}{18}
+\bibcite{Akiba:2012:SQC:2247596.2247614}{3}
+\bibcite{7004250}{4}
+\bibcite{Cohen:2002:RDQ:545381.545503}{5}
+\bibcite{floreskul2014memory}{6}
+\bibcite{Fu:2013:IIB:2536336.2536346}{7}
+\bibcite{Goldberg:2005:CSP:1070432.1070455}{8}
+\bibcite{180251}{9}
+\bibcite{Gubichev:2010:FAE:1871437.1871503}{10}
+\bibcite{Jin:2012:HLA:2213836.2213887}{11}
+\bibcite{Kempe:2003:MSI:956750.956769}{12}
+\bibcite{Kleinberg:2000p5066}{13}
+\bibcite{snapnets}{14}
+\bibcite{Maier:2011:INS:1993077.1993079}{15}
+\bibcite{Potamias:2009:FSP:1645953.1646063}{16}
+\bibcite{6399472}{17}
+\bibcite{RicciEide:login14}{18}
 \bibcite{nr}{19}
 \bibcite{6927522}{20}
 \bibcite{Tang:2003:VLI:948205.948223}{21}
@@ -142,5 +145,3 @@
 \bibcite{Vieira:2007:ESR:1321440.1321520}{24}
 \bibcite{Wei:2010:TES:1807167.1807181}{25}
 \bibcite{Zhao:2010:OSP:1863190.1863199}{26}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The average search time for different size of graphs}}{\thepage }}
-\newlabel{fig:scale_graph}{{10}{\thepage }}
