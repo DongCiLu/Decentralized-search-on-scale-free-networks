@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  18 APR 2016 10:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  5 MAY 2016 13:08
 entering extended mode
 **./main.tex
 (main.tex
@@ -247,7 +247,11 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip46
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (main.aux)
+) (main.aux
+
+LaTeX Warning: Label `table:NOP' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
@@ -383,42 +387,40 @@ Overfull \hbox (1.10538pt too wide) in paragraph at lines 53--54
 <./figures/overhead_search.pdf, id=538, 614.295pt x 469.755pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
-Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 80.
+Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 102.
 (pdftex.def)             Requested size: 240.0pt x 183.52626pt.
 
-<./figures/scale_machine.pdf, id=539, 614.295pt x 469.755pt>
+<./figures/scale_machine.pdf, id=539, 578.16pt x 433.62pt>
 File: ./figures/scale_machine.pdf Graphic file (type pdf)
  <use ./figures/scale_machine.pdf>
-Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 94.
-(pdftex.def)             Requested size: 240.0pt x 183.52626pt.
+Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 116.
+(pdftex.def)             Requested size: 240.0pt x 179.99525pt.
 
 <./figures/scale_query.pdf, id=540, 614.295pt x 469.755pt>
 File: ./figures/scale_query.pdf Graphic file (type pdf)
  <use ./figures/scale_query.pdf>
-Package pdftex.def Info: ./figures/scale_query.pdf used on input line 103.
+Package pdftex.def Info: ./figures/scale_query.pdf used on input line 125.
 (pdftex.def)             Requested size: 240.0pt x 183.52626pt.
-
-<./figures/scale_graph.pdf, id=541, 614.295pt x 469.755pt>
+ [7]
+<./figures/scale_graph.pdf, id=546, 614.295pt x 469.755pt>
 File: ./figures/scale_graph.pdf Graphic file (type pdf)
  <use ./figures/scale_graph.pdf>
-Package pdftex.def Info: ./figures/scale_graph.pdf used on input line 112.
+Package pdftex.def Info: ./figures/scale_graph.pdf used on input line 134.
 (pdftex.def)             Requested size: 240.0pt x 183.52626pt.
- [7]) (conclusion.tex)
-(main.bbl [8 <./figures/accuracy_dec.pdf> <./figures/accuracy_index.pdf> <./figures/overhead_search.pdf>]
-Underfull \vbox (badness 1783) has occurred while \output is active []
-
- [9 <./figures/scale_machine.pdf> <./figures/scale_query.pdf> <./figures/scale_graph.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-) [10] (main.aux)
+) (conclusion.tex) (main.bbl
+[8 <./figures/accuracy_dec.pdf>] [9 <./figures/accuracy_index.pdf> <./figures/overhead_search.pdf> <./figures/scale_mach
+ine.pdf> <./figures/scale_query.pdf>]) [10 <./figures/scale_graph.pdf>] (main.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  3621 strings out of 493634
  46971 string characters out of 3141303
- 121596 words of memory out of 3000000
+ 123635 words of memory out of 3000000
  6877 multiletter control sequences out of 15000+200000
  54464 words of font info for 79 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
@@ -433,9 +435,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1155261 bytes).
+Output written on main.pdf (10 pages, 1152255 bytes).
 PDF statistics:
- 649 PDF objects out of 1000 (max. 8388607)
+ 641 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

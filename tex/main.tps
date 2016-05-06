@@ -11,13 +11,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=searching.tex
 
 [Frame0_View0,0]
-TopLine=194
+TopLine=103
 Cursor=8682
 
 [Frame1]
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=evaluation.tex
 
 [Frame1_View0,0]
-TopLine=159
-Cursor=4649
+TopLine=9
+Cursor=653
 
 [Frame2]
 Flags=0
@@ -47,13 +47,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=implementation.tex
 
 [Frame2_View0,0]
-TopLine=91
+TopLine=45
 Cursor=0
 
 [Frame3]
@@ -65,13 +65,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=preprocessing.tex
 
 [Frame3_View0,0]
-TopLine=60
+TopLine=41
 Cursor=0
 
 [Frame4]
@@ -83,13 +83,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=introduction.tex
 
 [Frame4_View0,0]
-TopLine=169
+TopLine=63
 Cursor=0
 
 [Frame5]
@@ -101,13 +101,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=BibTeXView
 Document=reference.bib
 
 [Frame5_View0,0]
-TopLine=576
+TopLine=434
 Cursor=17695
 
 [Frame6]
@@ -119,13 +119,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=main.tex
 
 [Frame6_View0,0]
-TopLine=281
+TopLine=206
 Cursor=8407
 
 [Frame7]
@@ -137,8 +137,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=relatedwork.tex
 
@@ -155,8 +155,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=conclusion.tex
 
@@ -173,8 +173,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=1006
-NormalPos.bottom=1108
+NormalPos.right=2444
+NormalPos.bottom=1086
 Class=LaTeXView
 Document=preliminary.tex
 

@@ -7,17 +7,17 @@ We evaluate our algorithms in distributed settings with 8 Cloudlab ~\cite{RicciE
 
 \begin{table}
     \centering
-    \begin{tabular}{|c|c|c|c|} \hline
-        Dataset & Type & $|V_{wcc}|$ & $|E_{wcc}|$ \\ \hline
-				Wiki-talk & Communication & 2.4M & 4.7M \\ \hline
-        Skitter & Internet & 1.7M & 11.1M \\ \hline
-				Baidu & Web & 2.1M & 17.0M \\ \hline
-        Livejournal & Social & 4.8M & 43.4M \\ \hline
-				Hollywood & Collaboration & 1.1M & 56.3M \\ \hline
-        Orkut & Social & 3M & 117M \\ \hline
-				Sinaweibo & Social & 58.7M & 261.3M \\ \hline
-				Webuk & Web & 39.3M & 796.4M \\ \hline
-        Friendster & Social & 65M & 1.8B \\ \hline
+    \begin{tabular}{|c|c|c|c|c|} \hline
+        Dataset & Type & $|V_{wcc}|$ & $|E_{wcc}|$ & $\sigma$ \\ \hline
+				Wiki-talk & Communication & 2.4M & 4.7M &\\ \hline
+        Skitter & Internet & 1.7M & 11.1M &\\ \hline
+				Baidu & Web & 2.1M & 17.0M &\\ \hline
+        Livejournal & Social & 4.8M & 43.4M &\\ \hline
+				Hollywood & Collaboration & 1.1M & 56.3M &\\ \hline
+        Orkut & Social & 3M & 117M &\\ \hline
+				Sinaweibo & Social & 58.7M & 261.3M &\\ \hline
+				Webuk & Web & 39.3M & 796.4M &\\ \hline
+        Friendster & Social & 65M & 1.8B &\\ \hline
     \end{tabular}
     \caption{Datasets}
     \label{table:datasets}
@@ -55,23 +55,45 @@ We then evaluate our heuristic index construction algorithm compared to the rand
 \subsection{Path Diversity}
 \label{eval_diversity}
 
-\begin{table*} [ht]
+\begin{table} [ht]
     \centering
-    \begin{tabular}{cccccccccc} \hline
-				&Wiki&Skitter&Baidu&Livejournal&Hollywood&Orkut&Sinaweibo&Webuk&Friendster \\ \hline
-				Tie(centralized)&85.0&96.9&33.0&41.1&143.29&31.1&36.6&12.7&N/A \\ \hline
-				Tie(distributed)&3.6&40.3&12.4&6.73&43.8&2.8&3.9&3.2&2.1 \\ \hline
+    \begin{tabular}{cccc} \hline
+				Graph&Path count(DS)&Path count(TS)&Ratio \\ \hline
+				Wiki&28.9&1.9&0.538 \\ \hline
+				Skitter&24.1&2.4&0.603 \\ \hline
+				Livejournal&30.8&1.9&0.566 \\ \hline
+				Hollywood&9.9&2.6&0.618 \\ \hline
+				Orkut&19.2&3.2&0.589 \\ \hline
+				Sinaweibo&32.0&3.0&0.527 \\ \hline
+				Webuk&704.1&2.0&0.664 \\ \hline
+				Friendster&16.8&2.8&0.599 \\
     \end{tabular}
     \caption{Number of paths returned by decentralized search with different tie breaking strategies}
     \label{table:NOP}
-\end{table*}
+\end{table}
 
 With various tie breaking strategy, the algorithm can return various  Fig. \ref{table:NOP} shows average number paths returned by two tie breaking strategies. The first one is used in our centralized implementation, where all neighbors with same LCA distance are selected. The second one is used in our distributed implementation, where only one neighbor is marked as "main" candidate. We can see that the tie strategy we used in centralized settings can return far more paths than the strategy we used in distributed settings because of the larger search space. We don't have centralized version for graph friendster because it is too large to fit in one machine.
 
 \subsection{Overhead}
 \label{eval_overhead}
 
-[add storage overhead here]
+\begin{table*} [ht]
+    \centering
+    \begin{tabular}{cccc} \hline
+				Graph&Path count(DS)&Path count(TS)&Ratio \\ \hline
+				Wiki&28.9&1.9&0.538 \\ \hline
+				Skitter&24.1&2.4&0.603 \\ \hline
+				Livejournal&30.8&1.9&0.566 \\ \hline
+				Hollywood&9.9&2.6&0.618 \\ \hline
+				Orkut&19.2&3.2&0.589 \\ \hline
+				Sinaweibo&32.0&3.0&0.527 \\ \hline
+				Webuk&704.1&2.0&0.664 \\ \hline
+				Friendster&16.8&2.8&0.599 \\
+    \end{tabular}
+    \caption{Number of paths returned by decentralized search with different tie breaking strategies}
+    \label{table:NOP}
+\end{table*}
+
 
 We study the preprocessing and online search overhead of decentralized search in this section. First we compare the preprocessing overheads of greedy index construction with random index construction. Then for online search overheads, to show the impact of increased search space, we compare the average search time with various optimizations enabled. 
 
