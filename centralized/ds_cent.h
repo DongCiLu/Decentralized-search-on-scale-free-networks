@@ -77,8 +77,12 @@ class ds_cent {
         double total_comp;
         double total_obv;
 
+        clock_t total_comp_time;
         clock_t total_single_time;
         clock_t total_full_time;
+
+        size_t single_path_oh;
+        size_t full_path_oh;
 
         size_t index_oh;
 
