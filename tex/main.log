@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  6 MAY 2016 06:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  7 MAY 2016 18:15
 entering extended mode
 **./main.tex
 (main.tex
@@ -250,49 +250,66 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\threeparttable\threeparttable.sty"
 Package: threeparttable 2003/06/13  v 3.0
 \@tempboxb=\box32
-) (main.aux
-
-LaTeX Warning: Label `table:ioh' multiply defined.
-
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.sty"
+Package: subfigure 2002/07/30 v2.1.4 subfigure package
+\subfigtopskip=\skip47
+\subfigcapskip=\skip48
+\subfigcaptopadj=\dimen123
+\subfigbottomskip=\skip49
+\subfigcapmargin=\dimen124
+\subfiglabelskip=\skip50
+\c@subfigure=\count120
+\c@lofdepth=\count121
+\c@subtable=\count122
+\c@lotdepth=\count123
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.cfg")
+\subfig@top=\skip51
+\subfig@bottom=\skip52
+) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
-\scratchdimen=\dimen123
+\scratchcounter=\count124
+\scratchdimen=\dimen125
 \scratchbox=\box33
-\nofMPsegments=\count121
-\nofMParguments=\count122
+\nofMPsegments=\count125
+\nofMParguments=\count126
 \everyMPshowfont=\toks41
-\MPscratchCnt=\count123
-\MPscratchDim=\dimen124
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen126
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
 \everyMPtoPDFconversion=\toks42
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 152.
+LaTeX Font Info:    Try loading font information for U+msa on input line 153.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 152.
+LaTeX Font Info:    Try loading font information for U+msb on input line 153.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 152.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 153.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -300,17 +317,17 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 152.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 153.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) Excluding 'CCSXML' comment.
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 197.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 198.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 198.
  (introduction.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -321,53 +338,60 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 1558) has occurred while \output is active []
 
 ) (relatedwork.tex) (preliminary.tex [2])
-(searching.tex <./figures/new_illustrate/dec_common.pdf, id=16, 316.18124pt x 295.1025pt>
+(searching.tex <./figures/new_illustrate/dec_common.pdf, id=16, 316.18124pt x 277.035pt>
 File: ./figures/new_illustrate/dec_common.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/dec_common.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/dec_common.pdf used on input line 10.
-(pdftex.def)             Requested size: 240.0pt x 224.00554pt.
-
-Overfull \hbox (19.2711pt too wide) in paragraph at lines 44--45
-\T1/aer/m/n/9 nate in as much as $\OT1/cmr/m/n/9 2 \OMS/cmsy/m/n/9  \OML/cmm/m/it/9 max[]d[]\OT1/cmr/m/n/9 (\OML/cmm/m/
-it/9 u; v\OT1/cmr/m/n/9 )$ \T1/aer/m/n/9 steps, where $\OML/cmm/m/it/9 max[]d[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 u; v\OT1/
-cmr/m/n/9 )$
- []
-
-[3 <./figures/new_illustrate/dec_common.pdf>] <./figures/new_illustrate/bi_dec.pdf, id=116, 293.29576pt x 279.444pt>
+Package pdftex.def Info: ./figures/new_illustrate/dec_common.pdf used on input line 8.
+(pdftex.def)             Requested size: 161.28369pt x 141.31557pt.
+ <./figures/new_illustrate/bi_dec.pdf, id=17, 293.59688pt x 279.29344pt>
 File: ./figures/new_illustrate/bi_dec.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/bi_dec.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/bi_dec.pdf used on input line 64.
-(pdftex.def)             Requested size: 240.0pt x 228.67226pt.
- <./figures/new_illustrate/tie.pdf, id=117, 325.215pt x 287.27327pt>
+Package pdftex.def Info: ./figures/new_illustrate/bi_dec.pdf used on input line 9.
+(pdftex.def)             Requested size: 161.28369pt x 153.42435pt.
+ <./figures/new_illustrate/tie.pdf, id=18, 325.215pt x 286.82156pt>
 File: ./figures/new_illustrate/tie.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/tie.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/tie.pdf used on input line 79.
-(pdftex.def)             Requested size: 240.0pt x 212.00465pt.
-) (preprocessing.tex
-<./figures/new_illustrate/bfs_illustrate.pdf, id=118, 767.86874pt x 266.19452pt>
+Package pdftex.def Info: ./figures/new_illustrate/tie.pdf used on input line 10.
+(pdftex.def)             Requested size: 161.28369pt x 142.24626pt.
+
+
+LaTeX Warning: Reference `fig:dec_common' on page \thepage  undefined on input line 50.
+
+[3]
+
+LaTeX Warning: Reference `fig:bi_dec' on page \thepage  undefined on input line 60.
+
+
+LaTeX Warning: Reference `fig:tie' on page \thepage  undefined on input line 68.
+
+) (preprocessing.tex <./figures/new_illustrate/bfs_illustrate.pdf, id=27, 767.86874pt x 266.19452pt>
 File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/bfs_illustrate.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 9.
 (pdftex.def)             Requested size: 504.0pt x 174.72221pt.
- [4 <./figures/new_illustrate/bi_dec.pdf>]) (implementation.tex
+ [4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
+
+pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/bi_dec.pdf): PDF inclusion: multiple pdfs with page group in
+cluded in a single page
+> <./figures/new_illustrate/tie.pdf
+
+pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/tie.pdf): PDF inclusion: multiple pdfs with page group inclu
+ded in a single page
+>]) (implementation.tex
 Overfull \hbox (8.44818pt too wide) in paragraph at lines 51--1
 \T1/aer/m/n/9 short-est path fol-lows op-ti-mal sub-struc-ture, i.e. if $\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 u; ::; w; :::; 
 v\OT1/cmr/m/n/9 )$
  []
 
 
-Underfull \vbox (badness 1337) has occurred while \output is active []
-
-
-
 LaTeX Warning: Reference `fig:system' on page \thepage  undefined on input line 6.
 
-[5 <./figures/new_illustrate/tie.pdf>]) (evaluation.tex [6 <./figures/new_illustrate/bfs_illustrate.pdf>]
-<./figures/accuracy_stepy.pdf, id=536, 1228.59pt x 722.7pt>
+[5 <./figures/new_illustrate/bfs_illustrate.pdf>]) (evaluation.tex [6]
+<./figures/accuracy_stepy.pdf, id=532, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
  <use ./figures/accuracy_stepy.pdf>
 Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 50.
@@ -382,50 +406,44 @@ Overfull \hbox (1.59111pt too wide) in paragraph at lines 65--66
 \T1/aer/m/n/9 heuris-tic has much lower er-ror ra-tio than de-cen-tral-ized search
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7]
-<./figures/overhead_search.pdf, id=542, 1250.6725pt x 447.6725pt>
+<./figures/overhead_search.pdf, id=533, 1250.6725pt x 447.6725pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
 Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 119.
 (pdftex.def)             Requested size: 504.0pt x 180.40468pt.
-
+ [7]
 Overfull \hbox (15.60353pt too wide) in paragraph at lines 124--125
 \T1/aer/m/n/9 both non-parallel mode and par-al-lel batch mode. [add treesketch
  []
 
-<./figures/scale_machine.pdf, id=543, 578.16pt x 433.62pt>
+<./figures/scale_machine.pdf, id=539, 578.16pt x 433.62pt>
 File: ./figures/scale_machine.pdf Graphic file (type pdf)
  <use ./figures/scale_machine.pdf>
 Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 139.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
- [8 <./figures/accuracy_stepy.pdf>] <./figures/scale_query.pdf, id=551, 578.16pt x 433.62pt>
+
+<./figures/scale_query.pdf, id=540, 578.16pt x 433.62pt>
 File: ./figures/scale_query.pdf Graphic file (type pdf)
  <use ./figures/scale_query.pdf>
 Package pdftex.def Info: ./figures/scale_query.pdf used on input line 150.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-) (conclusion.tex)
-(main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
+) (conclusion.tex) [8 <./figures/accuracy_stepy.pdf>] (main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_mach
+ine.pdf> <./figures/scale_query.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ) [10] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 3676 strings out of 493634
- 47681 string characters out of 3141303
- 121747 words of memory out of 3000000
- 6928 multiletter control sequences out of 15000+200000
+ 3836 strings out of 493634
+ 49952 string characters out of 3141303
+ 122484 words of memory out of 3000000
+ 7082 multiletter control sequences out of 15000+200000
  57458 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 41i,15n,34p,1475b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,35p,1475b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
@@ -436,9 +454,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1160135 bytes).
+Output written on main.pdf (10 pages, 1152652 bytes).
 PDF statistics:
- 630 PDF objects out of 1000 (max. 8388607)
+ 626 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

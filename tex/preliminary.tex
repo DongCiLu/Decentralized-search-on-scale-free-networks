@@ -23,4 +23,4 @@ When shortest paths have been indexed, the common ancestors closest to the sourc
     d_G(s,t) \geq max_{l \in L}|d_G(s,c_l(s,t)) - d_G(c_l(s,t),t)|
 \end{equation}
 
-The upper bound, which we refer to LCA distance denoted by $d_{LCA}(s,t)$, can be used as an approximation of the distance of $s$ and $t$. Note that if $s$ and $t$ are not connected with each other, there will not be a common $l$ from $L(s)$ and $L(t)$.
+The upper bound, which we refer to LCA distance denoted by $d_{LCA}(s,t)$, can be used as an approximation of the distance of $s$ and $t$. And we denote the path indicated by this distance as $p_{LCA}(s,t)$. Note that if $s$ and $t$ are not connected with each other, there will not be a common $l$ from $L(s)$ and $L(t)$.

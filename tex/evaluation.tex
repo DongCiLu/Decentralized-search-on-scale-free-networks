@@ -31,7 +31,7 @@ In this section, we show the results of experimental evaluation of decentralized
 
 We evaluate our algorithm on 8 graphs from different disciplines as shown in table \ref{table:datasets} in ascending order on the number of edges. All graphs are complex networks that have power-law degree distribution and relatively small diameter. All datasets have at least millions of edges, the largest one has almost two billion edges. To simplify our experiments, we treat each graph as undirected, un-weighted graphs. We only use the largest weakly connected component of each graph which consist of more than $90\%$ of vertices for all graphs. All datasets are collected from \cite{snapnets} and \cite{nr}.
 
-\subsection{System settings}
+\subsection{Experiment settings}
 \label{eval_system}
 
 We evaluate our algorithms in both distributed settings and centralized settings.
@@ -100,15 +100,15 @@ It shows the degree of a path relying on the labels of source and target vertex.
     \label{table:ioh}
     \centering
     \begin{tabular}{c|cc} \hline
-				Graph&Index size(MB)&Index time(s)\\ \hline
-				Wiki&189.9&0.8 \\ 
-				Skitter&143.7&2.8 \\ 
-				Livejournal&429.4&8.7 \\ 
-				Hollywood&84.1&8 \\ 
-				Orkut&246.3&20.7 \\ 
-				Sinaweibo&4313.8&87.3 \\ 
-				Webuk&4068.9&73.9 \\ 
-				Friendster&5497.7&348.6 \\ \hline
+				Graph&Index size(MB)&Query size(Byte)\\ \hline
+				Wiki&189.9&369.8 \\ 
+				Skitter&143.7&412.9 \\ 
+				Livejournal&429.4&419.9 \\ 
+				Hollywood&84.1&377.5 \\ 
+				Orkut&246.3&390.7 \\ 
+				Sinaweibo&4313.8&367.4 \\ 
+				Webuk&4068.9&506.5 \\ 
+				Friendster&5497.7&437.7 \\ \hline
     \end{tabular}
 \end{table}
 
