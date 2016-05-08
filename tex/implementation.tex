@@ -12,10 +12,9 @@ To handle extremely large graphs and large amount of queries, we implement our a
 
 \subsection{Decentralized search vertex-program}
 
-An overview of our system is shown in \ref{fig:system}. The system first partition the graph with Powergraph onto multiple machines. Then several BFSs are performed to construct the index. After the index is built, multiple shortest path queries can run in parallel with decentralized search.
+An overview of our shortest path query processing system is shown in \ref{fig:system}. The system first partition the graph with Powergraph onto multiple machines. Then several BFSs are performed to construct the index. After the index is built, multiple shortest path queries can run in parallel with decentralized search. Large volumes of queries can submit repeatedly, for which responses will be generated.
 
 Decentralized search can be easily implemented as vertex-program in appliance to Powergraph's Gather-Apply-Scatter model. Each search instance contains approximated path and label of target vertex, as index is stored distributively and label of target vertex may not be accessible on each machine locally. In Gather phase, the search aim to find the neighbor with shortest LCA distance to the target. For each query, LCA distance $d_LCA$ calculated from labels $L$ of each neighbor and target vertex is collected and accumulated by finding the neighbor with the smallest LCA distance, A next hop candidate is returned after this phase. In apply phase, the program appends the candidate to the approximated path $p_{appr.}$ and and check whether the terminate criteria is met for each query. If so, the result path will be recorded and the query will be terminated. Otherwise, program will proceed to Scatter phase to start new vertex-programs on the candidate vertex and pass on the query instance to them. Algorithm \ref{alg:vc_dec} shows the detailed algorithm.
-%Since the decentralized search is a state-less search itself, vertex data does not need to be updated during the Apply phase.
 
 \begin{algorithm}
     \caption{Algorithm decentralized search vertex program running on $u$}
@@ -43,7 +42,7 @@ Decentralized search can be easily implemented as vertex-program in appliance to
         \EndFunction
 
         \Function{scatter}{$p_{appr.}(s,t)$, $term$}
-        %\Comment {Signal candidates}
+        %\Comment {activate candidates}
         \If {$\neg term$}
             \State Activate(v, $p_{appr.}(s,t)$)
         \EndIf
@@ -56,4 +55,7 @@ There are two thing to notice for the decentralized search vertex program. First
 The low memory and communication cost, along side with light data dependency makes multiple decentralized search instance very suitable to run in parallel. To modify the vertex program for parallel processing, each vertex program maintain a list of search instance. During gather phase, label of target vertex for each query is transmitted to other machines, and $d_LCA$ is calculated for each query. Each query is updated during apply phase. In scatter phase, each query is examined for whether activating a certain vertex or not.
 
 \subsection{Distributed tie breaking strategy}
-If a tie happens, according to tie strategy, multiple neighbors may be returned as candidates at gather phase. Then at apply phase, the search instance will be fork into multiple search instance, each for a single candidate. The problem here is, not like centralized version, during the future computation, even a search instance find a shorter path than others, it cannot terminate other searches as such synchronization is quite costly in distributed settings. With this limitation, the search space are quite difficult to control and the search may end up with excessive number of child search instances. So in our implementation, at each step, only one candidate will be chosen as a "main" candidate. For candidates that are not "main" candidates, an extra terminate criteria will be applied. At the next step, if the search cannot find a shorter path than expected, i.e. $|p_{appr.}| + d_LCA$, then the search will stop, and no result will be recorded. This can control the search space effectively without compromise accuracy too much.
+If a tie happens, according to tie strategy, multiple neighbors may be returned as candidates at gather phase. Then at apply phase, the search instance will be fork itself into multiple search instance, each for a single candidate. The problem here is, not like centralized version, during the future computation, even a search instance find a shorter path than others, it cannot terminate other searches as such synchronization is quite costly in distributed settings. With this limitation, the search space are quite difficult to control and the search may end up with excessive number of child search instances. So in our implementation, at each step, only one candidate will be chosen as a "`main"' candidate. For candidates that are not "`main"' candidates, an extra terminate criteria will be applied. At the next step, if the search cannot find a shorter path than expected, i.e. $|p_{appr.}| + d_LCA$, then the search will stop, and no result will be recorded. This can control the search space effectively without compromise accuracy too much.
+
+\subsection{Prune LCA computation}
+It is possible to prune number of LCA computation required at each step for decentralized search. Suppose the search is visiting vertex $u$, which means the $d_LCA{u, t}$ has already been calculated in previous step. When traverse $u$'s neighbors, if a neighbor $v$ is a child on the indexed shortest path tree $T_i$, then the LCA computation for $v$ and $t$ on that tree $T_i$ does not need to be performed as it is certain that $d_LCA(i){v, t} > d_LCA(i){u, t}$. In practice, such way to pruning can reduce half of the total number of LCA computations of a single search on average.

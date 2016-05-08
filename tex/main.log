@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  8 MAY 2016 10:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  8 MAY 2016 12:10
 entering extended mode
 **./main.tex
 (main.tex
@@ -335,25 +335,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \vbox (badness 1558) has occurred while \output is active []
+Overfull \hbox (1.69029pt too wide) in paragraph at lines 25--26
+[]\T1/aer/m/n/9 We pro-pose in-dex guided de-cen-tral-ized search for short-
+ []
 
-) (relatedwork.tex) (preliminary.tex [2])
-(searching.tex <./figures/new_illustrate/dec_common.pdf, id=16, 316.18124pt x 277.035pt>
+) (relatedwork.tex) (preliminary.tex [2]) (searching.tex
+<./figures/new_illustrate/dec_common.pdf, id=16, 316.18124pt x 277.035pt>
 File: ./figures/new_illustrate/dec_common.pdf Graphic file (type pdf)
-
-<use ./figures/new_illustrate/dec_common.pdf>
+ <use ./figures/new_illustrate/dec_common.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/dec_common.pdf used on input line 8.
 (pdftex.def)             Requested size: 161.28369pt x 141.31557pt.
- <./figures/new_illustrate/bi_dec.pdf, id=17, 293.59688pt x 279.29344pt>
-File: ./figures/new_illustrate/bi_dec.pdf Graphic file (type pdf)
 
-<use ./figures/new_illustrate/bi_dec.pdf>
+<./figures/new_illustrate/bi_dec.pdf, id=17, 293.59688pt x 279.29344pt>
+File: ./figures/new_illustrate/bi_dec.pdf Graphic file (type pdf)
+ <use ./figures/new_illustrate/bi_dec.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/bi_dec.pdf used on input line 9.
 (pdftex.def)             Requested size: 161.28369pt x 153.42435pt.
- <./figures/new_illustrate/tie.pdf, id=18, 325.215pt x 286.82156pt>
-File: ./figures/new_illustrate/tie.pdf Graphic file (type pdf)
 
-<use ./figures/new_illustrate/tie.pdf>
+<./figures/new_illustrate/tie.pdf, id=18, 325.215pt x 286.82156pt>
+File: ./figures/new_illustrate/tie.pdf Graphic file (type pdf)
+ <use ./figures/new_illustrate/tie.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/tie.pdf used on input line 10.
 (pdftex.def)             Requested size: 161.28369pt x 142.24626pt.
 
@@ -367,6 +368,9 @@ LaTeX Warning: Reference `fig:bi_dec' on page \thepage  undefined on input line 
 
 LaTeX Warning: Reference `fig:tie' on page \thepage  undefined on input line 66.
 
+
+Underfull \vbox (badness 4048) has occurred while \output is active []
+
 ) (preprocessing.tex
 Overfull \hbox (7.45016pt too wide) in paragraph at lines 4--5
 \T1/aer/m/n/9 Pre-vi-ous works have stud-ied var-i-ous land-mark se-lec-tion strate-
@@ -378,11 +382,7 @@ File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
 <use ./figures/new_illustrate/bfs_illustrate.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 174.72221pt.
-
-
-LaTeX Warning: Citation `Riondato:2014:FAB:2556195.2556224' on page \thepage  undefined on input line 14.
-
-[4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
+ [4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/bi_dec.pdf): PDF inclusion: multiple pdfs with page group in
 cluded in a single page
@@ -396,8 +396,11 @@ File: ./figures/new_illustrate/System.pdf Graphic file (type pdf)
 <use ./figures/new_illustrate/System.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/System.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 148.89969pt.
- [5 <./figures/new_illustrate/bfs_illustrate.pdf>]) (evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures
-/accuracy_stepy.pdf, id=559, 1228.59pt x 722.7pt>
+
+Underfull \vbox (badness 4303) has occurred while \output is active []
+
+ [5 <./figures/new_illustrate/bfs_illustrate.pdf>])
+(evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures/accuracy_stepy.pdf, id=559, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
 
 <use ./figures/accuracy_stepy.pdf>
@@ -434,21 +437,26 @@ File: ./figures/scale_query.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/scale_query.pdf used on input line 150.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
 ) (conclusion.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4013) has occurred while \output is active []
 
 ) (main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) [10] (main.aux)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]) [11
+
+] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3842 strings out of 493634
- 50156 string characters out of 3141303
- 121492 words of memory out of 3000000
- 7087 multiletter control sequences out of 15000+200000
+ 3840 strings out of 493634
+ 50134 string characters out of 3141303
+ 123480 words of memory out of 3000000
+ 7085 multiletter control sequences out of 15000+200000
  57458 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  41i,11n,35p,1479b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -462,9 +470,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1451134 bytes).
+Output written on main.pdf (11 pages, 1452035 bytes).
 PDF statistics:
- 653 PDF objects out of 1000 (max. 8388607)
+ 656 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

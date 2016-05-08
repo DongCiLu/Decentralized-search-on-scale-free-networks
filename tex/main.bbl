@@ -119,6 +119,13 @@ R.~Ricci, E.~Eide, and {The CloudLab Team}.
   architectures and applications.
 \newblock {\em {USENIX} {;login:}}, 39(6), Dec. 2014.
 
+\bibitem{Riondato:2014:FAB:2556195.2556224}
+M.~Riondato and E.~M. Kornaropoulos.
+\newblock Fast approximation of betweenness centrality through sampling.
+\newblock In {\em Proceedings of the 7th ACM International Conference on Web
+  Search and Data Mining}, WSDM '14, pages 413--422, New York, NY, USA, 2014.
+  ACM.
+
 \bibitem{nr}
 R.~A. Rossi and N.~K. Ahmed.
 \newblock The network data repository with interactive graph analytics and
