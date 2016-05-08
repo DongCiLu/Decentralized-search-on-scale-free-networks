@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  7 MAY 2016 18:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  7 MAY 2016 22:52
 entering extended mode
 **./main.tex
 (main.tex
@@ -362,18 +362,27 @@ LaTeX Warning: Reference `fig:dec_common' on page \thepage  undefined on input l
 
 [3]
 
-LaTeX Warning: Reference `fig:bi_dec' on page \thepage  undefined on input line 60.
+LaTeX Warning: Reference `fig:bi_dec' on page \thepage  undefined on input line 62.
 
 
-LaTeX Warning: Reference `fig:tie' on page \thepage  undefined on input line 68.
+LaTeX Warning: Reference `fig:tie' on page \thepage  undefined on input line 66.
 
-) (preprocessing.tex <./figures/new_illustrate/bfs_illustrate.pdf, id=27, 767.86874pt x 266.19452pt>
+) (preprocessing.tex
+Overfull \hbox (7.45016pt too wide) in paragraph at lines 4--5
+\T1/aer/m/n/9 Pre-vi-ous works have stud-ied var-i-ous land-mark se-lec-tion strate-
+ []
+
+<./figures/new_illustrate/bfs_illustrate.pdf, id=27, 767.86874pt x 266.19452pt>
 File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/bfs_illustrate.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 9.
+Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 174.72221pt.
- [4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
+
+
+LaTeX Warning: Citation `Riondato:2014:FAB:2556195.2556224' on page \thepage  undefined on input line 45.
+
+[4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/bi_dec.pdf): PDF inclusion: multiple pdfs with page group in
 cluded in a single page
@@ -382,11 +391,6 @@ cluded in a single page
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/tie.pdf): PDF inclusion: multiple pdfs with page group inclu
 ded in a single page
 >]) (implementation.tex
-Overfull \hbox (8.44818pt too wide) in paragraph at lines 51--1
-\T1/aer/m/n/9 short-est path fol-lows op-ti-mal sub-struc-ture, i.e. if $\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 u; ::; w; :::; 
-v\OT1/cmr/m/n/9 )$
- []
-
 
 LaTeX Warning: Reference `fig:system' on page \thepage  undefined on input line 6.
 
@@ -406,12 +410,12 @@ Overfull \hbox (1.59111pt too wide) in paragraph at lines 65--66
 \T1/aer/m/n/9 heuris-tic has much lower er-ror ra-tio than de-cen-tral-ized search
  []
 
-<./figures/overhead_search.pdf, id=533, 1250.6725pt x 447.6725pt>
+[7] <./figures/overhead_search.pdf, id=538, 1250.6725pt x 447.6725pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
 Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 119.
 (pdftex.def)             Requested size: 504.0pt x 180.40468pt.
- [7]
+
 Overfull \hbox (15.60353pt too wide) in paragraph at lines 124--125
 \T1/aer/m/n/9 both non-parallel mode and par-al-lel batch mode. [add treesketch
  []
@@ -437,13 +441,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3836 strings out of 493634
- 49952 string characters out of 3141303
- 122484 words of memory out of 3000000
- 7082 multiletter control sequences out of 15000+200000
+ 3837 strings out of 493634
+ 49987 string characters out of 3141303
+ 121484 words of memory out of 3000000
+ 7083 multiletter control sequences out of 15000+200000
  57458 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 41i,11n,35p,1475b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,35p,1479b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
@@ -454,7 +458,7 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1152652 bytes).
+Output written on main.pdf (10 pages, 1153214 bytes).
 PDF statistics:
  626 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
