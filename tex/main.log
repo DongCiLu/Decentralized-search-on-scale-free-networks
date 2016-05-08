@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  7 MAY 2016 22:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  8 MAY 2016 10:07
 entering extended mode
 **./main.tex
 (main.tex
@@ -380,7 +380,7 @@ Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on inp
 (pdftex.def)             Requested size: 504.0pt x 174.72221pt.
 
 
-LaTeX Warning: Citation `Riondato:2014:FAB:2556195.2556224' on page \thepage  undefined on input line 45.
+LaTeX Warning: Citation `Riondato:2014:FAB:2556195.2556224' on page \thepage  undefined on input line 14.
 
 [4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
 
@@ -390,14 +390,17 @@ cluded in a single page
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/tie.pdf): PDF inclusion: multiple pdfs with page group inclu
 ded in a single page
->]) (implementation.tex
+>]) (implementation.tex <./figures/new_illustrate/System.pdf, id=304, 1027.43848pt x 303.534pt>
+File: ./figures/new_illustrate/System.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `fig:system' on page \thepage  undefined on input line 6.
-
-[5 <./figures/new_illustrate/bfs_illustrate.pdf>]) (evaluation.tex [6]
-<./figures/accuracy_stepy.pdf, id=532, 1228.59pt x 722.7pt>
+<use ./figures/new_illustrate/System.pdf>
+Package pdftex.def Info: ./figures/new_illustrate/System.pdf used on input line 8.
+(pdftex.def)             Requested size: 504.0pt x 148.89969pt.
+ [5 <./figures/new_illustrate/bfs_illustrate.pdf>]) (evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures
+/accuracy_stepy.pdf, id=559, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
- <use ./figures/accuracy_stepy.pdf>
+
+<use ./figures/accuracy_stepy.pdf>
 Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 50.
 (pdftex.def)             Requested size: 504.0pt x 296.47432pt.
 
@@ -410,7 +413,7 @@ Overfull \hbox (1.59111pt too wide) in paragraph at lines 65--66
 \T1/aer/m/n/9 heuris-tic has much lower er-ror ra-tio than de-cen-tral-ized search
  []
 
-[7] <./figures/overhead_search.pdf, id=538, 1250.6725pt x 447.6725pt>
+[7] <./figures/overhead_search.pdf, id=565, 1250.6725pt x 447.6725pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
 Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 119.
@@ -420,19 +423,20 @@ Overfull \hbox (15.60353pt too wide) in paragraph at lines 124--125
 \T1/aer/m/n/9 both non-parallel mode and par-al-lel batch mode. [add treesketch
  []
 
-<./figures/scale_machine.pdf, id=539, 578.16pt x 433.62pt>
+<./figures/scale_machine.pdf, id=566, 578.16pt x 433.62pt>
 File: ./figures/scale_machine.pdf Graphic file (type pdf)
  <use ./figures/scale_machine.pdf>
 Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 139.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-
-<./figures/scale_query.pdf, id=540, 578.16pt x 433.62pt>
+ [8 <./figures/accuracy_stepy.pdf>] <./figures/scale_query.pdf, id=574, 578.16pt x 433.62pt>
 File: ./figures/scale_query.pdf Graphic file (type pdf)
  <use ./figures/scale_query.pdf>
 Package pdftex.def Info: ./figures/scale_query.pdf used on input line 150.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-) (conclusion.tex) [8 <./figures/accuracy_stepy.pdf>] (main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_mach
-ine.pdf> <./figures/scale_query.pdf>]
+) (conclusion.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+) (main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ) [10] (main.aux)
@@ -441,10 +445,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3837 strings out of 493634
- 49987 string characters out of 3141303
- 121484 words of memory out of 3000000
- 7083 multiletter control sequences out of 15000+200000
+ 3842 strings out of 493634
+ 50156 string characters out of 3141303
+ 121492 words of memory out of 3000000
+ 7087 multiletter control sequences out of 15000+200000
  57458 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  41i,11n,35p,1479b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -458,9 +462,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1153214 bytes).
+Output written on main.pdf (10 pages, 1451134 bytes).
 PDF statistics:
- 626 PDF objects out of 1000 (max. 8388607)
+ 653 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
