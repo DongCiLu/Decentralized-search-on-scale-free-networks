@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  8 MAY 2016 12:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  9 MAY 2016 13:36
 entering extended mode
 **./main.tex
 (main.tex
@@ -340,19 +340,19 @@ Overfull \hbox (1.69029pt too wide) in paragraph at lines 25--26
  []
 
 ) (relatedwork.tex) (preliminary.tex [2]) (searching.tex
-<./figures/new_illustrate/dec_common.pdf, id=16, 316.18124pt x 277.035pt>
+<./figures/new_illustrate/dec_common.pdf, id=20, 316.18124pt x 277.035pt>
 File: ./figures/new_illustrate/dec_common.pdf Graphic file (type pdf)
  <use ./figures/new_illustrate/dec_common.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/dec_common.pdf used on input line 8.
 (pdftex.def)             Requested size: 161.28369pt x 141.31557pt.
 
-<./figures/new_illustrate/bi_dec.pdf, id=17, 293.59688pt x 279.29344pt>
+<./figures/new_illustrate/bi_dec.pdf, id=21, 293.59688pt x 279.29344pt>
 File: ./figures/new_illustrate/bi_dec.pdf Graphic file (type pdf)
  <use ./figures/new_illustrate/bi_dec.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/bi_dec.pdf used on input line 9.
 (pdftex.def)             Requested size: 161.28369pt x 153.42435pt.
 
-<./figures/new_illustrate/tie.pdf, id=18, 325.215pt x 286.82156pt>
+<./figures/new_illustrate/tie.pdf, id=22, 325.215pt x 286.82156pt>
 File: ./figures/new_illustrate/tie.pdf Graphic file (type pdf)
  <use ./figures/new_illustrate/tie.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/tie.pdf used on input line 10.
@@ -361,15 +361,15 @@ Package pdftex.def Info: ./figures/new_illustrate/tie.pdf used on input line 10.
 
 LaTeX Warning: Reference `fig:dec_common' on page \thepage  undefined on input line 50.
 
-[3]
+
+Underfull \vbox (badness 1092) has occurred while \output is active []
+
+ [3]
 
 LaTeX Warning: Reference `fig:bi_dec' on page \thepage  undefined on input line 62.
 
 
 LaTeX Warning: Reference `fig:tie' on page \thepage  undefined on input line 66.
-
-
-Underfull \vbox (badness 4048) has occurred while \output is active []
 
 ) (preprocessing.tex
 Overfull \hbox (7.45016pt too wide) in paragraph at lines 4--5
@@ -382,6 +382,9 @@ File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
 <use ./figures/new_illustrate/bfs_illustrate.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 174.72221pt.
+
+Underfull \vbox (badness 4048) has occurred while \output is active []
+
  [4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/bi_dec.pdf): PDF inclusion: multiple pdfs with page group in
@@ -396,11 +399,8 @@ File: ./figures/new_illustrate/System.pdf Graphic file (type pdf)
 <use ./figures/new_illustrate/System.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/System.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 148.89969pt.
-
-Underfull \vbox (badness 4303) has occurred while \output is active []
-
- [5 <./figures/new_illustrate/bfs_illustrate.pdf>])
-(evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures/accuracy_stepy.pdf, id=559, 1228.59pt x 722.7pt>
+ [5 <./figures/new_illustrate/bfs_illustrate.pdf>]) (evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures
+/accuracy_stepy.pdf, id=559, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
 
 <use ./figures/accuracy_stepy.pdf>
@@ -416,7 +416,11 @@ Overfull \hbox (1.59111pt too wide) in paragraph at lines 65--66
 \T1/aer/m/n/9 heuris-tic has much lower er-ror ra-tio than de-cen-tral-ized search
  []
 
-[7] <./figures/overhead_search.pdf, id=565, 1250.6725pt x 447.6725pt>
+
+Underfull \vbox (badness 1092) has occurred while \output is active []
+
+ [7]
+<./figures/overhead_search.pdf, id=565, 1250.6725pt x 447.6725pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
 Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 119.
@@ -436,18 +440,11 @@ File: ./figures/scale_query.pdf Graphic file (type pdf)
  <use ./figures/scale_query.pdf>
 Package pdftex.def Info: ./figures/scale_query.pdf used on input line 150.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-) (conclusion.tex
-Underfull \vbox (badness 4013) has occurred while \output is active []
-
-) (main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
+) (conclusion.tex)
+(main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]) [11
-
-] (main.aux)
+) [10] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -455,7 +452,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  3840 strings out of 493634
  50134 string characters out of 3141303
- 123480 words of memory out of 3000000
+ 122480 words of memory out of 3000000
  7085 multiletter control sequences out of 15000+200000
  57458 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
@@ -470,9 +467,9 @@ e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
 tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
 nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (11 pages, 1452035 bytes).
+Output written on main.pdf (10 pages, 1451569 bytes).
 PDF statistics:
- 656 PDF objects out of 1000 (max. 8388607)
+ 653 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

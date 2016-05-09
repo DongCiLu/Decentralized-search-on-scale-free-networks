@@ -1,18 +1,16 @@
 \section{Preliminaries}
 \label{preliminary}
 
-\subsection{Notations}
-In our problem, we consider a graph $G = (V,E)$. For a source node $s$ and a target node $t$, we are interested in finding a path $p(s,t)=(s,v_1,v_2,...,v_{l-1},t)$ with a length of $|p(s,t)|$ close to the exact distance between $s$ and $t$ in the graph. Let $P(s,t)$ be the set of all paths from s to t. The distance between $s$ and $t$ is $d_G(s,t) = min_{p(s,t) \in P(s,t)}|p(s,t)|$.
+%\subsection{Notations}
+In our problem, we consider a graph $G = (V,E)$. For a source node $s$ and a target node $t$, we are interested in finding a path $p(s,t)=(s,v_1,v_2,...,v_{l-1},t)$ with a length of $|p(s,t)|$ close to the exact distance between $s$ and $t$ in the graph. Let $P(s,t)$ be the set of all paths from s to t. The distance between $s$ and $t$ is $d_G(s,t) = min_{p(s,t) \in P(s,t)}|p(s,t)|$. We focus on unweighted, undirected graphs in this paper.
 
-We will focus on unweighted, undirected graphs in this paper.
-
-\subsection{Landmark based indexes}
+%\subsection{Landmark based indexes}
 
 Our method is motivated by the idea of using landmarks as the basis for indexes. Specifically, given a graph $G$ and a small (constant) set of landmarks $L$, $|L|$ BFS traversals are needed to precompute the index. An index for the graph contains a label $L(v)$ for each vertex which store the shortest path to each landmark $(l_i, p(v,l_i))$ where $|p(v,l_i)| = d_G(v,l_i)$.
 
-\subsection{The least common ancestor distance}
+%\subsection{The least common ancestor distance}
 
-The least common ancestor of two vertex in a tree is the deepest vertex that contain both vertices as descendants, we denote it as $c_l(s,t)$. The shortest path distance satisfies the triangle inequality, for an arbitrary pair of vertices $s$ and $t$, we have the following bound:
+The least common ancestor of two vertex in a tree is the deepest vertex that contain both vertices as descendants, we denote it as $c_l(s,t)$. The shortest path distance satisfies the triangle inequality, for an arbitrary pair of vertices $s$ and $t$, the following bound holds:
 \begin{equation}
     d_G(s,t) \leq min_{l \in L}\{d_G(s,c_l(s,t)) + d_G(c_l(s,t),t)\}
 \end{equation}
@@ -20,4 +18,4 @@ The least common ancestor of two vertex in a tree is the deepest vertex that con
 %\label{equ:lower}
     %d_G(s,t) \geq max_{l \in L}|d_G(s,c_l(s,t)) - d_G(c_l(s,t),t)|
 %\end{equation}
-This upper bound, which we refer to it as LCA distance and denoted by $d_{LCA}(s,t)$, can be used as an approximation of the distance from $s$ and $t$. And we denote the path indicated by this distance as $p_{LCA}(s,t)$.
+This upper bound, which is referred to as LCA distance and denoted by $d_{LCA}(s,t)$, can be used as an approximation of the distance from $s$ and $t$. And we denote the path indicated by this distance as $p_{LCA}(s,t)$.
