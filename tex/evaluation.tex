@@ -34,13 +34,11 @@ We evaluate our algorithm on 8 graphs from different disciplines as shown in tab
 \subsection{Experiment settings}
 \label{eval_system}
 
-We evaluate our algorithms in both distributed settings and centralized settings.
-%For distributed settings, we use 20 Cloudlab ~\cite{RicciEide:login14} r320 nodes from Apt cluster. Each node has a 8-core 2.1GHz Xeon E5-2450 processor and 16 GB memory. All the experimental traffics are carried on a 10Gbps Ethernet. 
-For distributed settings, we use 20 Amazon EC2 m4.xlarge virtual machines. Each virtual machine has 4 vCPUs and 16 GB memory. We also implemented a centralized version on a Cloudlab~\cite{RicciEide:login14} c8220 server with two 10-core 2.2GHz E5-2660 processors and 256GB memory. Powergraph~\cite{180251} is the platform for distributed version and ~Snap~\cite{snapnets} is the platform for centralized version. All algorithms are implemented in C++. 
+We evaluate our algorithms in both distributed setting and centralized setting. For  the distributed setting, we use 20 Amazon EC2 m4.xlarge virtual machines. Each virtual machine has 4 vCPUs and 16 GB memory. We also implemented a centralized version on a Cloudlab~\cite{RicciEide:login14} c8220 server with two 10-core 2.2GHz E5-2660 processors and 256GB memory. Powergraph~\cite{180251} is the platform for distributed version and ~Snap~\cite{snapnets} is the platform for centralized version. All algorithms are implemented in C++. 
 
 All the evaluations use the same landmark selection strategy, a variation based on $DEGREE/h$ strategy from reference~\cite{Potamias:2009:FSP:1645953.1646063} which take both vertex degree and distance to existing landmarks into consideration. On selecting a new landmark, each vertex receive a rank which is the product of its degree and the sum of distance to all the existing landmarks. The vertex with highest rank will be added to the landmark set. We denote number of landmarks as $k$.
 
-Quries in our experiments are randomly generated. For accuracy evaluations, since performing BFS on large graphs in our datasets is extremely slow, to control the number of exact pairs of shortest path distance we need to find using BFS, we randomly choose 1,000 vertices of each graph as source vertices. For each source vertex, we then randomly choose 100 vertices as target vertices. We are able to generate 100,000 queries with 1000 BFS. All results in \ref{eval_accuracy} are averaged among 100,000 queries.
+Quries in our experiments are randomly generated. For accuracy evaluations, since performing BFS on large graphs is extremely slow, to control the number of exact pairs of shortest path distance we need to find using BFS, we randomly choose 1,000 vertices of each graph as source vertices. For each source vertex, we then randomly choose 100 vertices as target vertices. We are able to generate 100,000 queries with 1000 BFS. All results in \ref{eval_accuracy} are averaged among 100,000 queries.
 
 \subsection{Approximation Accuracy}
 \label{eval_accuracy}
