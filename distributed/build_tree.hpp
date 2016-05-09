@@ -8,15 +8,33 @@ struct min_distance_type {
     long rank;
     long potential;
     std::vector<code_type> code;
+#ifdef REDUCE_RED_LABEL
+    size_t red_cnt;
+#endif
 
+#ifdef REDUCE_RED_LABEL
+    min_distance_type(size_t tree_id = 
+            std::numeric_limits<size_t>::max(),
+            long rank = -1, size_t red_cnt = 10000) : 
+        tree_id(tree_id), rank(rank), potential(rank), red_cnt(red_cnt) {}
+#else
     min_distance_type(size_t tree_id = 
             std::numeric_limits<size_t>::max(),
             long rank = -1) : 
         tree_id(tree_id), rank(rank), potential(rank) {}
+#endif
 
+#ifdef REDUCE_RED_LABEL
+    min_distance_type(size_t tree_id, long rank, 
+            const std::vector<code_type>& code, 
+            size_t red_cnt) :
+        tree_id(tree_id), rank(rank), potential(rank), 
+        code(code), red_cnt(red_cnt) {} 
+#else
     min_distance_type(size_t tree_id, long rank, 
             const std::vector<code_type>& code) :
         tree_id(tree_id), rank(rank), potential(rank), code(code) {} 
+#endif
 
     min_distance_type& operator+=(const min_distance_type& other) {
 #ifdef LABEL_DEG
@@ -27,6 +45,12 @@ struct min_distance_type {
         long other_rank = rand() % 10000;
 #endif
 
+#ifdef REDUCE_RED_LABEL
+        if (red_cnt > 0)
+            this_rank = 0;
+        if (other.red_cnt > 0)
+            other_rank = 0;
+#endif
         if (this_rank < other_rank) {
             code = other.code;
             rank = other.rank;
@@ -101,11 +125,24 @@ class build_code_sys :
                     edge_type& edge) const {
                 const vertex_type other = get_other_vertex(edge, vertex);
                 if (other.data().code.size() == tree_id) {
+#ifdef REDUCE_RED_LABEL
+                    size_t red_cnt = 0;
+                    for (size_t t = 0; t < other.data().code.size(); t++) {
+                        size_t len = other.data().code[t].size();
+                        if (len > 1 && 
+                                vertex.id() == other.data().code[t][len - 2])
+                            red_cnt ++;
+                    }
+#endif
                     long new_r = rank + 
                         vertex.num_in_edges() + 
                         vertex.num_out_edges();
                     const min_distance_type 
+#ifdef REDUCE_RED_LABEL
+                        msg(tree_id, new_r, vertex.data().code[tree_id], red_cnt);
+#else
                         msg(tree_id, new_r, vertex.data().code[tree_id]);
+#endif
                     context.signal(other, msg);
                 }
             } // end of scatter
