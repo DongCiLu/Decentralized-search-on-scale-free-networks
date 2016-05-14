@@ -12,12 +12,13 @@
 
 #define EARLY_TERMINATION //Never turn off
 //#define BIDIRECTIONAL_SEARCH
-#define SELECTIVE_LCA
-#define SAVE_SPACE // dont use with bi search
+//#define SELECTIVE_LCA
+//#define SAVE_SPACE // dont use with bi search
 
 //#define TIE_FULL
 //#define TIE_HEUR // require tie full to work
-//#define LABEL_DEG
+#define LABEL_DEG
+#define REDUCE_RED_LABEL
 
 //#define CALC_REAL //Turn off all the others when turn this on
 

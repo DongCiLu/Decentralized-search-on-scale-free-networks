@@ -38,16 +38,16 @@ class ds_cent {
         ds_cent(std::string graphfile, size_t n_tree);
         ~ds_cent();
         void build_index(size_t t);
-        void test();
+        void test(size_t ktie);
         void print_info(int stage);
         void reset();
 
     private:
         dist_type get_dist(id_type src_id, id_type dst_id, id_type& lca);
         dist_type do_search(id_type src, id_type dst); 
-        dist_type do_search_multi(id_type src, id_type dst); 
+        dist_type do_search_multi(id_type src, id_type dst, size_t ktie); 
         dist_type do_search_all(id_type src, id_type dst, 
-                std::set< std::vector<id_type> > &pair_path); 
+                std::set< std::vector<id_type> > &pair_path, size_t ktie); 
         std::vector< std::pair<id_type, dist_type> > 
             get_bfs_order(std::vector< std::vector<id_type> > sketch);
         dist_type tree_sketch(

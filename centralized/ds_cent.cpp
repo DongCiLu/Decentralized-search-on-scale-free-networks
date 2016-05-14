@@ -28,7 +28,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile, size_t n_tree) :
     total_est(0), total_comp(0), total_obv(0), 
     total_comp_time(0), total_single_time(0), total_full_time(0),
     single_path_oh(0), full_path_oh(0),
-    index_oh(0), n_tree(0), n_exp(500) {
+    index_oh(0), n_tree(0), n_exp(50000) {
     // loading graph from edgelist
     net = TSnap::LoadEdgeList<PGRAPH_TYPE>(graphfile.c_str(), 0, 1);
     max_dist = net->GetNodes();
@@ -153,7 +153,9 @@ void ds_cent<id_type, dist_type>::build_index(size_t t) {
 
 template <typename id_type, typename dist_type>
 dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src, 
-        id_type dst, set< vector<id_type> > &pair_path) {
+        id_type dst, set< vector<id_type> > &pair_path, size_t ktie) {
+    string tie_cnt_fn = graphname + "tie_cnt.txt";
+    ofstream out(tie_cnt_fn.c_str(), ios::app);
     set<id_type> cur_set, next_set;
     map< id_type, set< vector<id_type> > > partial_path;
     map< id_type, set< vector<id_type> > > new_partial_path;
@@ -183,7 +185,7 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src,
                     new_partial_path.clear();
                     new_partial_path[nbr] = partial_path[cur];
                 }
-                else if (dist == min_dist) {
+                else if (dist == min_dist && next_set.size() < ktie) {
                     if (new_partial_path.find(nbr) 
                             == new_partial_path.end())
                         new_partial_path[nbr] = set< vector<id_type> >();
@@ -195,6 +197,7 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src,
             }
         }
         cur_set = next_set;
+        out << cur_set.size() << endl;
         // compose new paths by append nodes to their related path
         partial_path.clear();
         for (typename map< id_type, set< vector<id_type> > >::iterator
@@ -247,60 +250,52 @@ dist_type ds_cent<id_type, dist_type>::do_search_all(id_type src,
 }
 
 template <typename id_type, typename dist_type>
-dist_type ds_cent<id_type, dist_type>::do_search_multi(id_type src, id_type dst) {
+dist_type ds_cent<id_type, dist_type>::do_search_multi(
+        id_type src, id_type dst, size_t ktie) {
     set<id_type> cur_set, next_set;
-    map< id_type, pair<size_t, id_type> > lca_vertex;
     cur_set.insert(src);
-    dist_type est_dist = 0, min_dist = -1; // max dist
-    
-    while (*(cur_set.begin()) != dst) {
+    id_type lca = -1;
+    dist_type est_dist = 0, min_dist = get_dist(src, dst, lca); 
+    dist_type min_est_dist = min_dist; 
+    while (!cur_set.empty()) {
         next_set.clear();
         for (typename set<id_type>::iterator iter = cur_set.begin(); 
                 iter != cur_set.end(); ++iter) {
             TGRAPH_TYPE::TNodeI cur_vertex = net->GetNI(*iter);
             for (size_t i = 0; i < cur_vertex.GetDeg(); ++ i) {
-                id_type lca = -1;
-                dist_type dist = get_dist(cur_vertex.GetNbrNId(i), dst, lca);
+                id_type nbr = cur_vertex.GetNbrNId(i);
+                dist_type dist = get_dist(nbr, dst, lca);
                 if (dist < min_dist) {
                     min_dist = dist;
                     next_set.clear();
-                    next_set.insert(cur_vertex.GetNbrNId(i));
-                    lca_vertex.clear();
-                    size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
-                    lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
+                    next_set.insert(nbr);
                 }
-                else if (dist == min_dist) {
-                    size_t deg = net->GetNI(cur_vertex.GetNbrNId(i)).GetDeg();
-                    if (lca_vertex.find(lca) == lca_vertex.end()) {
-                        lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
-                    }
-                    else {
-                        if (deg > lca_vertex[lca].second) {
-                            lca_vertex[lca] = make_pair(deg, cur_vertex.GetNbrNId(i));
-                        }
-                    }
+                else if (dist == min_dist &&
+                        next_set.size() < ktie) {
+                    next_set.insert(nbr);
                 }
             }
         }
-        for (typename map< id_type, pair<size_t, id_type> >::iterator 
-                iter = lca_vertex.begin();
-                iter != lca_vertex.end(); ++iter)
-            cur_set.insert(iter->second.second);
-
+        cur_set = next_set;
         est_dist ++;
             
         // if we reach dst code
         for (size_t i = 0; i < codes[dst].size(); ++i) {
             for (size_t j = 0; j < codes[dst][i].size(); ++j) {
                 if (cur_set.find(codes[dst][i][j]) != cur_set.end()) {
-                    est_dist += codes[dst][i].size() - j - 1;
-                    return est_dist; 
+                    id_type nid = codes[dst][i][j];
+                    dist_type local_est_dist = 
+                        est_dist + codes[dst][i].size() - j - 1;
+                    if (local_est_dist < min_est_dist) {
+                        min_est_dist = local_est_dist;
+                    }
+                    cur_set.erase(nid);
                 }
             }
         }
     }
 
-    return est_dist; 
+    return min_est_dist; 
 }
 
 template <typename id_type, typename dist_type>
@@ -434,9 +429,9 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(
 }
 
 template <typename id_type, typename dist_type>
-void ds_cent<id_type, dist_type>::test() {
-    //string tcfilename = "./datasets/testcases/withreal/";
-    string tcfilename = "./datasets/testcases/regular/";
+void ds_cent<id_type, dist_type>::test(size_t ktie) {
+    string tcfilename = "./datasets/testcases/withreal/";
+    //string tcfilename = "./datasets/testcases/regular/";
     tcfilename += graphname + "_testcases.txt";
     cout << tcfilename << endl;
     ifstream in(tcfilename.c_str());
@@ -476,8 +471,8 @@ void ds_cent<id_type, dist_type>::test() {
         */
 
         /*
-        est_dist_1 = do_search_multi(src, dst);
-        est_dist_2 = do_search_multi(dst, src);
+        est_dist_1 = do_search_multi(src, dst, ktie);
+        est_dist_2 = do_search_multi(dst, src, ktie);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est_multi += double(est_dist - real_dist) / real_dist;
         */
@@ -486,8 +481,8 @@ void ds_cent<id_type, dist_type>::test() {
         set< vector<id_type> > pair_path1;
         set< vector<id_type> > pair_path2;
         clock_t start_tick_full = clock();
-        est_dist_1 = do_search_all(src, dst, pair_path1);
-        est_dist_2 = do_search_all(dst, src, pair_path2);
+        est_dist_1 = do_search_all(src, dst, pair_path1, ktie);
+        est_dist_2 = do_search_all(dst, src, pair_path2, ktie);
         total_full_time += clock() - start_tick_full;
 
         single_path_oh += 24 + 24 + pair_path1.begin()->size() * 8;
@@ -662,7 +657,7 @@ int main(int argc, char** argv){
             cout << "Step 2: Build index." << endl;
             m.build_index(t);
             cout << "Step 3: Perform dec search." << endl;
-            m.test();
+            m.test(10000000);
             m.print_info(2);
             m.reset();
         }
@@ -674,8 +669,12 @@ int main(int argc, char** argv){
         }
         m.print_info(1);
         cout << "Step 3: Perform dec search." << endl;
-        m.test();
-        m.print_info(2);
+        size_t ktie = 10000000;
+        //for (size_t ktie = 1; ktie < 50; ktie += 5) {
+            m.test(ktie);
+            m.print_info(2);
+            m.reset();
+        //}
     }
 
     cout << "Done." << endl;
