@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  9 MAY 2016 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  14 MAY 2016 16:09
 entering extended mode
 **./main.tex
 (main.tex
@@ -270,46 +270,48 @@ Package: subfigure 2002/07/30 v2.1.4 subfigure package
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfigure\subfigure.cfg")
 \subfig@top=\skip51
 \subfig@bottom=\skip52
-) (main.aux)
+)
+\c@theorem=\count124
+ (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count124
+\scratchcounter=\count125
 \scratchdimen=\dimen125
 \scratchbox=\box33
-\nofMPsegments=\count125
-\nofMParguments=\count126
+\nofMPsegments=\count126
+\nofMParguments=\count127
 \everyMPshowfont=\toks41
-\MPscratchCnt=\count127
+\MPscratchCnt=\count128
 \MPscratchDim=\dimen126
-\MPnumerator=\count128
-\makeMPintoPDFobject=\count129
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
 \everyMPtoPDFconversion=\toks42
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 153.
+LaTeX Font Info:    Try loading font information for U+msa on input line 155.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 153.
+LaTeX Font Info:    Try loading font information for U+msb on input line 155.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 153.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 155.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -317,159 +319,151 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 153.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 155.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) Excluding 'CCSXML' comment.
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 198.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 200.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 198.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 200.
  (introduction.tex
+
+LaTeX Warning: Citation `kleinberg2006complex' on page \thepage  undefined on input line 10.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1{C:/Users/Zheng Lu/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-Overfull \hbox (1.69029pt too wide) in paragraph at lines 25--26
+Overfull \hbox (1.69029pt too wide) in paragraph at lines 24--25
 []\T1/aer/m/n/9 We pro-pose in-dex guided de-cen-tral-ized search for short-
  []
 
 ) (relatedwork.tex) (preliminary.tex [2]) (searching.tex
-<./figures/new_illustrate/dec_common.pdf, id=20, 316.18124pt x 277.035pt>
-File: ./figures/new_illustrate/dec_common.pdf Graphic file (type pdf)
- <use ./figures/new_illustrate/dec_common.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/dec_common.pdf used on input line 8.
-(pdftex.def)             Requested size: 161.28369pt x 141.31557pt.
+<./figures/new_illustrate/ds_common.pdf, id=17, 298.86656pt x 286.82156pt>
+File: ./figures/new_illustrate/ds_common.pdf Graphic file (type pdf)
+ <use ./figures/new_illustrate/ds_common.pdf>
+Package pdftex.def Info: ./figures/new_illustrate/ds_common.pdf used on input line 6.
+(pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
-<./figures/new_illustrate/bi_dec.pdf, id=21, 293.59688pt x 279.29344pt>
-File: ./figures/new_illustrate/bi_dec.pdf Graphic file (type pdf)
- <use ./figures/new_illustrate/bi_dec.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/bi_dec.pdf used on input line 9.
-(pdftex.def)             Requested size: 161.28369pt x 153.42435pt.
+<./figures/new_illustrate/ds_bidirectional.pdf, id=18, 298.86656pt x 286.82156pt>
+File: ./figures/new_illustrate/ds_bidirectional.pdf Graphic file (type pdf)
 
-<./figures/new_illustrate/tie.pdf, id=22, 325.215pt x 286.82156pt>
-File: ./figures/new_illustrate/tie.pdf Graphic file (type pdf)
- <use ./figures/new_illustrate/tie.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/tie.pdf used on input line 10.
-(pdftex.def)             Requested size: 161.28369pt x 142.24626pt.
+<use ./figures/new_illustrate/ds_bidirectional.pdf>
+Package pdftex.def Info: ./figures/new_illustrate/ds_bidirectional.pdf used on input line 7.
+(pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
+<./figures/new_illustrate/ds_tie.pdf, id=19, 298.86656pt x 286.82156pt>
+File: ./figures/new_illustrate/ds_tie.pdf Graphic file (type pdf)
+ <use ./figures/new_illustrate/ds_tie.pdf>
+Package pdftex.def Info: ./figures/new_illustrate/ds_tie.pdf used on input line 8.
+(pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
-LaTeX Warning: Reference `fig:dec_common' on page \thepage  undefined on input line 50.
-
-
-Underfull \vbox (badness 1092) has occurred while \output is active []
-
- [3]
-
-LaTeX Warning: Reference `fig:bi_dec' on page \thepage  undefined on input line 62.
-
-
-LaTeX Warning: Reference `fig:tie' on page \thepage  undefined on input line 66.
-
-) (preprocessing.tex
-Overfull \hbox (7.45016pt too wide) in paragraph at lines 4--5
-\T1/aer/m/n/9 Pre-vi-ous works have stud-ied var-i-ous land-mark se-lec-tion strate-
+Overfull \hbox (1.81067pt too wide) detected at line 60
+\OML/cmm/m/it/9 d[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 v; t\OT1/cmr/m/n/9 ) = \OMS/cmsy/m/n/9 j\OML/cmm/m/it/9 p[]\OT1/cmr/m
+/n/9 (\OML/cmm/m/it/9 v; t\OT1/cmr/m/n/9 )\OMS/cmsy/m/n/9 j \OT1/cmr/m/n/9 = \OMS/cmsy/m/n/9 j\OML/cmm/m/it/9 p[]\OT1/cm
+r/m/n/9 (\OML/cmm/m/it/9 u; t\OT1/cmr/m/n/9 )\OMS/cmsy/m/n/9 j   \OT1/cmr/m/n/9 1 = \OML/cmm/m/it/9 d[]\OT1/cmr/m/n/9 (\
+OML/cmm/m/it/9 u; t\OT1/cmr/m/n/9 ) \OMS/cmsy/m/n/9   \OT1/cmr/m/n/9 1
  []
 
-<./figures/new_illustrate/bfs_illustrate.pdf, id=27, 767.86874pt x 266.19452pt>
+[3]) (preprocessing.tex <./figures/new_illustrate/bfs_illustrate.pdf, id=28, 767.86874pt x 266.19452pt>
 File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/bfs_illustrate.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 174.72221pt.
+ [4 <./figures/new_illustrate/ds_common.pdf> <./figures/new_illustrate/ds_bidirectional.pdf
 
-Underfull \vbox (badness 4048) has occurred while \output is active []
+pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/ds_bidirectional.pdf): PDF inclusion: multiple pdfs with pag
+e group included in a single page
+> <./figures/new_illustrate/ds_tie.pdf
 
- [4 <./figures/new_illustrate/dec_common.pdf> <./figures/new_illustrate/bi_dec.pdf
-
-pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/bi_dec.pdf): PDF inclusion: multiple pdfs with page group in
+pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/ds_tie.pdf): PDF inclusion: multiple pdfs with page group in
 cluded in a single page
-> <./figures/new_illustrate/tie.pdf
+>]
 
-pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/tie.pdf): PDF inclusion: multiple pdfs with page group inclu
-ded in a single page
->]) (implementation.tex <./figures/new_illustrate/System.pdf, id=304, 1027.43848pt x 303.534pt>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (implementation.tex <./figures/new_illustrate/System.pdf, id=192, 1027.43848pt x 303.534pt>
 File: ./figures/new_illustrate/System.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/System.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/System.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 148.89969pt.
- [5 <./figures/new_illustrate/bfs_illustrate.pdf>]) (evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures
-/accuracy_stepy.pdf, id=559, 1228.59pt x 722.7pt>
+ [5 <./figures/new_illustrate/bfs_illustrate.pdf>]
+Overfull \hbox (1.3911pt too wide) in paragraph at lines 55--56
+\T1/aer/m/n/9 on the un-der-ly-ing graph. De-pends on im-ple-men-ta-tions, there
+ []
+
+) (evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures/accuracy_stepy.pdf, id=447, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
 
 <use ./figures/accuracy_stepy.pdf>
-Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 50.
+Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 48.
 (pdftex.def)             Requested size: 504.0pt x 296.47432pt.
 
-Overfull \hbox (5.23598pt too wide) in paragraph at lines 65--66
+Overfull \hbox (3.65042pt too wide) in paragraph at lines 56--59
+\T1/aer/m/n/9 mance of an state-of-the-art ex-ist-ing method, TreeSketch [10].
+ []
+
+
+Overfull \hbox (5.23598pt too wide) in paragraph at lines 64--65
 []\T1/aer/m/n/9 Decentralized search car-ried on in-dex con-structed by greedy
  []
 
-
-Overfull \hbox (1.59111pt too wide) in paragraph at lines 65--66
-\T1/aer/m/n/9 heuris-tic has much lower er-ror ra-tio than de-cen-tral-ized search
- []
-
-
-Underfull \vbox (badness 1092) has occurred while \output is active []
-
- [7]
-<./figures/overhead_search.pdf, id=565, 1250.6725pt x 447.6725pt>
+[7] <./figures/overhead_search.pdf, id=452, 1228.59pt x 433.62pt>
 File: ./figures/overhead_search.pdf Graphic file (type pdf)
  <use ./figures/overhead_search.pdf>
-Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 119.
-(pdftex.def)             Requested size: 504.0pt x 180.40468pt.
+Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 118.
+(pdftex.def)             Requested size: 504.0pt x 177.8846pt.
 
-Overfull \hbox (15.60353pt too wide) in paragraph at lines 124--125
-\T1/aer/m/n/9 both non-parallel mode and par-al-lel batch mode. [add treesketch
- []
-
-<./figures/scale_machine.pdf, id=566, 578.16pt x 433.62pt>
+<./figures/scale_machine.pdf, id=453, 578.16pt x 433.62pt>
 File: ./figures/scale_machine.pdf Graphic file (type pdf)
  <use ./figures/scale_machine.pdf>
-Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 139.
+Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 134.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
- [8 <./figures/accuracy_stepy.pdf>] <./figures/scale_query.pdf, id=574, 578.16pt x 433.62pt>
+ [8 <./figures/accuracy_stepy.pdf>] <./figures/scale_query.pdf, id=461, 578.16pt x 433.62pt>
 File: ./figures/scale_query.pdf Graphic file (type pdf)
  <use ./figures/scale_query.pdf>
-Package pdftex.def Info: ./figures/scale_query.pdf used on input line 150.
+Package pdftex.def Info: ./figures/scale_query.pdf used on input line 143.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
 ) (conclusion.tex)
 (main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) [10] (main.aux)
 
-LaTeX Warning: There were undefined references.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- ) 
+ [10]) [11
+
+] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 3840 strings out of 493634
- 50134 string characters out of 3141303
- 122480 words of memory out of 3000000
- 7085 multiletter control sequences out of 15000+200000
- 57458 words of font info for 81 fonts, out of 3000000 for 9000
+ 3851 strings out of 493634
+ 50356 string characters out of 3141303
+ 123593 words of memory out of 3000000
+ 7095 multiletter control sequences out of 15000+200000
+ 56617 words of font info for 82 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 41i,11n,35p,1479b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helve
-tic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
-nts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1451569 bytes).
+ 41i,11n,35p,1506b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on main.pdf (11 pages, 1426633 bytes).
 PDF statistics:
- 653 PDF objects out of 1000 (max. 8388607)
+ 534 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,70 +1,80 @@
 \section{Decentralized search for \\ shortest path approximation}
 \label{searching}
 
-We propose to solve the point-to-point shortest path estimation problem using decentralized search with landmark based index. This section explain how decentralized search work with the index and underlying graph. Several aspects of the search including termination criterion, bidirectional search and tie breaking strategy are also discussed. 
-
-\begin{figure*}[t]
+\begin{figure*}[ht]
     \centering
-    \subfigure[Decentralized search]{\epsfig{file=./figures/new_illustrate/dec_common.pdf,width=0.32\textwidth}}
-    \subfigure[Bi-directional Decentralized Search]{\epsfig{file=./figures/new_illustrate/bi_dec.pdf,width=0.32\textwidth}}
-    \subfigure[Tie Strategy]{\epsfig{file=./figures/new_illustrate/tie.pdf,width=0.32\textwidth}}
-    \caption{Cumulative distribution of the number of terminal nodes sampled by different algorithms.}
-    \label{fig:cum_dis}
+    \subfigure[Decentralized search]{\epsfig{file=./figures/new_illustrate/ds_common.pdf,width=0.32\textwidth}\label{fig:DS:common}}
+    \subfigure[Bi-directional Decentralized Search]{\epsfig{file=./figures/new_illustrate/ds_bidirectional.pdf,width=0.32\textwidth}\label{fig:DS:bidirectional}}
+    \subfigure[Tie breaking strategy]{\epsfig{file=./figures/new_illustrate/ds_tie.pdf,width=0.32\textwidth}\label{fig:DS:tie}}
+    \caption{Examples of decentralized search on indexed graph. Bold lines denote the indexed edges. Curved lines denoted paths being found, with arrows showing the direction. Dark vertices denote source and target vertex. Labels of vertices are shown in $vertex:label$ format.}
 \end{figure*}
+
+We propose to solve the point-to-point shortest path estimation problem using decentralized search with landmark based index. This section explains how to apply decentralized search on indexed graphs. Several aspects of the search including termination condition, bidirectional search and tie breaking strategy are discussed. 
 
 \subsection{Index guided decentralized search}
 
-The decentralized search is performed on an indexed graph as follows. For a given pair of source and target vertex, the search start at the source vertex append it to the approximated path. The search examines each neighbor of vertex currently visited, for each neighbor, the LCA distance to the target vertex is calculated. The neighbor with least LCA distance will be picked as the vertex to visit next and append it to the approximated path. The search continues until it reach the target vertex. 
+To answer a shortest path query, decentralized search iteratively collect local distance information and visit vertex with least approximated distance to the target. More specifically, for a given pair of source $s$ and target vertex $t$ on an indexed graph. The search first set the source vertex as the vertex to visit in first step and appends it to the approximated path $p$. At each step, suppose the search is visiting $u$, it traverse all the neighbor vertices of $u$. For each neighbor vertex $v_i$, the LCA distance to the target vertex $t$ is calculated. Then the search set the neighbor vertex with least LCA distance to the target as the vertex to visit in next step and appended to $p$. The search continues until it reach the target vertex $t$.
 
-However, terminating when the search reaches the target vertex is a valid but not an ideal terminate criteria. Since the label of each vertex stores the shortest path of each vertex to each landmark. And shortest path follows the optimal substructure, i.e. the path between any two vertices along the shortest path is also the shortest path of them. So a search can stop once it  reaches any vertex in the label of the target vertex. The path contained in the label of target vertex is already the the shortest path due to the optimal substructure, we can directly concatenate it to the visited vertices to form a approximated path. 
-
-The detailed algorithm of decentralized search is depicted in \ref{alg:dec}.
+However, terminating when the search reaches the target vertex is a valid but not an ideal termination condition. Since the label of each vertex stores the shortest path of each vertex to each landmark, and shortest path follows the optimal substructure, i.e. the path between any two vertices along the shortest path is also the shortest path of them. A search can stop once it reaches any vertex in the label of the target vertex. The remaining path can be extracted from the label of target vertex to form an approximated path. The detailed algorithm of decentralized search is depicted in Algorithm~\ref{alg:dec}, we denote $\tilde{p}$ as the approximated path.
 
 \begin{algorithm}
     \caption{Algorithm decentralized search}
 		\label{alg:dec}
     \begin{algorithmic}
-        \Function{DecentralizedSearch}{$G$, $s$, $t$}
-					\State $p \gets \emptyset$
+        \Function{DecentralizedSearch}{$s$, $t$}
+					\State $\tilde{p} \gets \emptyset$
 					\State $u \gets s$
-					\State $p = p \cup u$
+					\State append $u$ to $\tilde{p}$
 					\While{$u \notin L(t)$}
 						\State $d_{min} \gets \infty$
 						\State $w \gets u$
-						\For{each $v$ adjecent to $u$}
-							\If{$d_{LCA}(v,t) < d_{min}$}
-								\State $d_{min} \gets d_{LCA}(V,t)$
-								\State $w \gets v$ 
+						\For{each $v_i$ adjacent to $u$}
+							\If{$d_{LCA}(v_i,t) < d_{min}$}
+								\State $d_{min} \gets d_{LCA}(v_i,t)$
+								\State $w \gets v_i$ 
 							\EndIf
 						\EndFor
 						\State $u \gets w$
-						\State $p = p \cup u$
+						\State append $u$ to $\tilde{p}$
 					\EndWhile
-					\State $p_{remain} \gets$ path from $u$ to $t$ in $L(t)$ exclude $u$
-					\State $p = p \cup p_{remain}$
-					\State \Return $p$
+					\State $\tilde{p} \gets$ path from $u$ to $t$ in $L(t)$ excluding $u$
+					\State append $p_{remain}$ to $\tilde{p}$
+					\State \Return $\tilde{p}$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
 
-At each step, by examining neighbor vertices the search is able to explore large part of the graph that is not included in the label of source and target vertex, which can potentially increase both accuracy and diversity of the path being found. For example in Fig. \ref{fig:dec_common} from $15$ to $11$, by following the procedure of decentralized search, instead of finding a short cut edge with both ends in labels of vertex $15$: $(0, 3, 6, 9, 15)$ and $11$: $(0, 2, 11)$, decentralized search can find a edge $(9, 4)$ that can lead to a shorter path which is denoted by solid curved line. 
+At each step, by examining neighbor vertices the search is able to explore subset of the graph that is not indexed in the label of source and target vertex, which can potentially increase both accuracy and diversity of the path being found. For example in Fig.~\ref{fig:DS:common} from vertex $14$ to vertex $17$, decentralized search find a edge $(6, 7)$ as vertex $7$ has a LCA distance of $3$ which is shorter than LCA distance from vertex $1$ to $17$. 
 
-So will the index guided decentralized search eventually terminate? As long as the source vertex $s$ and target vertex $t$ are reachable from each other, decentralized search will terminate in as much as ${\sigma}_{max}$ steps, where ${\sigma}_{max}$ is the diameter of the graph. To see this, first, the distance from $s$ to any vertex in $L(v)$ is shorter than ${\sigma}_{max}$. And at each step, suppose decentralized search is visiting vertex $u$, there must be a neighbor vertex $v$ that is on the path indicated by LCA computation of $u$ and $t$ that meet $d_{LCA}(v,t) \leq d_{LCA}(u,t) - 1$. Since decentralized search always pick the neighbor with least LCA distance to the target, the LCA distance to the target at each step will decrease at least by $1$. Therefore, decentralized search will terminate in at most ${\sigma}_{max}$ steps. 
+\begin{theorem}
+If the target vertex is reachable from the source, the decentralized search terminate in as much as $2{\sigma}_{max}$ steps, where ${\sigma}_{max}$ is the diameter of the graph. 
+\end{theorem}
+\begin{proof}[Sketch]
+For an arbitrary source vertex $s$ and a reachable target vertex $t$, the following bound holds:
+\[
+    d_{LCA}(s,t) = d_G(s,LCA(s,t)) + d_G(LCA(s,t),t) \leq 2{\sigma}_{max}
+\]
+And at each step, suppose decentralized search is visiting vertex $u$ and $u \neq t$. Assume the tightest upper bound in equation~\ref{equ:upper} is achieved on shortest path tree $SPT_l$ rooted at landmark $l$. Let $v$ be the neighbor vertex of $u$ on path path $p_{LCA_l}(u,t)$. Since $SPT_l$ does not have cycle, $p_{LCA_l}(v,t) \in p_{LCA_l}(u,t)$. Therefore the following equation holds:
+\[
+		d_{LCA}(v,t) = |p_{LCA_l}(v,t)| = |p_{LCA_l}(u,t)| - 1 = d_{LCA}(u,t) - 1
+\]
+Since decentralized search always pick the neighbor with shortest LCA distance to the target, the LCA distance to the target at each step decreases at least by $1$. Therefore, the decentralized search terminates in at most $2{\sigma}_{max}$ steps. 
+\end{proof}
 
-The time complexity of Decentralized search depends on the max degree and the diameter of the graph. Decentralized search take at most ${\sigma}_{max}$ steps to finish. For each step, the search need to check at most ${\delta}_{max}$ neighbor vertices, where ${\delta}_{max}$ is the max vertex degree of the graph. For each neighbor, $k$ LCA computations are required where $k$ is the number of landmarks. The compuational time required for each LCA computation is $O(h)$ where $h$ is the height of the indexed shortest path tree. And we have $h \leq {\sigma}_{max}$ So the worst case time complexity of decentralized search is $O(k{{\sigma}_{max}}^2{\delta}_{max})$. 
+The time complexity of Decentralized search depends on the max degree and the diameter of the graph. Decentralized search take at most $2{\sigma}_{max}$ steps to finish. For each step, the search need to check at most ${\delta}_{max}$ neighbor vertices, where ${\delta}_{max}$ is the max vertex degree of the graph. For each neighbor, $k$ LCA computations are required, and time complexity for each LCA computation is $O(h)$\footnote{$O(h)$ is for simple online algorithm, off-line algorithms can achieve better time complexity $O(1)$.}, where $h$ is the height of the indexed shortest path tree and $h \leq {\sigma}_{max}$. So the worst case time complexity of decentralized search is $O(k{{\sigma}_{max}}^2{\delta}_{max})$.
 
-The space complexity for decentralized search contains two parts, offline index space complexity and online query space complexity. The space required for offline index is $O(k{\sigma}_{max}n)$. For each query, $O(k{\sigma}_{max})$ space is required to store the labels of target vertex and the vertex that is being examined, $O({\sigma}_{max})$ space is required to store the approximated path. Combining them together, the online search space complexity of decentralized search is $O(k{\sigma}_{max})$.
+The space complexity for decentralized search contains two parts, offline index space complexity and online query space complexity. The space required for offline index is $O(k{\sigma}_{max}n)$, where $n$ is number of vertices. For each query, $O(k{\sigma}_{max})$ space is required to store the labels of target vertex and the vertex that is being examined, $O(2{\sigma}_{max})$ space is required to store the approximated path. Combining them together, the online search space complexity of decentralized search is $O(k{\sigma}_{max})$. 
 
 \subsection{Bi-directional search}
 
-In this section we show how to apply the idea of bidirectional search to decentralized search. In bidirectional decentralized search, the backward search starting at target vertex with a goal to reach the source vertex. Driven by a different goal and launched at a different start point, the backward search may explore a different search space compared to the forward search. It is not guaranteed that the forward search and backward search will eventually meet at any vertex except the source and target due to this difference. Actually, in decentralized search, the forward search and backward search are more like two independent search, that only resulting paths are required to be combined.
+In this section, we show how to apply the idea of bidirectional search to decentralized search. In bidirectional decentralized search, the backward search starts at target vertex and is driven by the goal to reach the source vertex. The forward search and backward search may explore different search spaces due to the different start point and search goal. By exploring a different search space  the backward search may find a shorter approximated path. This, however, is quite different from the application of bidirectional search in BFS or A* search where the main focus is to reduce search space. 
 
-The main purpose for performing a backward search is to increase the possibility of finding a shorter approximate path and increase path diversity by exploring a different search space. This, however, is quiet different from the application of bidirectional search in BFS or A* search where the main focus is to reduce search space. For example in Fig. \ref{fig:bi_dec}, the search starts from $20$ to $7$ can find a shorter path $p = (20, 17, 19, 5, 7)$ than the search starts at $7$. Due to that $0$ has a smaller LCA distance to $7$ than $19$, the edge $(19, 5)$ cannot be found by the search starts from $20$. 
+An example of directional decentralized search is shown in Fig.~\ref{fig:DS:bidirectional}. Let $11$ be source and $5$ be target. The backward search can find a shorter path $p_{bwd} = (5, 12, 11)$ than the path $p_{fwd} = (11, 4, 0, 1, 5)$ found by the forward search. The backward search find a shorter path by exploring edge $(5, 12)$. This edge is not discovered by forward search because when the search traversing vertex $4$, it prioritize $0$ than $12$ due to the former one has lower LDA distance to target vertex $5$. 
 
-\subsection{Handle ties}
+It is not guaranteed that the forward search and backward search will eventually meet at any vertex except the source and target vertex due to the different search space. As shown in our previous example, $p_{fwd} \cap p_{bwd} = (11, 5)$. Actually, in decentralized search, the forward search and backward search are mostly two independent search, that the only interaction of them is when combining the search results. Search results can be combined simply by picking the shorter path or finding short cuts connecting resulting paths. 
 
-Tie happens frequently in decentralized search, especially when the number of landmarks is small. A tie here means during decentralized search, there are multiple neighbors of a visited vertex that have same LCA distance to the target. The reason for tie is that there is not sufficient information in the index that can separate some vertices for a query. For example in Fig. \ref{fig:tie}, to find path from $8$ to $6$, when traversing neighbors of vertex $8$, both vertex $11$ and $4$ have the same LCA distance to vertex $6$, but their actual distances to vertex $6$ are different due to edges currently invisible to the decentralized search. Note that tie is always query-dependent, different queries may have very different tie patterns even if the related searches examine similar search spaces. 
+\subsection{Tie breaking strategy}
 
-Expanding the search onto each tie vertex require the search examine different sets of vertices and edges which increase the cost of the search, but also increase the chance to find a shorter path as well. Two obvious solution to deal with ties are either randomly pick one vertex to visit or visit all vertices in the next step. The former one incur no additional cost and will have the least possibility to find a shorter path, we refer to it as single branch decentralized search. The latter one require most effort and will lead to the shortest path the decentralized search could possibly find, we refer to it as full branch decentralized search.
+Ties happen frequently in decentralized search, especially when the number of landmarks is small. In the decentralized search, a tie means multiple neighbor vertices have same LCA distance to the target in a step. The reason a tie happens is that there is not sufficient information in the index that can separate neighbor vertices for a query. For example in Fig.~\ref{fig:DS:tie}, consider a search from $18$ to $8$. When traversing neighbors of vertex $18$, both vertex $10$ and $9$ have the same LCA distance to target vertex $8$, but their actual distances to vertex $8$ are different due to that short cut edge $(9, 17)$ is currently invisible to the decentralized search. 
 
-[k branch] The single branch decentralized search and full branch decentralized search define the achievable accuracy range of decentralized search. The number of ties during on complex networks also follows a power-law distribution.
+The search space of the decentralized search can be increased by expanding the search onto each tie vertex. This increase both the performance, i.e. chances to find a shorter path and number of paths being found, and the cost of the search. Two extreme ways to deal with ties are either only pick one vertex to visit or visit all vertices in the next step. The former one incurs least search cost and has the least possibility to find a shorter path, we refer to it as single branch decentralized search. The latter one requires most effort and can lead to the shortest path the decentralized search could possibly find, we refer to it as full branch decentralized search. 

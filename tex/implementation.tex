@@ -1,7 +1,7 @@
 \section{Distributed Implementations}
 \label{implementation}
 
-To handle extremely large graphs and large amount of queries, we implement our algorithm in distributed settings. Since decentralized search has low online search space complexity and does not have data dependency upon each other, it is well suitable to run in a parallel way. In this section, we discuss how to implement decentralized search on a distributed general graph processing platform, Powergraph\cite{180251}.
+To handle extremely large graphs and large amount of queries, we implement decentralized search on a distributed general graph processing platform, Powergraph~\cite{180251}. As decentralized search has low online search space complexity and have very low data dependency upon each other, it is well suited to run multiple searches in a parallel way. 
 
 \begin{figure*}[ht]
     \centering
@@ -10,11 +10,11 @@ To handle extremely large graphs and large amount of queries, we implement our a
     \label{fig:system}
 \end{figure*}
 
+An overview of our shortest path query processing system is shown in Fig.~\ref{fig:system}. The system first partition the graph with Powergraph onto multiple machines. Then several BFSs are performed to construct the index. After the index has been built, multiple shortest path queries can run in parallel with decentralized search. Large volumes of queries can submit repeatedly, for which responses will be generated.
+
 \subsection{Decentralized search vertex-program}
 
-An overview of our shortest path query processing system is shown in \ref{fig:system}. The system first partition the graph with Powergraph onto multiple machines. Then several BFSs are performed to construct the index. After the index is built, multiple shortest path queries can run in parallel with decentralized search. Large volumes of queries can submit repeatedly, for which responses will be generated.
-
-Decentralized search can be easily implemented as vertex-program in appliance to Powergraph's Gather-Apply-Scatter model. Each search instance contains approximated path and label of target vertex, as index is stored distributively and label of target vertex may not be accessible on each machine locally. In Gather phase, the search aim to find the neighbor with shortest LCA distance to the target. For each query, LCA distance $d_LCA$ calculated from labels $L$ of each neighbor and target vertex is collected and accumulated by finding the neighbor with the smallest LCA distance, A next hop candidate is returned after this phase. In apply phase, the program appends the candidate to the approximated path $p_{appr.}$ and and check whether the terminate criteria is met for each query. If so, the result path will be recorded and the query will be terminated. Otherwise, program will proceed to Scatter phase to start new vertex-programs on the candidate vertex and pass on the query instance to them. Algorithm \ref{alg:vc_dec} shows the detailed algorithm.
+Decentralized search can be easily implemented as vertex-programs in Gather-Apply-Scatter model used by Powergraph. Each query instance contains the approximated path and label of target vertex, as index is stored distributively and label of target vertex may not be accessible on each machine locally. Each step of decentralized search is split into gather, apply and scatter phase. In Gather phase, LCA distance to target vertex $d_{LCA}$ is collected from each neighbor and accumulated by finding the neighbor with the smallest LCA distance to target. The accumulated result is returned as a next step candidate. In apply phase, the candidate is appended to the approximated path $p_{appr.}$ and the termination condition is checked. If it is met, the result path will be recorded and the query will be terminated. Otherwise, program will proceed to scatter phase to start a new vertex-program on the candidate vertex and pass on the query instance to them. Algorithm~\ref{alg:vc_dec} shows the detailed algorithm.
 
 \begin{algorithm}
     \caption{Algorithm decentralized search vertex program running on $u$}
@@ -30,32 +30,34 @@ Decentralized search can be easily implemented as vertex-program in appliance to
         \State \Return $min(d_LCA(v_1,t), d_LCA(v_2,t)$, related $vid$
         \EndFunction
 
-        \Function{apply}{$p_{appr.}(s,t)$, $d_LCA(v,t)$}
+        \Function{apply}{$\tilde{p}(s,t)$, $d_LCA(v,t)$}
         %\Comment {Update approximate path and check termination}
-        \State $p_{appr.}(s,t) += vid$
+        \State $\tilde{p}(s,t) += vid$
         \If {terminate criteria is met}
-            \State store $p_{appr.}(s,t)$
+            \State store $\tilde{p}(s,t)$
             \State $term$ = true
         \Else
             \State $term$ = false
         \EndIf
         \EndFunction
 
-        \Function{scatter}{$p_{appr.}(s,t)$, $term$}
+        \Function{scatter}{$L(t)$, $\tilde{p}(s,t)$, $term$}
         %\Comment {activate candidates}
         \If {$\neg term$}
-            \State Activate(v, $p_{appr.}(s,t)$)
+            \State Activate(v, $L(t)$, $\tilde{p}(s,t)$)
         \EndIf
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
 
-There are two thing to notice for the decentralized search vertex program. First, the search only update the approximated path $p_{appr.}$. There is no data dependency among multiple searches except when in the last results are stored to the same container for each machine. Second, the communication for decentralized search can happen during gather and scatter phase. In gather phase, the label of target vertex need to be passed to multiple machines, and the size is $O(k{\sigma}_{max})$. And each gather function return a $d_LCA$ along with its id that has $O(1)$ size. So for each query, only $(O(k{\sigma}_{max}) + O(1)) * M$ size of data is transferred where $M$ is the number of machines. In scatter phase, communication happens when a vertex is chosen as next hop and need to be activated, the whole search instance, including approximated path and label of target vertex need be transmitted to the new vertex program. For each query, $O(k{\sigma}_{max}) + O({\sigma}_{max})$ size of data may be transferred.
+The communication for the decentralized search happen during gather and scatter phase. In gather phase, the label of target vertex need to be passed to multiple machines, and the size is $O(k{\sigma}_{max})$. And each gather function return a $d_{LCA}$ along side of its id. So for each query, only $O(k{\sigma}_{max})$ size of data is transferred. In scatter phase, communication happens when a vertex is chosen as the next step candidate and need to be activated, the whole search instance, including approximated path and label of target vertex need be transmitted to the new vertex program. For each query, $O(k{\sigma}_{max})$ size of data may be transferred. The search will take as much as $2{\sigma}_{max}$ steps. So the overall communication overhead for each query is $O(k{{\sigma}_{max}}^2)$. 
 
-The low memory and communication cost, along side with light data dependency makes multiple decentralized search instance very suitable to run in parallel. To modify the vertex program for parallel processing, each vertex program maintain a list of search instance. During gather phase, label of target vertex for each query is transmitted to other machines, and $d_LCA$ is calculated for each query. Each query is updated during apply phase. In scatter phase, each query is examined for whether activating a certain vertex or not.
+During decentralized search, only the approximated path $\tilde{p}$ is updated at each step. Therefore, there is only $RAR$ type of data dependency among multiple decentralized searches on the underlying graph. Depends on implementations, there may be output dependency, i.e. $WAW$, when output $\tilde{p}$ to the same container on each machine.
+
+The low memory and communication cost, along side with $RAR$ only data dependency during the search makes a large number of decentralized search very suitable to run in parallel. To modify the vertex program for parallel processing, each vertex program maintain a list of search instance. During gather phase, label of target vertex for each query is transmitted to other machines, and $d_{LCA}$ is calculated for each query. Each query is updated during apply phase. In scatter phase, each query is examined for whether activating a certain vertex or not.
 
 \subsection{Distributed tie breaking strategy}
-If a tie happens, according to tie strategy, multiple neighbors may be returned as candidates at gather phase. Then at apply phase, the search instance will be fork itself into multiple search instance, each for a single candidate. The problem here is, not like centralized version, during the future computation, even a search instance find a shorter path than others, it cannot terminate other searches as such synchronization is quite costly in distributed settings. With this limitation, the search space are quite difficult to control and the search may end up with excessive number of child search instances. So in our implementation, at each step, only one candidate will be chosen as a "`main"' candidate. For candidates that are not "`main"' candidates, an extra terminate criteria will be applied. At the next step, if the search cannot find a shorter path than expected, i.e. $|p_{appr.}| + d_LCA$, then the search will stop, and no result will be recorded. This can control the search space effectively without compromise accuracy too much.
+According to tie breaking strategy, multiple neighbors may be returned as candidates at gather phase. In this case, the search instance copies itself into multiple search instances, append each candidate to each search instance at apply phase and activate them at scatter phase. The problem is, as search instances created at apply phase become independent when the search proceeding to next step, during the future steps, even one search instance find a shorter path than others, it can hardly terminate other searches as such synchronizations is too costly in distributed settings. With this limitation, a search may end up with excessive number of child search instances. To overcome this problem, in our implementation, only one candidate will be labeled as a "`main"' candidate at each step. For candidates that are not the "`main"' candidate, an extra termination condition is applied. In the next step, if the search cannot find a shorter path than expected, i.e. $|p_{appr.}| + d_LCA$, the search will stop, and no result will be recorded. This can control the search space effectively without compromise much accuracy.
 
 \subsection{Prune LCA computation}
-It is possible to prune number of LCA computation required at each step for decentralized search. Suppose the search is visiting vertex $u$, which means the $d_LCA{u, t}$ has already been calculated in previous step. When traverse $u$'s neighbors, if a neighbor $v$ is a child on the indexed shortest path tree $T_i$, then the LCA computation for $v$ and $t$ on that tree $T_i$ does not need to be performed as it is certain that $d_LCA(i){v, t} > d_LCA(i){u, t}$. In practice, such way to pruning can reduce half of the total number of LCA computations of a single search on average.
+A major part of computation load of decentralized search is from large number of LCA computations. It is possible to prune number of LCA computation required at each step for decentralized search to reduce the overall computation load. Suppose the search is visiting vertex $u$, which means the $d_{LCA}(u, t)$ has already been calculated in previous step. If a neighbor $v$ is a child of $u$ on the indexed shortest path tree $SPT_l$, then the LCA computation for $v$ and $t$ on $SPT_l$ does not need to be performed as it is clearly that $d_{LCA_l}(v, t) > d_{LCA_l}(u, t)$. In practice, this principle can prune almost half of the total number of LCA computations of a single search on average.

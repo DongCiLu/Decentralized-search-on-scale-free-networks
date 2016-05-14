@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=main.tex
+Document=introduction.tex
 
 [Frame0_View0,0]
-TopLine=44
-Cursor=6926
+TopLine=41
+Cursor=5519
 
 [Frame1]
 Flags=0
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=introduction.tex
+Document=main.tex
 
 [Frame1_View0,0]
-TopLine=0
-Cursor=7275
+TopLine=12
+Cursor=1613
 
 [Frame2]
 Flags=0
@@ -47,14 +47,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=relatedwork.tex
+Document=implementation.tex
 
 [Frame2_View0,0]
-TopLine=0
-Cursor=2773
+TopLine=55
+Cursor=6781
 
 [Frame3]
 Flags=0
@@ -65,14 +65,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=preliminary.tex
+Document=preprocessing.tex
 
 [Frame3_View0,0]
-TopLine=0
-Cursor=1720
+TopLine=24
+Cursor=3315
 
 [Frame4]
 Flags=0
@@ -83,14 +83,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
-Class=LaTeXView
-Document=searching.tex
+NormalPos.right=2656
+NormalPos.bottom=1477
+Class=BibTeXView
+Document=reference.bib
 
 [Frame4_View0,0]
-TopLine=53
-Cursor=8510
+TopLine=462
+Cursor=18948
 
 [Frame5]
 Flags=0
@@ -101,14 +101,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=preprocessing.tex
+Document=conclusion.tex
 
 [Frame5_View0,0]
-TopLine=15
-Cursor=2617
+TopLine=0
+Cursor=346
 
 [Frame6]
 Flags=0
@@ -119,14 +119,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=implementation.tex
+Document=evaluation.tex
 
 [Frame6_View0,0]
-TopLine=38
-Cursor=5645
+TopLine=183
+Cursor=10366
 
 [Frame7]
 Flags=0
@@ -137,14 +137,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=evaluation.tex
+Document=preliminary.tex
 
 [Frame7_View0,0]
-TopLine=84
-Cursor=6718
+TopLine=0
+Cursor=1808
 
 [Frame8]
 Flags=0
@@ -155,14 +155,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
+NormalPos.right=2656
+NormalPos.bottom=1477
 Class=LaTeXView
-Document=conclusion.tex
+Document=searching.tex
 
 [Frame8_View0,0]
-TopLine=0
-Cursor=346
+TopLine=63
+Cursor=2273
 
 [Frame9]
 Flags=0
@@ -173,18 +173,18 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=44
-NormalPos.right=3760
-NormalPos.bottom=1813
-Class=BibTeXView
-Document=reference.bib
+NormalPos.right=2656
+NormalPos.bottom=1477
+Class=LaTeXView
+Document=relatedwork.tex
 
 [Frame9_View0,0]
-TopLine=243
-Cursor=9525
+TopLine=0
+Cursor=2589
 
 [SessionInfo]
 FrameCount=10
-ActiveFrame=4
+ActiveFrame=0
 
 [Bookmarks]
 preprocessing.tex=43 

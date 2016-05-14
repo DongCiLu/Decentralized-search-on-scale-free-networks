@@ -53,6 +53,8 @@
 \usepackage[flushleft]{threeparttable}
 \usepackage{subfigure}
 
+\newtheorem{theorem}{Theorem}
+
 \begin{document}
 
 %% Copyright
@@ -152,7 +154,7 @@ in Large-scale Complex Networks}
 
 \maketitle
 \begin{abstract}
-Finding approximate shortest paths for extremely large-scale complex networks is still a challenging problem, where existing work requires too much overhead to achieve accurate results and good path diversity for graphs with up to billions of edges. In this paper, we develop a online search method based on preprocessed indexes, to approximate shortest path of arbitrary pairs of vertices. We demonstrate that the algorithm achieves much higher accuracy and path diversity with less index overhead compared to previous work. The algorithm can also achieve differentiated level of accuracies by dynamically controlling the search space to meet various application needs. In order to perform decentralized search more efficiently, we propose a new heuristic index construction algorithm that can greatly increase the approximation accuracy. We further develop support for parallel searches to further reduce the average search time for large amount of queries. We implement our algorithm in distributed settings to deal with extreme size graphs. Our algorithm can handle graphs with billions of edges and perform searches for millions of queries in parallel. We evaluate our algorithm on various real world graphs from different disciplines.
+Finding approximate shortest paths for extremely large-scale complex networks is a challenging problem, where existing work requires large overhead to achieve accurate results and good path diversity for graphs with millions of vertices. In this paper, we develop an online search method based on preprocessed indexes, to approximate shortest path of arbitrary pairs of vertices. We demonstrate that the algorithm achieves much higher accuracy and path diversity with less index overhead compared to previous work. The algorithm can also achieve differentiated level of accuracies by dynamically controlling the search space to meet various application needs. In order to perform decentralized search more efficiently, we propose a new heuristic index construction algorithm that can greatly increase the approximation accuracy. We further develop support for parallel searches to further reduce the average search time for a large number of queries. We implement our algorithm in distributed way to deal with extreme size graphs. Our algorithm can handle graphs with billions of edges and perform searches for millions of queries in parallel. We evaluate our algorithm on various real world graphs from different disciplines.
 \end{abstract}
 
 

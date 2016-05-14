@@ -42,6 +42,6 @@ set(gca, 'XTickLabel', label_string);
 ylim([0.0000099 3]);
 
 ylabel_hand=ylabel('Average search run time (s)');
-set(ylabel_hand,'Fontname', 'Times New Roman', 'Fontsize', 24);
+set(ylabel_hand,'Fontname', 'Times New Roman', 'Fontsize', 20);
 legend_hand = legend(legend_string);
-set(legend_hand,'Fontname', 'Times New Roman', 'Fontsize', 24, 'Location', 'best', 'Orientation', 'Horizontal');
+set(legend_hand,'Fontname', 'Times New Roman', 'Fontsize', 20, 'Location', 'best', 'Orientation', 'Horizontal');

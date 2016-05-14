@@ -99,6 +99,11 @@ M.~Maier, M.~Rattigan, and D.~Jensen.
 \newblock Indexing network structure with shortest-path trees.
 \newblock {\em ACM Trans. Knowl. Discov. Data}, 5(3):15:1--15:25, Aug. 2011.
 
+\bibitem{newman2010networks}
+M.~Newman.
+\newblock {\em Networks: an introduction}.
+\newblock OUP Oxford, 2010.
+
 \bibitem{Potamias:2009:FSP:1645953.1646063}
 M.~Potamias, F.~Bonchi, C.~Castillo, and A.~Gionis.
 \newblock Fast shortest path distance estimation in large networks.
