@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  14 MAY 2016 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  15 MAY 2016 15:35
 entering extended mode
 **./main.tex
 (main.tex
@@ -417,53 +417,55 @@ Overfull \hbox (5.23598pt too wide) in paragraph at lines 64--65
 []\T1/aer/m/n/9 Decentralized search car-ried on in-dex con-structed by greedy
  []
 
-[7] <./figures/overhead_search.pdf, id=452, 1228.59pt x 433.62pt>
-File: ./figures/overhead_search.pdf Graphic file (type pdf)
- <use ./figures/overhead_search.pdf>
-Package pdftex.def Info: ./figures/overhead_search.pdf used on input line 118.
-(pdftex.def)             Requested size: 504.0pt x 177.8846pt.
+[7]
+Overfull \hbox (11.87875pt too wide) in paragraph at lines 101--112
+ [][] 
+ []
 
-<./figures/scale_machine.pdf, id=453, 578.16pt x 433.62pt>
-File: ./figures/scale_machine.pdf Graphic file (type pdf)
- <use ./figures/scale_machine.pdf>
-Package pdftex.def Info: ./figures/scale_machine.pdf used on input line 134.
+<./figures/throughput.pdf, id=452, 1228.59pt x 433.62pt>
+File: ./figures/throughput.pdf Graphic file (type pdf)
+ <use ./figures/throughput.pdf>
+Package pdftex.def Info: ./figures/throughput.pdf used on input line 119.
+(pdftex.def)             Requested size: 478.79846pt x 168.9854pt.
+
+<./figures/scale_machine_throughput.pdf, id=453, 578.16pt x 433.62pt>
+File: ./figures/scale_machine_throughput.pdf Graphic file (type pdf)
+ <use ./figures/scale_machine_throughput.pdf>
+Package pdftex.def Info: ./figures/scale_machine_throughput.pdf used on input line 135.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
- [8 <./figures/accuracy_stepy.pdf>] <./figures/scale_query.pdf, id=461, 578.16pt x 433.62pt>
-File: ./figures/scale_query.pdf Graphic file (type pdf)
- <use ./figures/scale_query.pdf>
-Package pdftex.def Info: ./figures/scale_query.pdf used on input line 143.
+
+<./figures/scale_query_throughput.pdf, id=454, 578.16pt x 433.62pt>
+File: ./figures/scale_query_throughput.pdf Graphic file (type pdf)
+ <use ./figures/scale_query_throughput.pdf>
+Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line 144.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-) (conclusion.tex)
-(main.bbl [9 <./figures/overhead_search.pdf> <./figures/scale_machine.pdf> <./figures/scale_query.pdf>]
+)
+(conclusion.tex [8 <./figures/accuracy_stepy.pdf>]) (main.bbl [9 <./figures/throughput.pdf> <./figures/scale_machine_thr
+oughput.pdf> <./figures/scale_query_throughput.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]) [11
-
-] (main.aux) ) 
+) [10] (main.aux) ) 
 Here is how much of TeX's memory you used:
  3851 strings out of 493634
- 50356 string characters out of 3141303
+ 50436 string characters out of 3141303
  123593 words of memory out of 3000000
  7095 multiletter control sequences out of 15000+200000
  56617 words of font info for 82 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  41i,11n,35p,1506b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/P
-rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (11 pages, 1426633 bytes).
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9
+.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on main.pdf (10 pages, 1427954 bytes).
 PDF statistics:
- 534 PDF objects out of 1000 (max. 8388607)
+ 540 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

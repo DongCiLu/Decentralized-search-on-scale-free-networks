@@ -95,11 +95,11 @@ The higher the $r_p$'s value, the lower the dependence of a path to label of sou
 \label{eval_overhead}
 
 \begin{table}
-		\caption{Index overhead per landmark}
+		\caption{Space overhead measurements}
     \label{table:ioh}
     \centering
     \begin{tabular}{c|cc} \hline
-				Graph&Index size(MB)&Query size(Byte)\\ \hline
+				Graph&Index size(MB/landmark)&Query size(Byte)\\ \hline
 				Wiki&189.9&369.8 \\ 
 				Skitter&143.7&412.9 \\ 
 				Livejournal&429.4&419.9 \\ 
@@ -115,55 +115,35 @@ The index and query overhead is shown in table~\ref{table:ioh}. In our implement
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=\linewidth]{./figures/overhead_search.pdf}
+		%\hspace*{-0.5cm} 
+    \includegraphics[width=0.95\linewidth]{./figures/throughput.pdf}
     \caption{The amortized search time of decentralized search with various optimizations.}
-    \label{fig:overhead_search}
+    \label{fig:throughput}
 \end{figure*}
 
-Fig.~\ref{fig:overhead_search} shows the online search overhead in log scale for both non-parallel mode and parallel batch mode. By examing all the neighbors of a vertex at each step, decentralized search introduces much higher online search overhead than TreeSketch. Nevertheless, due to that decentralized search has very low foot print, large amount of searches can run independently in parallel efficiently. We can see in Fig.~\ref{fig:overhead_search}, the parallel mode perform 100,000 queries simultaneously, which lead to very low amortized search time for each query. The amortized search time is reduced to from 0.18\% to 1.1\% for single branch and from 0.15\% to 1.3\% for full branch compared to non-parallel mode. 
+Fig.~\ref{fig:throughput} shows the throughput of our system in log scale for both serial mode and parallel mode. The throughput of parallel mode is calculated based on running 100,000 queries simultaneously. The throughput of parallel mode is much higher than serial mode, from 94.7 to 544.4 times for single branch decentralized search and 74.7 to 679.1 times for full branch decentralized search. 
 
-For both non-parallel and parallel mode, full branch tie break strategy introduces much higher overhead than single branch strategy. Ranging from 3.3 to 30.8 times higher search time for non-parallel version and from 5.1 to 44.4 times higher average search time for parallel version.
+We can also see that the due to the search duplicates itself for full branch decentralized search, compared to single branch, the throughput is 3.2\% to 30.4\% for serial mode and 2.3\% to 21.1\% for parallel mode. 
 
 \subsection{Scalability}
 \label{eval_scalability}
 
-Since our algorithm is designed for large-scale networks, scalability is another major concern of our algorithm. Due to that we implement the algorithm in a distributed setting and execute queries in a parallel way, we study how our algorithm performs when number of machines and queries increase. We only perform single branch decentralized search here as full branch search is equal to multiple independent single branch searches.
+Since our algorithm is designed for large-scale networks, scalability is another major concern of our algorithm. Due to that we implement the algorithm in a distributed setting and execute queries in a parallel way, we study how our algorithm performs when number of machines and queries increase. We only perform single branch decentralized search here as full branch search is equal to multiple independent single branch searches thus have the similar trend.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{./figures/scale_machine.pdf}
+    \includegraphics[width=\linewidth]{./figures/scale_machine_throughput.pdf}
     \caption{The total run time for 1 million queries as the number of machines increase}
     \label{fig:scale_machine}
 \end{figure}
 
-We first evaluate the search time when number of machines increasing. Results shown in Fig.~\ref{fig:scale_machine} are averaged over 1,000,000 queries. We can see the trend is that the average run-time decreases as the number of machines increase. The average search time decreases fast when number of machines is small and slower when large number of machines are used. The total run time on 16 machines range from 17\% to 33\% of the total run time on a single machine for various graphs.
+We first evaluate the search time when number of machines increasing. Results shown in Fig.~\ref{fig:scale_machine} are based on the results of running 1,000,000 queries simultaneously. We can see the throughput increases as the number of machines increases. The throughput on 16 machines is 3.0 to 5.9 times higher than on a single machine for various graphs. Note that we do not have results for the 3 larger graphs as they are not able to fit into less than 8 machines.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{./figures/scale_query.pdf}
+    \includegraphics[width=\linewidth]{./figures/scale_query_throughput.pdf}
     \caption{The total run time on 20 machines as the number of queries increase}
     \label{fig:scale_query}
 \end{figure}
 
-We observe great scalability of decentralized search as number of queries increase. All experiments are carried on 20 machines in this section. We can see in Fig.~\ref{fig:scale_query} that the total search time increases slowly when the number of queries is small. Because for small number of queries, constant overheads such as engine start/stop is the major part of run time. For large number of queries, the total run time growth is still lower than linear growth. The growth of total search time never catch up with the growth of number of queries until it reaches the system limit, i.e. memory limit or network limit.
-
-%\begin{figure}[t]
-    %\centering
-    %\includegraphics[width=\linewidth]{./figures/scale_graph.pdf}
-    %\caption{The average search time for different size of graphs}
-    %\label{fig:scale_graph}
-%\end{figure}
-%
-%In the last experiment, we evaluate the search time as the size of graph increases. Unlike BFS which needs to traverse neighbors of $O(n)$ vertices, decentralized search only needs to exam neighbors of $O(log(n))$ vertices for complex networks due to the small world property. We can clearly see in Fig. \ref{fig:scale_graph} that as the number of vertices increases, average search time of decentralized search does not follow the same trend. The graph friendster which have sixty-five millions vertices have average search time only $2.05$ times more than graph mouse-gene which only have forty-three thousand vertices.
-
-%\subsection{error distribution}
-%
-%\begin{figure}[t]
-    %\centering
-    %\includegraphics[width=\linewidth]{./figures/empty.pdf}
-    %\caption{Distribution of errors of different length}
-    %\label{fig:distribution}
-%\end{figure}
-%
-%\comment{we want to show that the algorithm performs equally well for various path length}
-%In the last, we study the error distribution according to the length of exact shortest path.
+We also show the trend of the throughput as number of queries running simultaneously increases. All experiments are carried on 20 machines. We can see in Fig.~\ref{fig:scale_query} the constant growth of throughput as the number of queries running simultaneously increases. The growth of throughput slow down for large number of queries as the system limits are reached, i.e. memory size or network bandwidth. The throughput for 1,600,000 queries running simultaneously is 2.3 to 5.0 times higher than for 100,000 queries for various graphs.
