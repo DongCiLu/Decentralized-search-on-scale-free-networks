@@ -5,8 +5,8 @@ To handle extremely large graphs and large amount of queries, we implement decen
 
 \begin{figure*}[ht]
     \centering
-    \includegraphics[width=\linewidth]{./figures/new_illustrate/System.pdf}
-    \caption{A system overview}
+    \includegraphics[width=\linewidth]{./figures/new_illustrate/system.pdf}
+    \caption{A overview of distributed shortest path query processing system}
     \label{fig:system}
 \end{figure*}
 
@@ -14,38 +14,41 @@ An overview of our shortest path query processing system is shown in Fig.~\ref{f
 
 \subsection{Decentralized search vertex-program}
 
-Decentralized search can be easily implemented as vertex-programs in Gather-Apply-Scatter model used by Powergraph. Each query instance contains the approximated path and label of target vertex, as index is stored distributively and label of target vertex may not be accessible on each machine locally. Each step of decentralized search is split into gather, apply and scatter phase. In Gather phase, LCA distance to target vertex $d_{LCA}$ is collected from each neighbor and accumulated by finding the neighbor with the smallest LCA distance to target. The accumulated result is returned as a next step candidate. In apply phase, the candidate is appended to the approximated path $p_{appr.}$ and the termination condition is checked. If it is met, the result path will be recorded and the query will be terminated. Otherwise, program will proceed to scatter phase to start a new vertex-program on the candidate vertex and pass on the query instance to them. Algorithm~\ref{alg:vc_dec} shows the detailed algorithm.
+Decentralized search can be easily implemented as vertex-programs in Gather-Apply-Scatter model used by Powergraph. Index is stored distributively as vertex data. Each query instance contains the approximated path and label of target vertex, as it is not accessible on each machine locally. Each step of decentralized search is split into gather, apply and scatter phase. In Gather phase, LCA distance to target vertex $d_{LCA}$ is collected from each neighbor and accumulated by finding the neighbor with the smallest LCA distance to target. The accumulated result is returned as a next step candidate. In apply phase, the candidate is appended to the approximated path $p_{appr.}$ and the termination condition is checked. If it is met, the result path will be recorded and the query will be terminated. Otherwise, program will proceed to scatter phase to start a new vertex-program on the candidate vertex and pass on the query instance to them. Algorithm~\ref{alg:vc_dec} shows the detailed algorithm.
 
 \begin{algorithm}
-    \caption{Algorithm decentralized search vertex program running on $u$}
+    \caption{Decentralized search vertex program on $u$}
 		\label{alg:vc_dec}
     \begin{algorithmic}
-        \Function{gather}{$L(v)$, $L(t)$}
-        %\Comment {Collect LCA distances from Nbrs}
-        \State \Return $d_LCA(v, t)$, $v.id$
-        \EndFunction
+        \Function{gather}{$L(v), L(t)$} 
+						\Comment {on neighbor vertex $v$}
+						\State \Return $d_{LCA}(v, t)$, $v$
+				\EndFunction
 
-        \Function{sum}{$d_LCA(v_1,t)$, $vid1$, $d_LCA(v_2,t)$, $vid2$}
-        %\Comment {Find Nbr with smallest LCA distance to target}
-        \State \Return $min(d_LCA(v_1,t), d_LCA(v_2,t)$, related $vid$
-        \EndFunction
+        \Function{sum}{$d_{LCA}(v_1,t)$, $v_1$, $d_{LCA}(v_2,t)$, $v_2$}
+						\If {$d_{LCA}(v_1,t) \le d_{LCA}(v_2,t)$}
+								\State \Return $d_{LCA}(v_1,t), v_1$
+						\Else
+								\State \Return $d_{LCA}(v_2,t), v_2$
+						\EndIf
+				\EndFunction
 
-        \Function{apply}{$\tilde{p}(s,t)$, $d_LCA(v,t)$}
-        %\Comment {Update approximate path and check termination}
-        \State $\tilde{p}(s,t) += vid$
-        \If {terminate criteria is met}
-            \State store $\tilde{p}(s,t)$
-            \State $term$ = true
-        \Else
-            \State $term$ = false
-        \EndIf
-        \EndFunction
+        \Function{apply}{$L(t)$, $\tilde{p}(s,t)$, $d_{LCA}(v,t)$}
+						\If {$v \in L(t)$}
+								\State $p_{remain} \gets$ path from $v$ to $t$ in $L(t)$
+								\State append $p_{remain}$ to $\tilde{p}(s,t)$
+								\State store $\tilde{p}(s,t)$
+								\State $term$ = true
+						\Else
+								\State append $v$ to $\tilde{p}(s,t)$
+								\State $term$ = false
+						\EndIf
+				\EndFunction
 
         \Function{scatter}{$L(t)$, $\tilde{p}(s,t)$, $term$}
-        %\Comment {activate candidates}
-        \If {$\neg term$}
-            \State Activate(v, $L(t)$, $\tilde{p}(s,t)$)
-        \EndIf
+						\If {$\neg term$}
+								\State Activate($v$, $L(t)$, $\tilde{p}(s,t)$)
+						\EndIf
         \EndFunction
     \end{algorithmic}
 \end{algorithm}

@@ -1,49 +1,51 @@
-\section{Index Construction}
+\section{Greedy Index Construction}
 \label{preprocessing}
 
-This section describes our greedy index construction algorithm. Previous works have studied various landmark selection strategies which have a significant impact on the accuracy of online query. We observe that even with the same landmark set, choosing which shortest path from vertex to landmark to be indexed also plays an important role for the accuracy of online search. 
+This section describes the greedy index construction algorithm. For a vertex, all shortest paths from a landmark can be indexed as the label of it. We study the problem of deciding which shortest path to be indexed can lead to better online query accuracy for average cases. 
 
 \begin{figure*}[ht]
     \centering
     \includegraphics[width=\linewidth]{./figures/new_illustrate/bfs_illustrate.pdf}
-    \caption{Greedy algorithm index shortest path with highest path degree during breadth first search}
+    \caption{Heuristic index construction pick shortest path with highest path degree during breadth first search}
     \label{fig:bfs_illustrate}
 \end{figure*}
 
-\subsection{Greedy index construction algorithm}
-As the core of decentralized search is to iteratively find vertices that share the least common ancestor with target vertex furthest to the root of the indexed shortest path tree. From the point of view of a vertex, a good shortest path from each landmark to be indexed should be the one that intersects with most of other shortest paths. With this intuition, we design our heuristic greedy index construction algorithm to index the shortest path with highest "centrality", i.e. intersects with most other shortest paths. To represent the "centrality" of a shortest path, we use the sum of vertex centrality along the path. Betweenness centrality fits our needs very well, but the computation complexity to even estimate the value for every vertex in a graph is high~\cite{Riondato:2014:FAB:2556195.2556224}. So we use degree as an alternative and refer the sum of degree of vertices along a path as path degree, denoted by $Pd$.
+As the core of decentralized search is to iteratively find neighbor vertices that has shortest LCA distance to the target. From the point of view of a vertex $u$, for landmark $l$, if the indexed shortest path $p_i$ intersects with more indexed shortest paths of other vertices, then for queries that have $u$ as target vertex, the higher the possibility that other vertices have a LCA with $u$ that is further from $l$ on shortest path tree $SPT_l$. With this intuition, we design our heuristic greedy index construction algorithm to index the shortest path with highest "centrality", i.e. intersects with most other shortest paths to increase accuracy for average cases. To represent the "centrality" of a shortest path, we use the sum of vertex centrality along the path. Although betweenness centrality fits our needs very well, the computation cost is high~\cite{Riondato:2014:FAB:2556195.2556224}. So we use degree as an alternative and refer the sum of degree of vertices along a path as path degree, denoted by $Pd$.
 
-Our index construction algorithm, which greedily index shortest paths with highest path degree, can be easily modified from the regular index construction procedure. Note that path degree of shortest path follows optimal substructure, i.e. if $(u, .., w, ..., v)$ has the highest path degree among all the shortest path from $u$ to $v$, then the path degree of $(u, ..., w)$ is also the highest among all the shortest paths from $u$ to $w$. Normally, the index is constructed with a BFS and a label is assigned to each node the first time the search reach it. The greedy index construction algorithm first add a variable to cache the path degree $Pd$ of the shortest path stored in the label for each vertex. Then during BFS traversal for landmark $l$, suppose the search is visiting vertex $u$ and reach its neighbor $v$. If $L_l(v)$ is not empty, and $|L_l(v)| > |L_l(u)|$, then a label update is performed if $Pd(u) + v.degree > Pd(v)$. The detailed algorithm of greedy index construction is depicted in~\ref{alg:dec}. Fig.~\ref{fig:bfs_illustrate} shows an example of how to greedily select shortest path with the highest path degree during breadth first search. When traversing vertex $4$, even though vertex $8$ has already been indexed with a shortest path $(0, 1, 3, 8)$ into its label, due to that $(0, 2, 4, 8)$ has a higher path degree, the label of vertex $8$ is updated. The same thing happens to vertex $10$ while traversing vertex $6$. 
+Index construction procedure can be easily modified to index the shortest path with highest path degree. Note that path degree of shortest path follows optimal substructure, i.e. if a shortest path $(u, .., w, ..., v)$ has the highest path degree among all the shortest paths from $u$ to $v$, then the path degree of $(u, ..., w)$ is also the highest among all the shortest paths from $u$ to $w$. To modify the index construction, during BFS, suppose the search is visiting vertex $u$ and reach its neighbor $v$ with non empty $L(v)$. A label update is performed if $|L(v)| > |L(u)|$ and $Pd(u) + \rho(v) > Pd(v)$, where $\rho(v)$ denote the degree of vertex $v$. The detailed algorithm of greedy index construction is depicted in~\ref{alg:dec}. 
+
+Fig.~\ref{fig:bfs_illustrate} shows an example of how to greedily select shortest path with the highest path degree during breadth first search. When traversing vertex $4$, even though vertex $8$ has already been indexed with a shortest path $(0, 1, 3, 8)$ into its label, due to that $(0, 2, 4, 8)$ has a higher path degree, the label of vertex $8$ is updated. The same thing happens to vertex $10$ while traversing vertex $6$. 
 
 \begin{algorithm}[h]
-    \caption{Algorithm greedy index construction vertex program running on $u$}
+    \caption{Greedy index construction on landmark $l$}
 		\label{alg:ind}
     \begin{algorithmic}
-				\Function{Index construction}{$root$}
-					\State $PD \gets \emptyset$
-					\State $L \gets \emptyset$
-					\State $Q \gets \emptyset$
-					\State $L[root.id] = root.id$
-					\State $PD[root.id] = root.degree$
-					\State $Q.push(root)$
-					\While{$Q \neq \emptyset$}
-						\State $u = Q.pop()$
-						\For{$each v adjecent to u$}
-							\If{$v.id \not \in L$}
-								\State $L[v.id] = L[u.id] \cup v.id$
-								\State $PD[v.id] = PD[u.id] + u.degree$
-								\State $Q.push(v)$
-							\ElsIf{$L(v).size() < L(u).size() + 1$}
-								\State $continue$
-							\ElsIf{PD[v.id] < PD[u.id] + u.degree}
-								\State $L[v.id] = L[u.id] \cup v.id$
-								\State $PD[v.id] = PD[u.id] + u.degree$
-							\EndIf
-						\EndFor
-					\EndWhile
-					\State \Return $L$
+				\Function{Index construction}{$l$}
+						\State For each $v$ in $G$: $L(v) \gets \emptyset$
+						\State For each $v$ in $G$: $Pd(v) \gets 0$
+						\State $Q \gets \emptyset$
+						\State $L(l) = l$
+						\State $Pd(l) = \rho(l)$ \
+						\Comment {$\rho$ denotes degree}
+						\State $Q.push(l)$
+						\While{$Q \neq \emptyset$}
+								\State $u = Q.pop()$
+								\For{each $v_i$ adjecent to $u$}
+										\If{$L(v_i) \neq \emptyset$}
+												\State $L(v_i) = L(u)$
+												\State append $v_i$ to $L(v_i)$
+												\State $Pd(v_i) = Pd(u) + \rho(v_i)$
+												\State $Q.push(v_i)$
+										\ElsIf{$|L(v_i)| > |L(u)|$ {\bf and} $Pd(v_i) < Pd(u) + \rho(v_i)$}
+												\State $L(v_i) = L(u)$
+												\State append $v_i$ to $L(v_i)$
+												\State $Pd(v_i) = Pd(u) + \rho(v_i)$
+										\EndIf
+								\EndFor
+						\EndWhile
+						\State \Return $L$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
 
-Note that if the landmark set is relatively large, then following the highest path degree heuristic may lead to redundant labels, i.e. similar index for multiple landmarks. A simple way to solve this is to prioritize shortest paths that have not yet been indexed during index construction.
+Note that if the landmark set is relatively large, then following the highest path degree heuristic may lead to redundant labels, i.e. similar indexed shortest path tree for multiple landmarks, which can compromise the accuracy of online search. A simple way to solve this problem is to prioritize shortest paths which overlaps fewer vertices with shortest paths that have already been indexed.

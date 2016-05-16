@@ -154,7 +154,7 @@ in Large-scale Complex Networks}
 
 \maketitle
 \begin{abstract}
-Finding approximate shortest paths for extremely large-scale complex networks is a challenging problem, where existing work requires large overhead to achieve accurate results and good path diversity for graphs with millions of vertices. In this paper, we develop an online search method based on preprocessed indexes, to approximate shortest path of arbitrary pairs of vertices. We demonstrate that the algorithm achieves much higher accuracy and path diversity with less index overhead compared to previous work. The algorithm can also achieve differentiated level of accuracies by dynamically controlling the search space to meet various application needs. In order to perform decentralized search more efficiently, we propose a new heuristic index construction algorithm that can greatly increase the approximation accuracy. We further develop support for parallel searches to further reduce the average search time for a large number of queries. We implement our algorithm in distributed way to deal with extreme size graphs. Our algorithm can handle graphs with billions of edges and perform searches for millions of queries in parallel. We evaluate our algorithm on various real world graphs from different disciplines.
+Approximate shortest paths for extremely large-scale complex networks is a challenging problem, where existing works require large overhead to achieve high accuracy and diversity for estimated paths, especially for large graphs with millions of vertices. In this paper, we propose an online search approach based on preprocessed indexes, to approximate point-to-point shortest paths. The approach is able to find more accurate and diverse paths with limited index overhead and require low search overhead. The level of accuracy and required resource can be balanced by dynamically controlling the search space to meet various application needs. Furthermore, a new heuristic index construction algorithm is introduced that can greatly increase the approximation accuracy and involve no additional index overheads. To handle extreme size graphs, we build a query processing system with our algorithm on distributed graph processing platforms. The system also support parallel processing of online searches to achieve high throughput for large number of queries. We evaluate our algorithm on various real world graphs from different disciplines with up to billions of edges and our system can process hundreds of thousand queries per second on these graphs.
 \end{abstract}
 
 
@@ -198,9 +198,6 @@ Finding approximate shortest paths for extremely large-scale complex networks is
 %  Use this command to print the description
 %
 \printccsdesc
-
-% We no longer use \terms command
-%\terms{Theory}
 
 \keywords{Graphs, Shortest Paths, Decentralized Search}
 

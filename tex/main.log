@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  15 MAY 2016 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  16 MAY 2016 08:15
 entering extended mode
 **./main.tex
 (main.tex
@@ -341,14 +341,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
+Overfull \hbox (2.99557pt too wide) in paragraph at lines 18--19
+[]\T1/aer/m/n/9 The light-weighted de-cen-tral-ized search al-lows a large num-
+ []
+
+
 Overfull \hbox (1.69029pt too wide) in paragraph at lines 24--25
 []\T1/aer/m/n/9 We pro-pose in-dex guided de-cen-tral-ized search for short-
  []
 
-) (relatedwork.tex) (preliminary.tex [2]) (searching.tex
-<./figures/new_illustrate/ds_common.pdf, id=17, 298.86656pt x 286.82156pt>
+
+Underfull \vbox (badness 1558) has occurred while \output is active []
+
+) (relatedwork.tex) (preliminary.tex [2])
+(searching.tex <./figures/new_illustrate/ds_common.pdf, id=17, 298.86656pt x 286.82156pt>
 File: ./figures/new_illustrate/ds_common.pdf Graphic file (type pdf)
- <use ./figures/new_illustrate/ds_common.pdf>
+
+<use ./figures/new_illustrate/ds_common.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/ds_common.pdf used on input line 6.
 (pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
@@ -365,7 +374,7 @@ File: ./figures/new_illustrate/ds_tie.pdf Graphic file (type pdf)
 Package pdftex.def Info: ./figures/new_illustrate/ds_tie.pdf used on input line 8.
 (pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
-Overfull \hbox (1.81067pt too wide) detected at line 60
+Overfull \hbox (1.81067pt too wide) detected at line 61
 \OML/cmm/m/it/9 d[]\OT1/cmr/m/n/9 (\OML/cmm/m/it/9 v; t\OT1/cmr/m/n/9 ) = \OMS/cmsy/m/n/9 j\OML/cmm/m/it/9 p[]\OT1/cmr/m
 /n/9 (\OML/cmm/m/it/9 v; t\OT1/cmr/m/n/9 )\OMS/cmsy/m/n/9 j \OT1/cmr/m/n/9 = \OMS/cmsy/m/n/9 j\OML/cmm/m/it/9 p[]\OT1/cm
 r/m/n/9 (\OML/cmm/m/it/9 u; t\OT1/cmr/m/n/9 )\OMS/cmsy/m/n/9 j   \OT1/cmr/m/n/9 1 = \OML/cmm/m/it/9 d[]\OT1/cmr/m/n/9 (\
@@ -390,69 +399,66 @@ cluded in a single page
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (implementation.tex <./figures/new_illustrate/System.pdf, id=192, 1027.43848pt x 303.534pt>
-File: ./figures/new_illustrate/System.pdf Graphic file (type pdf)
+) (implementation.tex <./figures/new_illustrate/system.pdf, id=192, 1027.43848pt x 303.534pt>
+File: ./figures/new_illustrate/system.pdf Graphic file (type pdf)
 
-<use ./figures/new_illustrate/System.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/System.pdf used on input line 8.
+<use ./figures/new_illustrate/system.pdf>
+Package pdftex.def Info: ./figures/new_illustrate/system.pdf used on input line 8.
 (pdftex.def)             Requested size: 504.0pt x 148.89969pt.
  [5 <./figures/new_illustrate/bfs_illustrate.pdf>]
-Overfull \hbox (1.3911pt too wide) in paragraph at lines 55--56
+Overfull \hbox (1.3911pt too wide) in paragraph at lines 58--59
 \T1/aer/m/n/9 on the un-der-ly-ing graph. De-pends on im-ple-men-ta-tions, there
  []
 
-) (evaluation.tex [6 <./figures/new_illustrate/System.pdf>] <./figures/accuracy_stepy.pdf, id=447, 1228.59pt x 722.7pt>
-File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
+) (evaluation.tex
+Underfull \vbox (badness 5652) has occurred while \output is active []
 
-<use ./figures/accuracy_stepy.pdf>
+ [6 <./figures/new_illustrate/system.pdf>]
+<./figures/accuracy_stepy.pdf, id=447, 1228.59pt x 722.7pt>
+File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
+ <use ./figures/accuracy_stepy.pdf>
 Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 48.
 (pdftex.def)             Requested size: 504.0pt x 296.47432pt.
 
-Overfull \hbox (3.65042pt too wide) in paragraph at lines 56--59
-\T1/aer/m/n/9 mance of an state-of-the-art ex-ist-ing method, TreeSketch [10].
- []
-
-
-Overfull \hbox (5.23598pt too wide) in paragraph at lines 64--65
+Overfull \hbox (5.23598pt too wide) in paragraph at lines 63--64
 []\T1/aer/m/n/9 Decentralized search car-ried on in-dex con-structed by greedy
  []
 
 [7]
-Overfull \hbox (11.87875pt too wide) in paragraph at lines 101--112
+Overfull \hbox (13.94841pt too wide) in paragraph at lines 102--113
  [][] 
  []
 
 <./figures/throughput.pdf, id=452, 1228.59pt x 433.62pt>
 File: ./figures/throughput.pdf Graphic file (type pdf)
  <use ./figures/throughput.pdf>
-Package pdftex.def Info: ./figures/throughput.pdf used on input line 119.
+Package pdftex.def Info: ./figures/throughput.pdf used on input line 122.
 (pdftex.def)             Requested size: 478.79846pt x 168.9854pt.
 
 <./figures/scale_machine_throughput.pdf, id=453, 578.16pt x 433.62pt>
 File: ./figures/scale_machine_throughput.pdf Graphic file (type pdf)
  <use ./figures/scale_machine_throughput.pdf>
-Package pdftex.def Info: ./figures/scale_machine_throughput.pdf used on input line 135.
+Package pdftex.def Info: ./figures/scale_machine_throughput.pdf used on input line 136.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
 
 <./figures/scale_query_throughput.pdf, id=454, 578.16pt x 433.62pt>
 File: ./figures/scale_query_throughput.pdf Graphic file (type pdf)
  <use ./figures/scale_query_throughput.pdf>
-Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line 144.
+Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line 143.
 (pdftex.def)             Requested size: 240.0pt x 179.99525pt.
-)
-(conclusion.tex [8 <./figures/accuracy_stepy.pdf>]) (main.bbl [9 <./figures/throughput.pdf> <./figures/scale_machine_thr
-oughput.pdf> <./figures/scale_query_throughput.pdf>]
+ [8 <./figures/accuracy_stepy.pdf>]) (conclusion.tex) (main.bbl [9 <./figures/throughput.pdf> <./figures/scale_machine_t
+hroughput.pdf> <./figures/scale_query_throughput.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ) [10] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 3851 strings out of 493634
- 50436 string characters out of 3141303
- 123593 words of memory out of 3000000
- 7095 multiletter control sequences out of 15000+200000
+ 3852 strings out of 493634
+ 50459 string characters out of 3141303
+ 123611 words of memory out of 3000000
+ 7096 multiletter control sequences out of 15000+200000
  56617 words of font info for 82 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 41i,11n,35p,1506b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,35p,1396b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
@@ -463,7 +469,7 @@ TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 
 .pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
 s/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1427954 bytes).
+Output written on main.pdf (10 pages, 1428242 bytes).
 PDF statistics:
  540 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
