@@ -10,7 +10,7 @@ Our method is motivated by the idea of using landmarks as the basis for indexes.
 
 %\subsection{The least common ancestor distance}
 
-The least common ancestor of two vertex in a tree is the furthest ancestor from the root, we denote it as $LCA(s,t)$. The shortest path distance satisfies the triangle inequality, for an arbitrary pair of vertices $s$ and $t$, the following bound holds:
+The least common ancestor of two vertices in a tree is the furthest ancestor from the root, we denote it as $LCA(s,t)$. The shortest path distance satisfies the triangle inequality, for an arbitrary pair of vertices $s$ and $t$, the following bound holds:
 \begin{equation}
 \label{equ:upper}
     d_G(s,t) \leq min_{l}\{d_G(s,LCA_{l}(s,t)) + d_G(LCA_{l}(s,t),t)\}

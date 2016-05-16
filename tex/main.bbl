@@ -35,6 +35,12 @@ E.~Cohen, E.~Halperin, H.~Kaplan, and U.~Zwick.
   Discrete Algorithms}, SODA '02, pages 937--946, Philadelphia, PA, USA, 2002.
   Society for Industrial and Applied Mathematics.
 
+\bibitem{das2010sketch}
+A.~Das~Sarma, S.~Gollapudi, M.~Najork, and R.~Panigrahy.
+\newblock A sketch-based distance oracle for web-scale graphs.
+\newblock In {\em Proceedings of the third ACM international conference on Web
+  search and data mining}, pages 401--410. ACM, 2010.
+
 \bibitem{floreskul2014memory}
 V.~Floreskul, K.~Tretyakov, and M.~Dumas.
 \newblock Memory-efficient fast shortest path estimation in large social
@@ -88,6 +94,12 @@ D.~Kempe, J.~Kleinberg, and E.~Tardos.
 J.~Kleinberg.
 \newblock Navigation in a small world.
 \newblock {\em Nature}, 406:845, 2000.
+
+\bibitem{kleinberg2006complex}
+J.~Kleinberg.
+\newblock Complex networks and decentralized search algorithms.
+\newblock In {\em Proceedings of the International Congress of Mathematicians
+  (ICM)}, volume~3, pages 1019--1044, 2006.
 
 \bibitem{snapnets}
 J.~Leskovec and A.~Krevl.

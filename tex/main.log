@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  16 MAY 2016 08:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.4.17)  16 MAY 2016 15:18
 entering extended mode
 **./main.tex
 (main.tex
@@ -331,10 +331,6 @@ File: omsaer.fd 1999/12/27
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 200.
  (introduction.tex
-
-LaTeX Warning: Citation `kleinberg2006complex' on page \thepage  undefined on input line 10.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1{C:/Users/Zheng Lu/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
@@ -354,21 +350,21 @@ Overfull \hbox (1.69029pt too wide) in paragraph at lines 24--25
 Underfull \vbox (badness 1558) has occurred while \output is active []
 
 ) (relatedwork.tex) (preliminary.tex [2])
-(searching.tex <./figures/new_illustrate/ds_common.pdf, id=17, 298.86656pt x 286.82156pt>
+(searching.tex <./figures/new_illustrate/ds_common.pdf, id=16, 298.86656pt x 286.82156pt>
 File: ./figures/new_illustrate/ds_common.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/ds_common.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/ds_common.pdf used on input line 6.
 (pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
-<./figures/new_illustrate/ds_bidirectional.pdf, id=18, 298.86656pt x 286.82156pt>
+<./figures/new_illustrate/ds_bidirectional.pdf, id=17, 298.86656pt x 286.82156pt>
 File: ./figures/new_illustrate/ds_bidirectional.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/ds_bidirectional.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/ds_bidirectional.pdf used on input line 7.
 (pdftex.def)             Requested size: 161.28369pt x 154.78503pt.
 
-<./figures/new_illustrate/ds_tie.pdf, id=19, 298.86656pt x 286.82156pt>
+<./figures/new_illustrate/ds_tie.pdf, id=18, 298.86656pt x 286.82156pt>
 File: ./figures/new_illustrate/ds_tie.pdf Graphic file (type pdf)
  <use ./figures/new_illustrate/ds_tie.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/ds_tie.pdf used on input line 8.
@@ -414,6 +410,10 @@ Overfull \hbox (1.3911pt too wide) in paragraph at lines 58--59
 Underfull \vbox (badness 5652) has occurred while \output is active []
 
  [6 <./figures/new_illustrate/system.pdf>]
+Overfull \hbox (4.53397pt too wide) in paragraph at lines 37--38
+\T1/aer/m/n/9 graph [10] is the plat-form for dis-tributed ver-sion and Snap [16]
+ []
+
 <./figures/accuracy_stepy.pdf, id=447, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
  <use ./figures/accuracy_stepy.pdf>
@@ -450,28 +450,33 @@ Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line
 hroughput.pdf> <./figures/scale_query_throughput.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) [10] (main.aux) ) 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]) [11
+
+] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 3852 strings out of 493634
- 50459 string characters out of 3141303
- 123611 words of memory out of 3000000
- 7096 multiletter control sequences out of 15000+200000
+ 3853 strings out of 493634
+ 50474 string characters out of 3141303
+ 123619 words of memory out of 3000000
+ 7097 multiletter control sequences out of 15000+200000
  56617 words of font info for 82 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 41i,11n,35p,1396b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9
-.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x
-86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (10 pages, 1428242 bytes).
+ 41i,11n,35p,1397b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/urw/helvetic/uhvb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on main.pdf (11 pages, 1429031 bytes).
 PDF statistics:
- 540 PDF objects out of 1000 (max. 8388607)
+ 543 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
