@@ -648,7 +648,7 @@ int main(int argc, char** argv){
     cout << "Step 1: Setting Environment and loading graphs." << endl;
     string graphfile = argv[1];
     string stepy = argv[2];
-    size_t n_tree = 2;
+    size_t n_tree = 1;
 
     ds_cent<unsigned long, unsigned long> m(graphfile, n_tree);
 
