@@ -1,0 +1,84 @@
+\section{Motivational Case Study}
+\label{motivationcase}
+
+In this section, we first present a motivational case study, showing that there are critical differences between planar graphs and social networks. In particular, we show the performance of an algorithm applied to both planar graphs and social network graphs.
+
+\subsection{Preliminaries}
+\label{problemformulation}
+
+In our problem, we consider a graph $G = (V,E)$, which represents a graph of vertex set $V$ and edge set $E$. For a source node $s$ and destination node $t$, we are interested in finding a path $p$ in the graph, which is an ordered sequence of $n$ vertices, such that,
+
+\[
+p = (v_0, v_1, ..., v_{n-1})
+\]
+
+where $(v_i,v_{i+1}) \in E$. We can write that $|p| = n$ to denote that length of $p$ is $n$. Given a pair of source and destination nodes, there may be many paths connecting them, which we denote as $P$. We can then define the distance between $s$ and $t$ as:
+
+\[
+distance(s,t) = min_{p\in P(s,t)}|p|
+\]
+
+
+Next we define path approximation ratio for a possibly non-optimal path $q$ as:
+
+\[
+ratio(q) = \frac{|q|}{distance(s,t)}
+\]
+
+Note that for any path $q$, the ratio defined here must be at least $1$. If $ratio(q)$ is equal to $1$, this path must be an optimal path by definition.
+
+Based on this definition, suppose that given an approximation scheme that returns a path for every pair of nodes $s$ and $t$ (denoted as $p(s,t)$), we can easily define the average approximation ratio of all node pairs for a graph $G = (V,E)$ with $n$ nodes as:
+
+\[
+averageratio(G) = \frac{1}{n(n-1)}\sum_{s\in V, t\in V} ratio(p(s,t))
+\]
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width = 3in]{../figures/topology.pdf}
+  \caption{This figure shows three landmarks, $\{d_1, d_2,d_3\}$, and six additional vertices. The coordinates for each node are shown in the table on the right.}
+  \label{fig:lcr}
+  \vspace{-3mm}
+\end{figure}
+
+
+\begin{figure*}[t]
+\minipage{0.3\textwidth}
+  \includegraphics[width=0.7\linewidth]{../figures/same_distance.pdf}
+  \caption{This figure shows an example of coordinate distance may not represent real distance of two nodes.}\label{fig:same_distance}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{../figures/lcr_socialnetwork.pdf}
+  \caption{This figure shows distribution of hop difference between path found for the sensor network.}\label{fig:lcr_socialnetwork}
+\endminipage\hfill
+\minipage{0.33\textwidth}
+  \includegraphics[width=\linewidth]{../figures/lcr_sensornetwork.pdf}
+  \caption{This figure shows distribution of hop difference between path found for a social network.}\label{fig:lcr_sensornetwork}
+\endminipage
+\vspace{-0.1in}
+\end{figure*}
+
+\subsection{Existing Graph Embedding Approaches}
+
+Previous methods based on graph embeddings have been developed under different names, such as landmark-based routing, coordinate based routing, among others, for planar graphs such as wireless sensor networks. To find a path between $s$ and $t$, this algorithm takes a two-staged approach: a pre-computation step that assigns each node with a coordinate vector, which is composed of distances from all vertices to a few selected landmark nodes, and a routing step that uses this pre-computed data to find paths between nodes with a complexity that is only proportional to the path distance. The overall procedure is shown in Figure~\ref{fig:lcr}, where a configuration of three landmarks and six vertices are illustrated.
+
+The precomputation step, a set of landmarks is first chosen in the graph, based on the relative distances of nodes. Recent studies have pointed out that choosing the best set of landmarks for graph embeddings as NP-Hard, therefore, we assume they are chosen based on simple heuristics such as degrees of nodes. Next, for every node that is not a landmark, we compute the shortest path that connects each landmark to this node, by using the breadth-first search method. For a total of $m$ landmarks, there will be a total of $m$ breadth-first search procedures.
+
+To perform routing and find paths, the Euclidean distance of the vectors are used to find the next hop based on the pre-computed coordinates. Note that here, the coordinates only contain distance information. Usually this works pretty well with relatively simple topologies. The key advantage is that the storage overhead of maintaining coordinate vectors is only proportional to the number of landmarks, which is usually sufficiently small compared to the total number of nodes.
+
+To measure the quality of returned paths, we calculate the average approximation ratio of this figure. This is done by performing routing for every two pairs of nodes. For example, from $v_1$ to $v_3$, we can find that the distance between them $d(v_1,v_3) = \sqrt{5}$. Among the neighbors of $v_1$, $v_2$ has the shortest distance to $v_3$ as $1$. Hence, $v_2$ is chosen as the next hop. Therefore, the path found is $v_1,v_2,v_3$, which is optimal. One can verify that for this graph, the average approximation ratio is precisely $1$, meaning that all paths found are optimal.
+
+\subsection{Comparison of Graph Embedding Performance on Complex Network vs Network with simple topology}
+
+
+
+Although the coordinate based algorithm works well for networks with a simple topology, we find that it has poor performance for graphs with more complex topologies, such as social networks where a large range of degree distributions and long-distance edges dominate. The root cause is that the algorithm only encodes hop counts to a few landmarks, therefore, in many cases, the coordinates can no longer correctly represent the real distances of two nodes. Fig.~\ref{fig:same_distance} illustrates an example. To find a path from $v_2$ to $v_6$, using a greedy search will encounter problems between $v_5$ and $v_1$. In fact, both $distance(v_5,v_6)$ and $distance(v_1,v_6)$ are $2$, but intuitively, $v_1$ clearly has a shorter distance to $v_6$.
+
+We next show a numerical study to illustrate the performance difference of coordinates applied to simple topologies and complex topologies. The first network is a social network which has power law degree distribution and relatively short diameter. The other network is a randomly generated network which has a topology similar to sensor networks. Each node has similar degree, following by a normal distribution. There are no long distance edges, nodes are only connected to nearby neighbors, so this network has a relatively long diameter. Both nodes have around $4,000$ nodes and around $176,000$ edges. Due the size of the graph, there are approximately $4000 * 4000$ different ordered node pairs. We only randomly choose $10,000$ pairs out of them and using coordinate routing to find path between each pair. Since the average shortest path of this two graph are different (approximate average length of shortest path for the social network is 3, while it is 40 for the generated random sensor network), instead of path approximation ratio, we show the distribution of length of path found by graph embedding approach minus shortest path length in Fig.~\ref{fig:lcr_socialnetwork} and Fig.~\ref{fig:lcr_sensornetwork}. From these two figure, we can see that compared to the network with simple topology, coordinate routing algorithm really performs poorly on complex networks. Actually. the average approximation ratio of randomly chosen $10,000$ pairs for the social network is $37.983$ compared to $1.014$ for random sensor network.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width =6.5in]{../figures/tree.pdf}
+  \caption{This figure shows forming a tree structure and then assigning coordinates to nodes based on their relative orderings in the tree.}
+  \label{fig:tree}
+  \vspace{-3mm}
+\end{figure*}

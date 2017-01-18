@@ -1,0 +1,44 @@
+Title: Distributed shortest path approximation in large-scale complex networks
+
+Structure:
+1. Introduction (6-7)
+  Point-to-point shortest path problem and its application
+  Why online SSSP Traversal and offline APSP not sufficient
+  Landmark based approximations - time/storage overhead, accuracy
+  Decentralized search
+  Assumption: connected, undirected, unweighted
+  Our contribution
+  
+2. Preliminary
+  Problem formulation
+  Build tree 
+  LCA distance
+  
+3. Build tree
+  Maximize embedded information
+  Degree based algorithm
+  Selecting tree roots
+  Selecting edges
+  Bi-tree for directed graph
+  
+4. Decentralized search
+  Naive dec search
+  Termination condition
+  Hot spot problem
+  Imporved stop criterion for dec search
+  Bi-direction dec search
+  
+5. Distributed Implementation 
+
+6. Evaluation
+  Accuracy
+  Runtime
+  Storage
+  Scalability
+
+7. Related Work
+  Landmark based approximations
+  Landmark based exact
+  2-hop cover & tree decomposition
+
+8. Conclusion

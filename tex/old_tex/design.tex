@@ -1,0 +1,88 @@
+\section{Algorithm Design}
+\label{design}
+
+In this section, we describe the design of our algorithm. We first present the overall algorithm. Then we describe a few optimizations to improve its performance.
+
+\subsection{Algorithm Overview}
+\label{architecture}
+
+Our algorithm design is inspired by the previous work in that it is also built on top of a landmark-based framework. Specifically, it consists of the precomputation stage and the path-finding stage. We next describe these two stages separately.
+
+\subsubsection{Precomputation}
+
+The precomputation step involves choosing a few nodes as landmarks, and then computing for every node a ``topology digest'' based on this landmark. These digests will be used in the approximate path finding step later. The preprocessing, illustrated in Figure~\ref{fig:tree}, works as follows:
+
+\textbf{Root Selection:} In this phase, we select a few nodes as roots, denoted as $t_0$, $t_1$, etc. These nodes will be used to construct trees. Usually, we select roots based on their degrees: those nodes that have the highest degrees will be chosen as the roots. On Figure~\ref{fig:tree}, however, we intentionally select the root as $t$ for illustration purpose, even though it does not have the highest degree. Specifically, Figure~\ref{fig:tree}(a) shows that a tree is constructed with the node $t$ as the root to all other nodes in the graph.
+
+\textbf{Coordinate Assignments:} In this phase, we perform a BFS operation from the root to every other nodes in the tree structure. Therefore, for each node in the tree, we can find its children nodes, based on which we can assign them with coordinates. Figure~\ref{fig:tree}(b) to Figure~\ref{fig:tree}(d) show the children node coordinates. Specifically, one node assigns coordinates to its children nodes as follows: suppose this node's current coordinate is $(x)$ and it has $k$ children nodes. Each children node is assigned with $(x, 0)$, $(x,1)$, up to $(x,k-1)$. Note that such assignments have to propagate from level to level: first at the root, then propagates until the farthest leaves are reached. The coordinates assigned to each node is shown in Figure~\ref{fig:tree}(e).
+
+
+\subsubsection{Shortest Path Approximation}
+
+In this stage, the algorithm generates approximations for shortest paths between a pair of nodes, $s$ and $t$. The goal is to get the a small error, that is, the number of hops should be similar to the optimal path. Based on the pre-computed coordinates, the algorithm performs the following steps to generate such a path:
+
+\begin{enumerate}
+  \item Suppose that the path digests for node $s$ and $t$ are vectors $<a>$ and $<b>$, respectively, calculate their common ancestor $<c>$.
+  \item Starting from the source node $s$, select the next hop as its parent until the last node of the common ancestor $<c>$ is reached.
+  \item Starting from the last node of $<c>$, select the next hop using $<b>$'s coordinates until the destination node $t$ is reached.
+  \item Return the path found in step 3.
+\end{enumerate}
+
+Clearly, for many cases, such a path is not optimal: it will have to go back to a root before making progress to the destination node. For example, in Figure~\ref{fig:tree}, we observe that from node $v_4$ to node $v_6$, a total of $4$ hops is taken ($v_4$,$v_1$,$t$,$v_3$,$v_6$), as opposed to the optimal path ($v_4$,$v_5$,$v_6$), which is $2$ hops. Next we describe a few optimizations to dramatically improve the performance of this approach.
+
+\subsection{Design Optimizations}
+
+In this section we explain our improvements to the original algorithm to obtain better approximations. As a first
+step, we try to combine it with the coordinate based approach to find existing shortcuts within the paths. In the second step, we develop an ensemble of trees, and develop a hybrid method to calculate the distance, hence reducing the total path lengths. These improvements provide considerable
+improvements in terms of the approximation quality, as
+we will show in the experimental evaluation.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width = 2.4in]{../figures/topology2.pdf}
+  \caption{This figure shows how to use shortcuts to reduce the length of found paths.}
+  \label{fig:shortcut}
+  \vspace{-3mm}
+\end{figure}
+
+
+\subsubsection{Shortcutting through Greedy Search on Weighted Coordinates}
+
+We first describe the improvement called path shortcutting. The idea is that we try to go through the neighbors that directly lead to the destination node instead of going back to the root of the tree structures. The key idea is shown in Figure~\ref{fig:shortcut}, where we hope to obtain a path from $s$ to $t$. Using the tree structure alone, we will end up with a path on the left through the root. On the other hand, a shorter path exists along the ``leaves'' of the tree through $u$. Therefore, our goal is to search for such paths as shortcuttings, and return them whenever possible.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width = 3in]{../figures/topology3.pdf}
+  \caption{This figure shows how weighted coordinates avoid local maximum along the path.}
+  \label{fig:weighted}
+  \vspace{-3mm}
+\end{figure}
+
+The basis of this design is that we use a modified version of the graph embedding based coordinates, called ``weighted coordinates'' as the key building block. The reason that we do not choose the original design of coordinates is that usually, coordinates do not reflect the real topologies in a perfect manner. An example of this is observed in Figure~\ref{fig:weighted}, which shows a case study where we would like to find a path from $v_9$ to $v_3$, illustrated with the orange line. The distances of each node to the destination are shown on the right half of this figure. Note that for the first hop from $v_9$ to $v_6$, the distance to the destination actually \emph{increases}, i.e., there is a local maximum reached at this hop. One solution to solve this problem is by observing that each dimension of the coordinate vectors should not be treated equally to contribute to the distance calculation. Instead, those coordinates that change \emph{the most} from the source to the destination should be given a larger weight, because they provide more information on the relative changes of path distances. In Figure~\ref{fig:weighted}, for example, the first dimension of the coordinate vectors changes from $5$ to $0$, which is the largest. Therefore, it should be given the highest weight.
+
+Mathematically, we assign weights to dimensions based on the delta of the source and destination coordinates. Suppose that the source node $s$ has a vector of $(s_0, s_1, ..., s_{k-1})$, and the destination node $t$ has a vector of $(t_0, t_1, ..., t_{k-1})$, the weight coefficients $w_i$ ($i \in [0,k-1]$) are calculated as follows:
+
+\[
+w_i = \frac{|s_i-t_i|}{\sum_{j=0}^{k-1} |s_j-t_j|}
+\]
+
+Note that weight coefficients are only computed once at the source, and do not change along the path. The distance between an intermediate node $u$ to $t$ is then calculated as:
+
+\[
+d(u,t) = \sqrt{\sum_{j=0}^{k-1} w_j \times(u_j-t_j)^2}
+\]
+
+
+The results for the path in Figure~\ref{fig:weighted} are plotted as comparison. Observe that the local maximum no longer exists in the path.
+
+
+\subsubsection{Tree Ensembles}
+
+In this section we describe our second optimization to improve the performance, by using multiple trees instead of a single tree. We call this approach ``tree ensembles''. Recall that each tree is a collection of paths that connects the root with every other node in the graph without loops. Our improvement then constructs multiple trees, such that every node is assigned with more than one set of encodings. To build these trees, the algorithm starts breadth-first searches from different roots. To avoid reusing the same edges as much as possible, different BFS procedures will follow a different order of inserting nodes into the BFS search queue, so that those nodes that are used in one tree will be visited in a different order in a second tree.
+
+After multiple trees are constructed, each node then has more than one encodings to use to lead to the destination nodes. In the algorithm, it will always pick the nearest one with the shortest distance such that only one tree is used.
+
+
+\subsubsection{Putting Things Together}
+
+We next describe how to put the two optimizations together. Specifically, every time a new path request is received, a packet delivery will switch between the ``greedy  mode'' and ``tree mode''. The key idea is that if the greedy mode is making smooth progress, we can try to find shortcuts with this approach. On the other hand, if local maximum areas are reached, the packet will now switch to the tree mode to route around the local maximum areas such that it will always be delivered to the destination. Therefore, the delivery ratio is always $100\%$ as long as the graph is not partitioned.  
