@@ -105,8 +105,8 @@ The higher the $r_p$'s value, the lower the dependence of a path to label of sou
 \label{eval_overhead}
 
 \begin{table}
+		\vspace{-0.5cm}
 		\caption{Space overhead}
-		\vspace{2 mm}
     \label{table:ioh}
     \centering
     \begin{tabular}{c|cc} \hline
@@ -121,6 +121,7 @@ The higher the $r_p$'s value, the lower the dependence of a path to label of sou
 				Webuk&4068.9&506.5 \\ 
 				Friendster&5497.7&437.7 \\ \hline
     \end{tabular}
+		\vspace{-0.3cm}
 \end{table}
 
 The index and query overhead is shown in table~\ref{table:ioh}. In our implementation, both the label for each vertex and approximated paths are stored as vectors. And each vertex id is represented by 8-byte unsigned long. The size shown in table~\ref{table:ioh} is the sum of vector size of each vertex. 

@@ -20,6 +20,17 @@
 
 We propose to solve the point-to-point shortest path approximation problem using decentralized search with landmark-based indexes. This section explains how to apply decentralized search on indexed graphs. Several aspects of the search, such as termination condition, bidirectional search and tie breaking strategy, are discussed.
 
+\subsection{Preliminary}
+In our problem, we consider a graph $G = (V,E)$. For a source node $s$ and a target node $t$, we are interested in finding a path $p(s,t)=(s,v_1,v_2,...,t)$ with a length of $|p(s,t)|$ close to the exact distance $d_G(s,t)$ between $s$ and $t$. We focus on unweighted, undirected graphs in this paper.
+
+%Our method is motivated by the idea of using landmarks as the basis for indexes. Specifically, 
+Given a graph $G$ and a set of $k$ landmarks $(l_1,l_2,...,l_k)$, an index contains a label $L(v)$ for each vertex that stores the shortest path to each landmark. The label can be constructed by building a shortest path tree $SPT$ using BFS from each landmark.
+
+The least common ancestor of two vertices in a tree is the farthest ancestor from the root, which we denote as $LCA(s,t)$. The shortest distance satisfies the triangle inequality, i.e., for an arbitrary pair of vertices $s$ and $t$, the upper bound is $d_G(s,t) \leq min_{l}\{d_G(s,LCA_{l}(s,t)) + d_G(LCA_{l}(s,t),t)\}$.
+We refer to this upper bound as the LCA distance and denoted by $d_{LCA}(s,t)$. We denote the path indicated by this distance as $p_{LCA}(s,t)$. 
+%, can be used as an approximation of the distance from $s$ and $t$. 
+%The LCA distance and related path for a specific landmark $l$ is denoted as $d_{LCA_l}(s,t)$ and $p_{LCA_l}(s,t)$ respectively.
+
 \subsection{Index guided decentralized search}
 
 To answer a shortest path query, decentralized search iteratively collects local distance information and visits the vertex with the least approximated distance to the target. More specifically, for a given pair of source $s$ and target vertex $t$ on an indexed graph, the search first sets the source vertex as the vertex to visit in the first step, and appends it to the approximated path $\tilde{p}(s,t)$. At each step, suppose that the search is visiting vertex $u$, it traverses all the neighbor vertices of $u$. For each neighbor vertex $v_i$, the metric $d_{LCA}(v_i,t)$ is calculated. Then the search sets the neighbor vertex with the smallest $d_{LCA}(v_i,t)$ as the vertex to visit in the next step, and appends $v_i$ to $\tilde{p}(s,t)$.
@@ -33,6 +44,7 @@ Evidently, decentralized search cannot find a shorter path than $p_L(u,t)$. The 
     \begin{algorithmic}
         \Function{DecentralizedSearch}{$s$, $t$}
 						\State $\tilde{p}(s,t) \gets \emptyset$
+						\Comment {Initialize estimated path}
 						\State $u \gets s$
 						\State append $u$ to $\tilde{p}(s,t)$
 						\While{$u \notin L(t)$}
@@ -68,7 +80,7 @@ For an arbitrary source vertex $s$ and a reachable target vertex $t$, the follow
     d_{LCA}(s,t) = d_G(s,LCA(s,t)) + d_G(LCA(s,t),t) \leq 2{\sigma}_{max}
 \]
 
-Next, observe that at each step, decentralized search is visiting vertex $u$ and $u \neq t$. Assume the tightest upper bound in Equation (\ref{equ:upper}) is achieved on the shortest path tree $SPT_l$ rooted at landmark $l$. Let $v$ be the neighbor vertex of $u$ on the path $p_{LCA_l}(u,t)$. Since $SPT_l$ has no cycles, $p_{LCA_l}(v,t) \in p_{LCA_l}(u,t)$. Therefore the following equation holds:
+Next, observe that at each step, decentralized search is visiting vertex $u$ and $u \neq t$. Assume the tightest upper bound shown above is achieved on the shortest path tree $SPT_l$ rooted at landmark $l$. Let $v$ be the neighbor vertex of $u$ on the path $p_{LCA_l}(u,t)$. Since $SPT_l$ has no cycles, $p_{LCA_l}(v,t) \in p_{LCA_l}(u,t)$. Therefore the following equation holds:
 \[
 		d_{LCA}(v,t) = |p_{LCA_l}(v,t)| = |p_{LCA_l}(u,t)| - 1 = d_{LCA}(u,t) - 1
 \]
