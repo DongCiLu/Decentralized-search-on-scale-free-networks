@@ -96,6 +96,16 @@ The space complexity for decentralized search contains two parts, space complexi
 %For each query, $O(k{\sigma}_{max})$ space is required to store the labels of target vertex and the vertex that is being examined. Therefore, $O(2{\sigma}_{max})$ space is required to store the approximated path. Combining them together, 
 The online search space complexity of decentralized search is $O(k{\sigma}_{max})$.
 
+\begin{figure*}[ht]
+		\vspace{-1cm}
+    \centering
+    \includegraphics[width=\linewidth]{./figures/new_illustrate/bfs_illustrate.pdf}
+		\vspace{-1cm}
+    \caption{Heuristic index construction pick shortest path with highest path degree during breadth first search}
+    \label{fig:bfs_illustrate}
+		\vspace{-5mm}
+\end{figure*}
+
 \subsection{Bi-directional search}
 
 In this section, we show how to apply the idea of bidirectional search to decentralized search. In bidirectional decentralized search, the backward search starts at the target vertex and is driven by the goal to reach the source vertex. The forward search and backward search may explore different search spaces due to this difference. By exploring a different search space, the backward search may find a shorter approximated path. This, however, is quite different from the application of bidirectional search in BFS or A* search where the main focus is to reduce search space. It is not guaranteed that the forward search and the backward search will eventually meet at any intermediate vertex. 

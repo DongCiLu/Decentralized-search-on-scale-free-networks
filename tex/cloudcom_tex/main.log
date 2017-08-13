@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.26)  2 JUL 2017 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.26)  7 AUG 2017 13:20
 entering extended mode
 **./main.tex
 (main.tex
@@ -328,30 +328,31 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 393.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 394.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 394.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 393.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 394.
  (introduction.tex [1{C:/Users/Zheng Lu/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]) (relatedwork.tex) (searching.tex
-<figures/new_illustrate/ds_common.pdf, id=9, 298.86656pt x 286.82156pt>
+<figures/new_illustrate/ds_common.pdf, id=10, 298.86656pt x 286.82156pt>
 File: figures/new_illustrate/ds_common.pdf Graphic file (type pdf)
  <use figures/new_illustrate/ds_common.pdf>
 Package pdftex.def Info: figures/new_illustrate/ds_common.pdf used on input line 15.
 (pdftex.def)             Requested size: 165.12378pt x 158.4701pt.
 
-<figures/new_illustrate/ds_bidirectional.pdf, id=10, 298.86656pt x 286.82156pt>
+<figures/new_illustrate/ds_bidirectional.pdf, id=11, 298.86656pt x 286.82156pt>
 File: figures/new_illustrate/ds_bidirectional.pdf Graphic file (type pdf)
 
 <use figures/new_illustrate/ds_bidirectional.pdf>
 Package pdftex.def Info: figures/new_illustrate/ds_bidirectional.pdf used on input line 16.
 (pdftex.def)             Requested size: 165.12378pt x 158.4701pt.
- <figures/new_illustrate/ds_tie.pdf, id=11, 298.86656pt x 286.82156pt>
+ <figures/new_illustrate/ds_tie.pdf, id=12, 298.86656pt x 286.82156pt>
 File: figures/new_illustrate/ds_tie.pdf Graphic file (type pdf)
 
 <use figures/new_illustrate/ds_tie.pdf>
@@ -365,7 +366,13 @@ Overfull \hbox (9.04062pt too wide) detected at line 86
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u; t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 1
  []
 
-[3 <./figures/new_illustrate/ds_common.pdf> <./figures/new_illustrate/ds_bidirectional.pdf
+<./figures/new_illustrate/bfs_illustrate.pdf, id=22, 767.86874pt x 266.19452pt>
+File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
+
+<use ./figures/new_illustrate/bfs_illustrate.pdf>
+Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 102.
+(pdftex.def)             Requested size: 516.0pt x 178.88962pt.
+ [3 <./figures/new_illustrate/ds_common.pdf> <./figures/new_illustrate/ds_bidirectional.pdf
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/ds_bidirectional.pdf): PDF inclusion: multiple pdfs with pag
 e group included in a single page
@@ -373,52 +380,48 @@ e group included in a single page
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/ds_tie.pdf): PDF inclusion: multiple pdfs with page group in
 cluded in a single page
->]) (preprocessing.tex <./figures/new_illustrate/bfs_illustrate.pdf, id=187, 767.86874pt x 266.19452pt>
-File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
+>]) (preprocessing.tex
 
-<use ./figures/new_illustrate/bfs_illustrate.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 9.
-(pdftex.def)             Requested size: 516.0pt x 178.88962pt.
-) (implementation.tex
-<./figures/new_illustrate/system.pdf, id=188, 1027.43848pt x 303.534pt>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (implementation.tex <./figures/new_illustrate/system.pdf, id=189, 1027.43848pt x 303.534pt>
 File: ./figures/new_illustrate/system.pdf Graphic file (type pdf)
- <use ./figures/new_illustrate/system.pdf>
+
+<use ./figures/new_illustrate/system.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/system.pdf used on input line 9.
 (pdftex.def)             Requested size: 516.0pt x 152.44745pt.
-
-[4]
+ [4 <./figures/new_illustrate/bfs_illustrate.pdf>]
 Underfull \hbox (badness 3019) in paragraph at lines 20--21
 []\OT1/ptm/m/n/10 Decentralized search can be im-ple-mented as vertex-
  []
 
-) (evaluation.tex [5 <./figures/new_illustrate/bfs_illustrate.pdf> <./figures/new_illustrate/system.pdf
 
-pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/system.pdf): PDF inclusion: multiple pdfs with page group in
-cluded in a single page
->]
+Underfull \vbox (badness 1688) has occurred while \output is active []
+
+) (evaluation.tex [5 <./figures/new_illustrate/system.pdf>]
 Underfull \hbox (badness 1540) in paragraph at lines 34--38
 \OT1/ptm/m/n/10 dif-fer-ent dis-ci-plines col-lected from Snap [[]] and Net-
  []
 
-<./figures/accuracy_stepy.pdf, id=442, 1228.59pt x 722.7pt>
+<./figures/accuracy_stepy.pdf, id=444, 1228.59pt x 722.7pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
  <use ./figures/accuracy_stepy.pdf>
 Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 55.
 (pdftex.def)             Requested size: 516.0pt x 303.53192pt.
  [6]
-<./figures/throughput.pdf, id=448, 1228.59pt x 433.62pt>
+<./figures/throughput.pdf, id=449, 1228.59pt x 433.62pt>
 File: ./figures/throughput.pdf Graphic file (type pdf)
  <use ./figures/throughput.pdf>
 Package pdftex.def Info: ./figures/throughput.pdf used on input line 135.
 (pdftex.def)             Requested size: 490.19843pt x 173.00824pt.
 
-<./figures/scale_machine_throughput.pdf, id=449, 578.16pt x 433.62pt>
+<./figures/scale_machine_throughput.pdf, id=450, 578.16pt x 433.62pt>
 File: ./figures/scale_machine_throughput.pdf Graphic file (type pdf)
  <use ./figures/scale_machine_throughput.pdf>
 Package pdftex.def Info: ./figures/scale_machine_throughput.pdf used on input line 151.
 (pdftex.def)             Requested size: 123.84283pt x 92.88242pt.
 
-<./figures/scale_query_throughput.pdf, id=450, 578.16pt x 433.62pt>
+<./figures/scale_query_throughput.pdf, id=451, 578.16pt x 433.62pt>
 File: ./figures/scale_query_throughput.pdf Graphic file (type pdf)
  <use ./figures/scale_query_throughput.pdf>
 Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line 152.
@@ -437,28 +440,31 @@ Before submitting the final camera ready copy, remember to:
  process uses the appropriate paper size.
 
 [8 <./figures/throughput.pdf> <./figures/scale_machine_throughput.pdf> <./figures/scale_query_throughput.pdf>] (main.aux
-) ) 
-Here is how much of TeX's memory you used:
- 4006 strings out of 493333
- 61399 string characters out of 3139182
- 137347 words of memory out of 3000000
- 7449 multiletter control sequences out of 15000+200000
- 40208 words of font info for 77 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 40i,11n,25p,1307b,296s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+)
 
-Output written on main.pdf (8 pages, 1393009 bytes).
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4024 strings out of 493333
+ 61694 string characters out of 3139182
+ 137347 words of memory out of 3000000
+ 7467 multiletter control sequences out of 15000+200000
+ 42309 words of font info for 84 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 40i,13n,27p,1307b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (8 pages, 1393970 bytes).
 PDF statistics:
- 537 PDF objects out of 1000 (max. 8388607)
+ 538 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

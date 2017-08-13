@@ -3,15 +3,15 @@
 
 This section describes the greedy index construction algorithm. For a vertex, all shortest paths from a landmark can be indexed as its label. We focus on the problem of deciding which shortest path to be indexed, so that better online query accuracy for average cases can be achieved. 
 
-\begin{figure*}[ht]
-		\vspace{-1cm}
-    \centering
-    \includegraphics[width=\linewidth]{./figures/new_illustrate/bfs_illustrate.pdf}
-		\vspace{-1cm}
-    \caption{Heuristic index construction pick shortest path with highest path degree during breadth first search}
-    \label{fig:bfs_illustrate}
-		\vspace{-5mm}
-\end{figure*}
+%\begin{figure*}[ht]
+		%\vspace{-1cm}
+    %\centering
+    %\includegraphics[width=\linewidth]{./figures/new_illustrate/bfs_illustrate.pdf}
+		%\vspace{-1cm}
+    %\caption{Heuristic index construction pick shortest path with highest path degree during breadth first search}
+    %\label{fig:bfs_illustrate}
+		%\vspace{-5mm}
+%\end{figure*}
 
 As the core of decentralized search is to iteratively find neighbor vertices that have shortest LCA distances to the target. From the point of view of a vertex $u$, if the indexed shortest path intersects with many indexed shortest paths of other vertices, the possibility that other vertices have a small LCA distance to $u$ is going to be higher. With this intuition, we design our heuristic greedy index construction algorithm to store the shortest path with the highest ``centrality'', i.e., a path that intersects with most other shortest paths. To represent the ``centrality'' of a shortest path, we use the sum of vertex degrees along the path. %Although betweenness centrality fits our needs very well, its computation cost is too high~\cite{Riondato:2014:FAB:2556195.2556224}. Therefore, we use degrees as an alternative and refer to the sum of degrees of vertices along a path as path degree, denoted by $Pd$.
 
