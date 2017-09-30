@@ -35,7 +35,7 @@ Class=LaTeXView
 Document=main.tex
 
 [Frame1_View0,0]
-TopLine=403
+TopLine=451
 Cursor=16883
 
 [Frame2]
@@ -125,8 +125,8 @@ Class=LaTeXView
 Document=searching.tex
 
 [Frame6_View0,0]
-TopLine=128
-Cursor=9336
+TopLine=97
+Cursor=11243
 
 [Frame7]
 Flags=0
