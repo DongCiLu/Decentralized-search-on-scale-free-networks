@@ -1,0 +1,20 @@
+Set0: 
+Root ID: 7046
+Root Deg: 35455
+Set1: 
+Root ID: 7579
+Root Deg: 33376
+Number of experiments: 5000
+Avg real: 844282
+Avg est all: 1.39961e+14
+Avg est multi: 0
+Avg est: 1.39961e+14
+Avg comp: 1.39961e+14
+Avg obv: 1.39961e+14
+Avg path count: 27.014
+Avg comp path count: 2.3786
+Avg out ratio: 0.401585
+Index overhead: 0.129874GB
+Avg single time: 0.00978235
+Avg full time: 0.0407505
+------------------

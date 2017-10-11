@@ -1,0 +1,7 @@
+------- ./datasets/sinaweibo_wcc.txt -------
+BFS coding time is 51.1 seconds.
+GS total running time (powergraph timer) is 17 seconds.
+Overheads(code, search, [r], comp) are 424545070 1985 0 (273544 274064 287656 292359 279860 275545 280849 268924 )
+Avg dist and est errors are (real, appr, obv): 2.89758e+07, -0.999999, -0.999999
+Average tie count is: 1
+

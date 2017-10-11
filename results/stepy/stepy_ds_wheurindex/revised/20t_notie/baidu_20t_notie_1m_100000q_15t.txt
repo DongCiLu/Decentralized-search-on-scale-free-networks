@@ -1,0 +1,7 @@
+------- ./datasets/baidu_wcc.txt -------
+BFS coding time is 3.1 seconds.
+GS total running time (powergraph timer) is 9.8 seconds.
+Overheads(code, query, search, comp) are 1756670648 979.53 73696 (1393771 )
+Avg dist and est errors are (real, appr, obv): 4.15037, 0.0254896, 0.0585892
+Average tie count is: 1.91681
+

@@ -1,0 +1,7 @@
+------- ./datasets/Livejournal_wcc.txt -------
+BFS coding time is 6 seconds.
+GS total running time (powergraph timer) is 9.89999 seconds.
+Overheads(code, query, search, comp) are 4706961944 1132.08 23400 (1978775 )
+Avg dist and est errors are (real, appr, obv): 5.59546, 0.07472, 0.12226
+Average tie count is: 1.82283
+

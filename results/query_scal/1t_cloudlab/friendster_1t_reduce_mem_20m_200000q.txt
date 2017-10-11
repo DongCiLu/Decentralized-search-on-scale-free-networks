@@ -1,0 +1,7 @@
+------- ./datasets/friendster_wcc.txt -------
+BFS coding time is 61.1 seconds.
+GS total running time (powergraph timer) is 7 seconds.
+Overheads(code, search, [r], comp) are 297209687 103 0 (37967 34683 34473 38628 36932 36131 36365 34257 36789 34650 34434 35456 33326 34618 35253 37047 36377 37613 38321 34993 )
+Avg dist and est errors are (real, appr, obv): 5.78534e+07, -0.999999, 0
+Average tie count is: 1
+

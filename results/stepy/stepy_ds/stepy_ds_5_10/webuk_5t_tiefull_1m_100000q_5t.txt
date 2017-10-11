@@ -1,0 +1,7 @@
+------- ./datasets/webuk_wcc.txt -------
+BFS coding time is 140.7 seconds.
+GS total running time (powergraph timer) is 1001.1 seconds.
+Overheads(code, search, [r], comp) are 1488016514 436892 (33706762 )
+Avg dist and est errors are (real, appr, obv): 7.45275, 0.127986, 0.510411
+Average tie count is: 16.5033
+

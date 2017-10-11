@@ -1,0 +1,7 @@
+------- ./datasets/skitter_wcc.txt -------
+BFS coding time is 5.7 seconds.
+GS total running time (powergraph timer) is 29.8 seconds.
+Overheads(code, search, [r], comp) are 16234263 581 0 (443039 425682 428761 482292 479990 424262 457276 477786 446780 445849 417435 431301 418422 406111 499458 430427 )
+Avg dist and est errors are (real, appr, obv): 847533, -0.999945, -0.999937
+Average tie count is: 1
+

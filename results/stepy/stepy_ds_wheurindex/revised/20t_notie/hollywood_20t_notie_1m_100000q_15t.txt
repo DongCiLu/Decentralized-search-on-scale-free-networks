@@ -1,0 +1,7 @@
+------- ./datasets/hollywood_wcc.txt -------
+BFS coding time is 2.39999 seconds.
+GS total running time (powergraph timer) is 13.2 seconds.
+Overheads(code, query, search, comp) are 900125816 987.934 90039 (1557300 )
+Avg dist and est errors are (real, appr, obv): 3.83299, 0.115585, 0.262262
+Average tie count is: 1.66671
+

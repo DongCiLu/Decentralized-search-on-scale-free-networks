@@ -1,0 +1,7 @@
+------- ./datasets/wiki_wcc.txt -------
+BFS coding time is 2.2 seconds.
+GS total running time (powergraph timer) is 2.4 seconds.
+Overheads(code, query, search, comp) are 189866848 57.4835 139 (27791 32845 28276 28996 28520 29919 25563 25635 30884 26821 27187 27836 26504 28611 26023 28589 30604 25782 29730 29619 )
+Avg dist and est errors are (real, appr, obv): 1.19777e+06, -0.999964, 0
+Average tie count is: 1
+

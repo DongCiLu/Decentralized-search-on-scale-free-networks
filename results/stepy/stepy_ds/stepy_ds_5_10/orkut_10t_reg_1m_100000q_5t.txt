@@ -1,0 +1,7 @@
+------- ./datasets/orkut_wcc.txt -------
+BFS coding time is 42.4 seconds.
+GS total running time (powergraph timer) is 10.7 seconds.
+Overheads(code, search, [r], comp) are 62306942 32545 (2909695 )
+Avg dist and est errors are (real, appr, obv): 4.20583, 0.217348, 0.347092
+Average tie count is: 1.71783
+

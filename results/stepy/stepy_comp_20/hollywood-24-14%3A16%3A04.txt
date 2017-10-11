@@ -1,0 +1,240 @@
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.467317
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 2.34558
+Avg out ratio: -nan
+Index overhead: 0.0327635GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.340515
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 2.60819
+Avg out ratio: -nan
+Index overhead: 0.0647525GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.271517
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 2.89874
+Avg out ratio: -nan
+Index overhead: 0.0957957GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.245865
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 3.28618
+Avg out ratio: -nan
+Index overhead: 0.128875GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.22456
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 3.56185
+Avg out ratio: -nan
+Index overhead: 0.162146GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.19363
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 3.47565
+Avg out ratio: -nan
+Index overhead: 0.193626GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.181338
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 3.72023
+Avg out ratio: -nan
+Index overhead: 0.226743GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.170935
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 3.90276
+Avg out ratio: -nan
+Index overhead: 0.260144GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.16101
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.07326
+Avg out ratio: -nan
+Index overhead: 0.293288GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.153885
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.24764
+Avg out ratio: -nan
+Index overhead: 0.32664GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.147839
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.42779
+Avg out ratio: -nan
+Index overhead: 0.360069GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.13287
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.37048
+Avg out ratio: -nan
+Index overhead: 0.392034GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.128164
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.51246
+Avg out ratio: -nan
+Index overhead: 0.425879GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.123665
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.66307
+Avg out ratio: -nan
+Index overhead: 0.459355GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.115861
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.76002
+Avg out ratio: -nan
+Index overhead: 0.491856GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.112377
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 4.88939
+Avg out ratio: -nan
+Index overhead: 0.525695GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.109475
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 5.03888
+Avg out ratio: -nan
+Index overhead: 0.559311GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.102261
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 5.11021
+Avg out ratio: -nan
+Index overhead: 0.591376GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.0999514
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 5.25498
+Avg out ratio: -nan
+Index overhead: 0.625163GB
+------------------
+Number of experiments: 100000
+Avg real: 3.83299
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.0979108
+Avg obv: 289789
+Avg path count: 0
+Avg comp path count: 5.40101
+Avg out ratio: -nan
+Index overhead: 0.658737GB
+------------------

@@ -1,0 +1,17 @@
+Building coding system time: 262611111
+
+Set0: 
+Root ID: 10009
+Root Deg: 20335
+Set1: 
+Root ID: 8737
+Root Deg: 13435
+Number of experiments: 100000
+Avg real: 5.59546
+Avg est all: 0
+Avg est multi: 0
+Avg est: 0
+Avg comp: 0.208745
+Avg obv: 0.217301
+Avg path count: 0
+
