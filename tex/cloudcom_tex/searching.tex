@@ -43,13 +43,10 @@ Evidently, decentralized search cannot find a shorter path than $p_L(u,t)$. The 
 		\label{alg:dec}
     \begin{algorithmic}
         \Function{DecentralizedSearch}{$s$, $t$}
-						\State $\tilde{p}(s,t) \gets \emptyset$
-						\Comment {Initialize estimated path}
-						\State $u \gets s$
+						\State $\tilde{p}(s,t) \gets \emptyset$, $u \gets s$
 						\State append $u$ to $\tilde{p}(s,t)$
 						\While{$u \notin L(t)$}
-								\State $d_{min} \gets \infty$
-								\State $w \gets u$
+								\State $d_{min} \gets \infty$, $w \gets u$
 								\For{each $v_i$ adjacent to $u$}
 										\If{$d_{LCA}(v_i,t) < d_{min}$}
 												\State $d_{min} \gets d_{LCA}(v_i,t)$
@@ -82,7 +79,7 @@ For an arbitrary source vertex $s$ and a reachable target vertex $t$, the follow
 
 Next, observe that at each step, decentralized search is visiting vertex $u$ and $u \neq t$. Assume the tightest upper bound shown above is achieved on the shortest path tree $SPT_l$ rooted at landmark $l$. Let $v$ be the neighbor vertex of $u$ on the path $p_{LCA_l}(u,t)$. Since $SPT_l$ has no cycles, $p_{LCA_l}(v,t) \in p_{LCA_l}(u,t)$. Therefore the following equation holds:
 \[
-		d_{LCA}(v,t) = |p_{LCA_l}(v,t)| = |p_{LCA_l}(u,t)| - 1 = d_{LCA}(u,t) - 1
+		d_{LCA}(v,t) = |p_{LCA_l}(u,t)| - 1 = d_{LCA}(u,t) - 1
 \]
 Since decentralized search always picks the neighbor with shortest LCA distance to the target, the LCA distance to the target at each step decreases at least by $1$. Therefore, the decentralized search terminates in at most $2{\sigma}_{max}$ steps.
 \end{proof}
@@ -101,7 +98,7 @@ The online search space complexity of decentralized search is $O(k{\sigma}_{max}
     \centering
     \includegraphics[width=\linewidth]{./figures/new_illustrate/bfs_illustrate.pdf}
 		\vspace{-1cm}
-    \caption{Heuristic index construction pick shortest path with highest path degree during breadth first search}
+    \caption{Path degree based index construction}
     \label{fig:bfs_illustrate}
 		\vspace{-5mm}
 \end{figure*}

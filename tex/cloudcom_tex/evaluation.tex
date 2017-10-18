@@ -25,7 +25,7 @@ In this section, we show the results of experimental evaluation of decentralized
 				Friendster & Social & 65M & 1.8B & 5.03 \\ \hline
 			\end{tabular}
 			\begin{tablenotes}
-				\item Datasets with the number of vertices and edges in the largest WCC, and the average shortest distance $\overline{\sigma}$ of 100,000 vertex pairs.
+				\item Datasets with the no. of vertices and edges in the largest WCC, and the average shortest distance $\overline{\sigma}$ of 100,000 vertex pairs.
 			\end{tablenotes}
 		\end{threeparttable}
 		\vspace{-0.3cm}
@@ -40,12 +40,13 @@ To simplify our experiments, we treat them as undirected, un-weighted graphs and
 \label{eval_system}
 
 We evaluate our algorithms in both distributed setting, 20 Amazon EC2 m4.xlarge nodes, and centralized setting, one Cloudlab~\cite{RicciEide:login14} c8220 server. 
-Powergraph~\cite{180251} and Snap~\cite{snapnets} are used as platforms respectively. All algorithms are implemented in C++. 
+Powergraph~\cite{180251} and Snap~\cite{snapnets} are used as platforms respectively. 
+%All algorithms are implemented in C++. 
 %For the distributed setting, we use 20 Amazon EC2 m4.xlarge virtual machines, each has 4 vCPUs and 16 GB memory. For centralized version, we use a Cloudlab~\cite{RicciEide:login14} c8220 server with two 10-core 2.2GHz E5-2660 processors and 256GB memory. Powergraph~\cite{180251} and Snap~\cite{snapnets} are platforms for distributed version and centralized version respectively. All algorithms are implemented in C++. 
 
 %The landmark selection strategy we use is a variation based on $DEGREE/h$~\cite{Potamias:2009:FSP:1645953.1646063}. When selecting a new landmark, each vertex receives a rank that is the product of its degree and the sum of distances to all the existing landmarks. The vertex with the highest rank will be a new landmark.
 
-We use $DEGREE/h$ proposed in~\cite{Potamias:2009:FSP:1645953.1646063} as our landmark selection strategy. We randomly generate 100,000 queries by randomly choosing 1,000 vertices as source vertices and 100 target vertices for each source vertex as BFS is extremely slow for large graphs. 
+We use $DEGREE/h$ proposed in~\cite{Potamias:2009:FSP:1645953.1646063} as our landmark selection strategy. We generate 100,000 queries by randomly choosing 1,000 source vertices and 100 target vertices for each source vertex as BFS is slow for graphs at this scale. 
 
 \subsection{Approximation Accuracy}
 \label{eval_accuracy}
@@ -61,13 +62,15 @@ We first evaluate the approximation accuracy of the decentralized search. We use
 \[
 E_{\tilde{p}(s,t)} = \frac{|\tilde{p}(s,t)| - d_G(s,t)}{d_G(s,t)}
 \]
-We show the results under various landmark set size of 4 variations of bidirectional decentralized search with mixture of different tie breaking strategies and index construction approach. We also list the results of a state-of-the-art online search approach, TreeSketch~\cite{Gubichev:2010:FAE:1871437.1871503}. Note that the online search in~\cite{6399472} is similar to TreeSketch with only different stop condition so we do not include it to the comparison. We run TreeSketch with random index construction strategy.
+We show the results under various landmark set size of 4 variations of bidirectional decentralized search with mixture of different tie breaking strategies and index construction approach. We also list the results of a state-of-the-art online search approach, TreeSketch~\cite{Gubichev:2010:FAE:1871437.1871503}. Note that the online search in~\cite{6399472} is similar to TreeSketch with only different stop condition so we do not include it to the comparison. 
+%We run TreeSketch with random index construction strategy.
 
-We can see in Fig.~\ref{fig:accuracy_stepy} that decentralized search achieves better accuracy in most of cases. Especially with small landmark sets, i.e. $k < 5$, decentralized search outperforms TreeSketch on all the graphs. When the full branch decentralized search are carried on the index constructed by our greedy heuristic, the performance gain is the most noticeable, with 43.3\% to 87.7\% lower average error ratio for 1 landmark and 50\% to 80\% lower average error ratio for 20 landmarks than TreeSketch on all graphs.
+We can see in Fig.~\ref{fig:accuracy_stepy} that decentralized search achieves better accuracy in most of cases. Especially with small landmark sets, i.e. $k < 5$, decentralized search outperforms TreeSketch on all the graphs. When the full branch decentralized search are carried on the index constructed with highest path degree, the performance gain is the most noticeable, with 43.3\% to 87.7\% lower average error ratio for 1 landmark and 50\% to 80\% lower average error ratio for 20 landmarks than TreeSketch on all graphs.
 
 Full branch tie strategy always outperforms single branch tie strategy with large margins with same landmark sets. The average error ratio shown in Fig.~\ref{fig:accuracy_stepy} of full branch decentralized search with regular index is 17.4\% to 45.7\% lower than single branch decentralized search for 1 landmark and 19.5\% to 61.8\% lower with 20 landmarks on various graphs. As the number of landmark increases, the accuracy gain increases.   
 
-Decentralized search carried on index constructed by greedy heuristic has lower error ratio than decentralized search with regular index. The average error ratio shown in Fig.~\ref{fig:accuracy_stepy} is 14.5\% to 60.2\% lower for single branch and 21.1\% to 63.3\% lower for full branch for 1 landmark. For 20 landmarks, the search is 10.4\% to 68.8\% lower for single branch and 12.8\% to 75\% lower for full branch.
+Decentralized search carried on index constructed with highest path degree has lower error ratio than decentralized search with regular index. The average error ratio shown in Fig.~\ref{fig:accuracy_stepy} is 14.5\% to 60.2\% lower for single branch and 21.1\% to 63.3\% lower for full branch for 1 landmark. There are similar trends for 20 landmarks.
+%, the search is 10.4\% to 68.8\% lower for single branch and 12.8\% to 75\% lower for full branch.
 
 \subsection{Path Diversity}
 \label{eval_diversity}

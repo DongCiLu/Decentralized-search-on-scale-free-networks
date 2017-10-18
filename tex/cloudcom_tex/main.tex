@@ -331,14 +331,15 @@
 % Do not put math or special symbols in the title.
 \title{Decentralized Search for Shortest Path Approximation in Large-scale Complex Networks}
 
-\author{\IEEEauthorblockN{Zheng Lu, Yunhe Feng\IEEEauthorrefmark{1}, 
+\author{\IEEEauthorblockN{Zheng Lu, Yunhe Feng, %\IEEEauthorrefmark{1}, 
+%\thanks{Corresponding author},
 Qing Cao}
 \IEEEauthorblockA{
 Department of Electrical Engineering and Computer Science\\
 University of Tennessee, Knoxville\\
-Email: \{zlu12, yfeng14, cao\}@utk.edu\\
-\IEEEauthorrefmark{1}Corresponding author}
-\\[-6.5ex]
+Email: \{zlu12, yfeng14\}@vols.utk.edu, cao@utk.edu\\
+%\IEEEauthorrefmark{1}Corresponding author
+}\\[-6.5ex]
 }
 
 % author names and affiliations
@@ -398,7 +399,7 @@ Email: \{zlu12, yfeng14, cao\}@utk.edu\\
 \begin{abstract}
 Finding approximated shortest paths for extremely large-scale complex networks is a challenging problem, where existing works require large overhead to achieve high accuracy and diversity for estimated paths, especially for large graphs with millions of vertices. In this paper, we propose an online search approach based on preprocessed indexes, to approximate point-to-point shortest paths. The approach is able to find more accurate and diverse paths with limited index overhead and requires low search overhead. 
 %The level of accuracy and required resource can be balanced by dynamically controlling the search space to meet various application needs. 
-Furthermore, a new heuristic index construction algorithm is introduced that can greatly increase the approximation accuracy and involve no additional index overhead. To handle extreme size graphs, we build a query processing system with our algorithm on distributed graph processing platforms. The system also supports parallel processing of online searches to achieve high throughput for a large number of queries. We evaluate our algorithm on various real-world graphs from different disciplines with up to billions of edges, and we demonstrate that our system can process hundreds of thousand queries per second on these graphs with reduced overhead.
+Furthermore, a new path degree based index construction algorithm is introduced that can greatly increase the approximation accuracy and involve no additional index overhead. To handle extreme size graphs, we build a query processing system with our algorithm on distributed graph processing platforms. The system also supports parallel processing of online searches to achieve high throughput for a large number of queries. We evaluate our algorithm on various real-world graphs from different disciplines with up to billions of edges, and we demonstrate that our system can process hundreds of thousand queries per second on these graphs with reduced overhead.
 \end{abstract}
 
 % no keywords
@@ -430,10 +431,8 @@ Furthermore, a new heuristic index construction algorithm is introduced that can
 %
 %
 %% use section* for acknowledgment
-%\section*{Acknowledgment}
-%
-%
-%The authors would like to thank...
+\section*{Acknowledgment}
+We would like to thank the anonymous reviewers for their insightful comments. The work reported in this paper was supported in part by the grant  USDA NIFA 2017-67007-26150.
 %
 %
 %

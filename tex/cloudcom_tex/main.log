@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.26)  7 AUG 2017 13:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.11)  16 OCT 2017 10:27
 entering extended mode
 **./main.tex
 (main.tex
-LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 (IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
 -- See the "IEEEtran_HOWTO" manual for usage information.
@@ -108,7 +108,7 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
-Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
  ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
@@ -117,7 +117,7 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
-File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
@@ -131,7 +131,7 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@width=\dimen127
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2016/06/28 v2.15d AMS math features
+Package: amsmath 2016/11/05 v2.16a AMS math features
 \@mathmargin=\skip44
 
 For additional information on amsmath, use the `?' option.
@@ -149,20 +149,20 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count95
-LaTeX Info: Redefining \frac on input line 199.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count96
 \leftroot@=\count97
-LaTeX Info: Redefining \overline on input line 297.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count98
 \DOTSCASE@=\count99
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box28
 \strutbox@=\box29
 \big@size=\dimen130
-LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count100
 \c@MaxMatrixCols=\count101
 \dotsspace@=\muskip10
@@ -183,8 +183,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \multlinegap=\skip45
 \multlinetaggap=\skip46
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2739.
-LaTeX Info: Redefining \] on input line 2740.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty"
 Package: amsthm 2015/03/04 v2.20.2
 \thm@style=\toks21
@@ -196,7 +196,7 @@ Package: amsthm 2015/03/04 v2.20.2
 \thm@postskip=\skip48
 \thm@headsep=\skip49
 \dth@everypar=\toks26
-) ("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithm.sty"
+) (C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
@@ -212,10 +212,10 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \@float@every@algorithm=\toks29
 \c@algorithm=\count108
 )
-("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algpseudocode.sty"
+(C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algpseudocode.sty
 Package: algpseudocode 
 
-("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algorithmicx.sty"
+(C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
@@ -231,11 +231,11 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip52
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) ("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\latex\threeparttable\threeparttable.sty"
+) (C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\latex\threeparttable\threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
 \@tempboxb=\box32
 )
-("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\latex\subfigure\subfigure.sty"
+(C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\latex\subfigure\subfigure.sty
 Package: subfigure 2002/07/30 v2.1.4 subfigure package
 \subfigtopskip=\skip53
 \subfigcapskip=\skip54
@@ -251,7 +251,7 @@ Package: subfigure 2002/07/30 v2.1.4 subfigure package
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
-("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\latex\subfigure\subfigure.cfg")
+(C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\latex\subfigure\subfigure.cfg)
 \subfig@top=\skip57
 \subfig@bottom=\skip58
 )
@@ -273,7 +273,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 324.
 LaTeX Font Info:    ... okay on input line 324.
 
 -- Lines per column: 56 (exact).
-("C:\Users\Zheng Lu\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\luzhe\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count121
 \scratchdimen=\dimen139
@@ -287,14 +287,14 @@ LaTeX Font Info:    ... okay on input line 324.
 \makeMPintoPDFobject=\count126
 \everyMPtoPDFconversion=\toks31
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
-Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
-Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -328,49 +328,41 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 394.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 394.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 395.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 394.
- (introduction.tex [1{C:/Users/Zheng Lu/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 395.
+ (introduction.tex [1{C:/Users/luzhe/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]) (relatedwork.tex) (searching.tex
-<figures/new_illustrate/ds_common.pdf, id=10, 298.86656pt x 286.82156pt>
+<figures/new_illustrate/ds_common.pdf, id=9, 298.86656pt x 286.82156pt>
 File: figures/new_illustrate/ds_common.pdf Graphic file (type pdf)
  <use figures/new_illustrate/ds_common.pdf>
 Package pdftex.def Info: figures/new_illustrate/ds_common.pdf used on input line 15.
 (pdftex.def)             Requested size: 165.12378pt x 158.4701pt.
 
-<figures/new_illustrate/ds_bidirectional.pdf, id=11, 298.86656pt x 286.82156pt>
+<figures/new_illustrate/ds_bidirectional.pdf, id=10, 298.86656pt x 286.82156pt>
 File: figures/new_illustrate/ds_bidirectional.pdf Graphic file (type pdf)
 
 <use figures/new_illustrate/ds_bidirectional.pdf>
 Package pdftex.def Info: figures/new_illustrate/ds_bidirectional.pdf used on input line 16.
 (pdftex.def)             Requested size: 165.12378pt x 158.4701pt.
- <figures/new_illustrate/ds_tie.pdf, id=12, 298.86656pt x 286.82156pt>
+ <figures/new_illustrate/ds_tie.pdf, id=11, 298.86656pt x 286.82156pt>
 File: figures/new_illustrate/ds_tie.pdf Graphic file (type pdf)
 
 <use figures/new_illustrate/ds_tie.pdf>
 Package pdftex.def Info: figures/new_illustrate/ds_tie.pdf used on input line 17.
 (pdftex.def)             Requested size: 165.12378pt x 158.4701pt.
  [2]
-Overfull \hbox (9.04062pt too wide) detected at line 86
-\OML/cmm/m/it/10 d[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v; t\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 p[]\OT1
-/cmr/m/n/10 (\OML/cmm/m/it/10 v; t\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 j\OML/cmm/m/it/
-10 p[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u; t\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j   \OT1/cmr/m/n/10 1 = \OML/cmm/m/it/10 d
-[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u; t\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 1
- []
-
-<./figures/new_illustrate/bfs_illustrate.pdf, id=22, 767.86874pt x 266.19452pt>
+<./figures/new_illustrate/bfs_illustrate.pdf, id=21, 767.86874pt x 266.19452pt>
 File: ./figures/new_illustrate/bfs_illustrate.pdf Graphic file (type pdf)
 
 <use ./figures/new_illustrate/bfs_illustrate.pdf>
-Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 102.
+Package pdftex.def Info: ./figures/new_illustrate/bfs_illustrate.pdf used on input line 99.
 (pdftex.def)             Requested size: 516.0pt x 178.88962pt.
  [3 <./figures/new_illustrate/ds_common.pdf> <./figures/new_illustrate/ds_bidirectional.pdf
 
@@ -380,54 +372,46 @@ e group included in a single page
 
 pdfTeX warning: pdflatex.exe (file ./figures/new_illustrate/ds_tie.pdf): PDF inclusion: multiple pdfs with page group in
 cluded in a single page
->]) (preprocessing.tex
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (implementation.tex <./figures/new_illustrate/system.pdf, id=189, 1027.43848pt x 303.534pt>
+>]) (preprocessing.tex) (implementation.tex [4 <./figures/new_illustrate/bfs_illustrate.pdf>]
+<./figures/new_illustrate/system.pdf, id=413, 1027.43848pt x 303.534pt>
 File: ./figures/new_illustrate/system.pdf Graphic file (type pdf)
-
-<use ./figures/new_illustrate/system.pdf>
+ <use ./figures/new_illustrate/system.pdf>
 Package pdftex.def Info: ./figures/new_illustrate/system.pdf used on input line 9.
 (pdftex.def)             Requested size: 516.0pt x 152.44745pt.
- [4 <./figures/new_illustrate/bfs_illustrate.pdf>]
+
 Underfull \hbox (badness 3019) in paragraph at lines 20--21
 []\OT1/ptm/m/n/10 Decentralized search can be im-ple-mented as vertex-
  []
 
-
-Underfull \vbox (badness 1688) has occurred while \output is active []
-
-) (evaluation.tex [5 <./figures/new_illustrate/system.pdf>]
+) (evaluation.tex
 Underfull \hbox (badness 1540) in paragraph at lines 34--38
 \OT1/ptm/m/n/10 dif-fer-ent dis-ci-plines col-lected from Snap [[]] and Net-
  []
 
-<./figures/accuracy_stepy.pdf, id=444, 1228.59pt x 722.7pt>
+[5] <./figures/accuracy_stepy.pdf, id=419, 1011.78pt x 578.16pt>
 File: ./figures/accuracy_stepy.pdf Graphic file (type pdf)
  <use ./figures/accuracy_stepy.pdf>
-Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 55.
-(pdftex.def)             Requested size: 516.0pt x 303.53192pt.
- [6]
-<./figures/throughput.pdf, id=449, 1228.59pt x 433.62pt>
+Package pdftex.def Info: ./figures/accuracy_stepy.pdf used on input line 56.
+(pdftex.def)             Requested size: 516.0pt x 294.8577pt.
+
+<./figures/throughput.pdf, id=420, 1228.59pt x 433.62pt>
 File: ./figures/throughput.pdf Graphic file (type pdf)
  <use ./figures/throughput.pdf>
-Package pdftex.def Info: ./figures/throughput.pdf used on input line 135.
+Package pdftex.def Info: ./figures/throughput.pdf used on input line 138.
 (pdftex.def)             Requested size: 490.19843pt x 173.00824pt.
-
-<./figures/scale_machine_throughput.pdf, id=450, 578.16pt x 433.62pt>
+ [6 <./figures/new_illustrate/system.pdf>] <./figures/scale_machine_throughput.pdf, id=450, 578.16pt x 433.62pt>
 File: ./figures/scale_machine_throughput.pdf Graphic file (type pdf)
- <use ./figures/scale_machine_throughput.pdf>
-Package pdftex.def Info: ./figures/scale_machine_throughput.pdf used on input line 151.
-(pdftex.def)             Requested size: 123.84283pt x 92.88242pt.
 
-<./figures/scale_query_throughput.pdf, id=451, 578.16pt x 433.62pt>
-File: ./figures/scale_query_throughput.pdf Graphic file (type pdf)
- <use ./figures/scale_query_throughput.pdf>
-Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line 152.
+<use ./figures/scale_machine_throughput.pdf>
+Package pdftex.def Info: ./figures/scale_machine_throughput.pdf used on input line 154.
 (pdftex.def)             Requested size: 123.84283pt x 92.88242pt.
-)
-(conclusion.tex) [7 <./figures/accuracy_stepy.pdf>] (main.bbl)
+ <./figures/scale_query_throughput.pdf, id=451, 578.16pt x 433.62pt>
+File: ./figures/scale_query_throughput.pdf Graphic file (type pdf)
+
+<use ./figures/scale_query_throughput.pdf>
+Package pdftex.def Info: ./figures/scale_query_throughput.pdf used on input line 155.
+(pdftex.def)             Requested size: 123.84283pt x 92.88242pt.
+) (conclusion.tex) [7 <./figures/accuracy_stepy.pdf>] (main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -440,31 +424,28 @@ Before submitting the final camera ready copy, remember to:
  process uses the appropriate paper size.
 
 [8 <./figures/throughput.pdf> <./figures/scale_machine_throughput.pdf> <./figures/scale_query_throughput.pdf>] (main.aux
-)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+) ) 
 Here is how much of TeX's memory you used:
- 4024 strings out of 493333
- 61694 string characters out of 3139182
- 137347 words of memory out of 3000000
- 7467 multiletter control sequences out of 15000+200000
- 42309 words of font info for 84 fonts, out of 3000000 for 9000
+ 4010 strings out of 493323
+ 61419 string characters out of 3139065
+ 139879 words of memory out of 3000000
+ 7462 multiletter control sequences out of 15000+200000
+ 40208 words of font info for 77 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,13n,27p,1307b,320s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 1393970 bytes).
+ 39i,11n,25p,1307b,296s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+
+Output written on main.pdf (8 pages, 1415339 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
+ 553 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

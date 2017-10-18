@@ -20,7 +20,7 @@ Previous works on applying online search to indexed graph limit the search space
 Decentralized search is very light-weighted. The number of visited vertices for decentralized search is bounded by the diameter of the network. Considering that complex networks usually have relatively short diameters, decentralized search can finish in a limited number of steps. The search can also adjust its search space to balance between different levels of performance and required resources for each search. %This makes the search very versatile to meet various application needs.
 
 The performance of decentralized search relies heavily on indexes. Landmark selecting problem has been well studied in ~\cite{Potamias:2009:FSP:1645953.1646063,6927522}. We observe that even with the same landmark set, choosing which shortest path from a vertex to the landmark to be indexed also plays an important role in the accuracy of the online search. %To achieve better accuracy without increasing index overhead, 
-Therehore, we introduce a heuristic index construction algorithm to control shortest paths to be indexed during preprocessing. The proposed approach outperforms random shortest path indexing by a large margin on real networks.
+Therehore, we introduce a path degree based index construction algorithm to control shortest paths to be indexed during preprocessing. The proposed approach outperforms random shortest path indexing by a large margin on real networks.
 
 Based on our algorithm design, we further develop a query-processing system based on distributed cloud infrastructure to support large scale graph with billions of edges. In this platform, users first submit their graphs for preprocessing needs. The graph processing engine will assign resources according to application's need for accuracy and construct an index for the input graph. Such an index is a shared resource and can later be used by various users with large volumes of queries.
 %users may submit large volumes of queries repeatedly, for which responses will be generated. %Applications that generate queries (on the client side) can provide their desired accuracy levels and the graph processing engine can dynamically adjust search space of decentralized search to meet differentiated levels of accuracies.
@@ -34,7 +34,7 @@ Our contributions can be summarized as follows:
 
 \begin{itemize}
 	\item We propose index guided decentralized search for shortest path approximation;
-	\item We design a heuristic index construction algorithm to improve online search accuracy without increasing index overheads;
+	\item We design a path degree based index construction algorithm to improve online search accuracy without increasing index overheads;
 	\item We achieve efficient query processing and good scalability with distributed implementation and parallel processing;
 	\item Experiments on various real-world complex networks demonstrate that the proposed algorithm is promising in approximating shortest path compared to existing works.
 \end{itemize}
