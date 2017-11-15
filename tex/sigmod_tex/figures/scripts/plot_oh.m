@@ -1,5 +1,5 @@
 k_all=x;
-h=plot(k_all);
+h=bar(k_all);
 %set(gca,'Xlim',[0 10],'XTick',1:1:9,'XTickLabel',{'Google' 'Wiki' 'Skitter' 'Gene' 'Baidu' 'Facebook' 'Livejournal' 'hollywood' 'friendster'});
 set(gca, 'YScale', 'log');
 set(gca, 'Fontname', 'Times New Roman', 'Fontsize', 11);
