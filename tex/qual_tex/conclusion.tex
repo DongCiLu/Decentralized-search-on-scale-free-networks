@@ -1,8 +1,0 @@
-\section{Conclusions}
-\label{conclusion}
-
-In this paper, we thoroughly studied state-of-the-art algorithms of point-to-point shortest path/distance algorithms in large-scale complex networks. Algorithms in this field usually consist of preprocessing and online searching. 
-
-Preprocessing are used to generate data structures that can be used to speed up the following online searching. We classify previous works into three preprocessing categories and studied their differences. Among three preprocessing algorithms, landmark based algorithms have the best scalability but can only return estimated results. 2-hop cover and tree decomposition do not work well for large-scale complex network due to large computation and storage overhead. Tree decomposition algorithms also have non-constant query time. 
-
-For online searching, we studied several different algorithms and evaluate them in terms of quality of returned path and number of visited vertices. A* search can give exact shortest paths, but need to visit large number of vertices for each query. Decentralized search achieve higher level of scalability due to it only require local information and does not need to maintain a priority queue, but usually only return estimated results. Subgraph BFS/Dijkstra traversal also has good scalability due to the size of subgraph is usually very small. 
