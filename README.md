@@ -1,8 +1,7 @@
 # Decentralized search on power-law graphs.
 Decentralized search based on landmarks for fast shortest path approximation in large-scale power-law graphs. 
 
-See more details in our paper:
-Lu, Zheng, Yunhe Feng, and Qing Cao. "Decentralized Search for Shortest Path Approximation in Large-scale Complex Networks." 2017 IEEE International Conference on Cloud Computing Technology and Science (CloudCom). IEEE, 2017.
+See more details in our paper:[Decentralized Search for Shortest Path Approximation in Large-scale Complex Networks](http://yunhefeng.me/material/Shortest_Path.pdf)
 
 Implemented on Powergraph, a distributed graph processing platform.
 
