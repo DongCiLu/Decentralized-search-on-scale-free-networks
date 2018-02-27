@@ -11,7 +11,7 @@ The algorithm contains two phases, an offline preprocessing phase which builds l
 Indices used in our system consist of several landmarks and a shortest path tree from each landmark. It is later used by decentralized search as distance estimates between arbitrary vertex pairs. To make the search works more efficiently, we want to construct the shortest path tree in a way that the distance estimates for average case is more accurate. Our idea is to index shortest pathes with higher "path degree". 
 
 ### The intuition:
-<img src="/examples/landmark_intuitive.png" width="900px"/>
+<img src="/example/landmark_intuitive.png" width="900px"/>
 
 ![alt text](./example/landmark_intuitive.png?raw=true "Shortest Path Tree Indexing Intuition")   
 
