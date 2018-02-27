@@ -12,6 +12,7 @@ Indices used in our system consist of several landmarks and a shortest path tree
 
 ### The intuition:
 <img src="./examples/landmark_intuitive.png" width="900px"/>
+
 ![alt text](./example/landmark_intuitive.png?raw=true "Shortest Path Tree Indexing Intuition")   
 
 ### Index construction based on "path degree":
