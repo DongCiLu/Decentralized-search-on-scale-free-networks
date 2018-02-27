@@ -6,7 +6,7 @@ Implemented on Powergraph, a distributed graph processing platform.
 
 Raw and denoised image of celegans slice:
 
-![alt text](./examples/raw_image.jpg?raw=true "Raw Image of celegans slice")     ![alt text](./examples/denoised_image.jpg?raw=true "Denoised Image of celegans slice")
+![alt text](./tex/cloudcom_tex/figures/new_illustrate/system.pdf?raw=true "System Overview")     ![alt text](./examples/denoised_image.jpg?raw=true "Denoised Image of celegans slice")
 
 
 We use our dataset to train both unconditional GAN and conditional GAN, based on TFGAN library and get some preliminary results:
