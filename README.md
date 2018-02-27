@@ -13,14 +13,12 @@ Indices used in our system consist of several landmarks and a shortest path tree
 ### The intuition:
 <img src="/example/landmark_intuitive.png" width="450px"/>
 
-![alt text](./example/landmark_intuitive.png?raw=true "Shortest Path Tree Indexing Intuition")   
-
 ### Index construction based on "path degree":
 ![alt text](./example/index_construction.png?raw=true "Index Construction Algorithm")   
 
 ## Search Algorithm
 When performing decentralized search on landmark based indices, the search at each step only examine its neighbor and make the decision on distance estimates to the target. The search terminates once it reaches any vertex on the indexed shortest path to the target vertex.
-![alt text](./example/search.png?raw=true "Index Guided decentralized search")   
+<img src="/example/search.png" width="450px"/>
 
 ## Performance
 ### Accuracy
