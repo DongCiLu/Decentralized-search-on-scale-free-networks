@@ -27,7 +27,7 @@ When performing decentralized search on landmark based indices, the search at ea
 ## Performance
 ### Tested on datasets
 
-<img src="/example/dataset.png" width="900px"/> 
+<img src="/example/dataset.png" width="450px"/> 
 
 ### Accuracy
 
