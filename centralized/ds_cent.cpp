@@ -524,15 +524,7 @@ void ds_cent<id_type, dist_type>::test(size_t ktie) {
             }
         }
         total_path_cnt += pair_path.size();
-        //cout << pair_path.size() << endl;
-        /*
-        if (pair_path.size() < 1000) {
-            total_path_cnt += pair_path.size();
-        }
-        else {
-            cout << "too long " << pair_path.size() << endl;
-        }
-        */
+        cout << real_dist << " " << pair_path.size() << endl;
 
         set<id_type> vertex_in_label;
         for (size_t i = 0; i < codes[src].size(); i++) {

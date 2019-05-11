@@ -3,7 +3,7 @@
 CXXFLAGS += -std=c++11
 
 ## Main application file
-MAIN = ds_cent
+MAIN = testcase
 DEPH = 
 DEPCPP = 
 
