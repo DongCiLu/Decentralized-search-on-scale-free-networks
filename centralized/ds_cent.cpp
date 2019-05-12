@@ -477,7 +477,8 @@ void ds_cent<id_type, dist_type>::test(size_t ktie) {
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est_multi += double(est_dist - real_dist) / real_dist;
         out << src << " " << dst << " " 
-            << real_dist << " " << est_dist << endl;
+            << real_dist << " " << est_dist << " "
+            << comp_dist << " " << obv_dist << endl;
         
         /*
         set< vector<id_type> > pair_path;
