@@ -44,8 +44,11 @@ class ds_cent {
 
     private:
         dist_type get_dist(id_type src_id, id_type dst_id, id_type& lca);
+        // single branch search only
         dist_type do_search(id_type src, id_type dst); 
+        // multiple branch search
         dist_type do_search_multi(id_type src, id_type dst, size_t ktie); 
+        // multiple branch search also records estimated path
         dist_type do_search_all(id_type src, id_type dst, 
                 std::set< std::vector<id_type> > &pair_path, size_t ktie); 
         std::vector< std::pair<id_type, dist_type> > 

@@ -44,7 +44,7 @@ ds_cent<id_type, dist_type>::ds_cent(string graphfile, size_t n_tree) :
     }
 
     size_t pos = graphfile.find_last_of("/") + 1;
-    graphname = graphfile.substr(pos, graphfile.size()-pos-8);
+    graphname = graphfile.substr(pos, graphfile.size()-pos-11);
     string ofilename = graphname + "-" + get_time() + ".txt";
     out.open(ofilename.c_str());
 }
@@ -430,12 +430,14 @@ dist_type ds_cent<id_type, dist_type>::tree_sketch(
 
 template <typename id_type, typename dist_type>
 void ds_cent<id_type, dist_type>::test(size_t ktie) {
-    string tcfilename = "./datasets/testcases/withreal/";
-    //string tcfilename = "./datasets/testcases/regular/";
+    string tcfilename = "./datasets/testcases_sp/withreal/";
+    //string tcfilename = "./datasets/testcases_sp/regular/";
     tcfilename += graphname + "_testcases.txt";
+    string detailfilename = graphname + "_" 
+        + to_string(ktie) + "_detail.txt";
     cout << tcfilename << endl;
     ifstream in(tcfilename.c_str());
-    TBreathFS<PGRAPH_TYPE> BFS(net);
+    ofstream out(detailfilename.c_str());
     size_t cnt = 0;
 
     while (cnt < n_exp) {
@@ -470,13 +472,14 @@ void ds_cent<id_type, dist_type>::test(size_t ktie) {
         total_est += double(est_dist - real_dist) / real_dist;
         */
 
-        /*
         est_dist_1 = do_search_multi(src, dst, ktie);
         est_dist_2 = do_search_multi(dst, src, ktie);
         est_dist = est_dist_1 < est_dist_2 ? est_dist_1 : est_dist_2;
         total_est_multi += double(est_dist - real_dist) / real_dist;
-        */
+        out << src << " " << dst << " " 
+            << real_dist << " " << est_dist << endl;
         
+        /*
         set< vector<id_type> > pair_path;
         set< vector<id_type> > pair_path1;
         set< vector<id_type> > pair_path2;
@@ -524,7 +527,7 @@ void ds_cent<id_type, dist_type>::test(size_t ktie) {
             }
         }
         total_path_cnt += pair_path.size();
-        cout << real_dist << " " << pair_path.size() << endl;
+        //cout << real_dist << " " << est_dist << endl;
 
         set<id_type> vertex_in_label;
         for (size_t i = 0; i < codes[src].size(); i++) {
@@ -558,8 +561,10 @@ void ds_cent<id_type, dist_type>::test(size_t ktie) {
 
 
         total_est_all += double(est_dist - real_dist) / real_dist;
+        */
     }
     in.close();
+    out.close();
     cout << endl;
 }
 
@@ -637,19 +642,37 @@ void ds_cent<id_type, dist_type>::reset() {
 }
 
 int main(int argc, char** argv){
+    if (argc < 6) {
+        cout << "USAGE: ./ds_cent graphfilename ntree treemode stepy tie" << endl;
+        return -1;
+    }
     cout << "Step 1: Setting Environment and loading graphs." << endl;
     string graphfile = argv[1];
-    string stepy = argv[2];
-    size_t n_tree = 1;
+    size_t n_tree = atoi(argv[2]);
+    string tree_mode = argv[3];
+    string stepy = argv[4];
+    string ktie_mode = argv[5];
+    int ktie = 10000000; // full tie
+    if (ktie_mode == "1") {
+        ktie = 1;
+    }
+    cout << "Exp Settings: " 
+         << graphfile << " "
+         << n_tree << "trees" << " " 
+         << (tree_mode == "1" ? "path_degree" : "random") << " " 
+         << (stepy == "1" ? "stepy" :  "no_stepy") << " " 
+         << ktie << " " 
+         << endl;
 
     ds_cent<unsigned long, unsigned long> m(graphfile, n_tree);
 
     if (stepy == "1"){
+        // detail results do not support stepy yet.
         for (size_t t = 0; t < n_tree; t++){
             cout << "Step 2: Build index." << endl;
             m.build_index(t);
             cout << "Step 3: Perform dec search." << endl;
-            m.test(10000000);
+            m.test(ktie);
             m.print_info(2);
             m.reset();
         }
@@ -661,12 +684,9 @@ int main(int argc, char** argv){
         }
         m.print_info(1);
         cout << "Step 3: Perform dec search." << endl;
-        size_t ktie = 10000000;
-        //for (size_t ktie = 1; ktie < 50; ktie += 5) {
-            m.test(ktie);
-            m.print_info(2);
-            m.reset();
-        //}
+        m.test(ktie);
+        m.print_info(2);
+        m.reset();
     }
 
     cout << "Done." << endl;
