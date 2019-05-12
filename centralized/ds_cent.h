@@ -37,7 +37,7 @@ class ds_cent {
 
         ds_cent(std::string graphfile, size_t n_tree);
         ~ds_cent();
-        void build_index(size_t t);
+        void build_index(size_t t, std::string tree_mode);
         void test(size_t ktie);
         void print_info(int stage);
         void reset();
@@ -57,7 +57,7 @@ class ds_cent {
                 id_type src, id_type dst, size_t &path_cnt);
         id_type select_root(size_t t);
 
-        void bfs(size_t t, id_type rid);
+        void bfs(size_t t, id_type rid, std::string tree_mode);
 
         std::string get_time();
 

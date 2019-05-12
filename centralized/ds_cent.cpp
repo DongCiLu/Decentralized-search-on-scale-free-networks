@@ -108,7 +108,7 @@ id_type ds_cent<id_type, dist_type>::select_root(size_t t) {
 
 template <typename id_type, typename dist_type>
 void ds_cent<id_type, dist_type>::
-bfs(size_t t, id_type rid){
+bfs(size_t t, id_type rid, string tree_mode){
     map<id_type, long> info_rank;
 
     for (TGRAPH_TYPE::TNodeI NI = net->BegNI(); NI< net->EndNI(); NI++) {
@@ -119,8 +119,11 @@ bfs(size_t t, id_type rid){
     fifo.push(rid);
     codes[rid][t].push_back(rid);
     info_rank[rid] = 0;
+    if (tree_mode == "1")
+        info_rank[rid] = net->GetNI(rid).GetDeg();
     while(!fifo.empty()) {
         id_type pid = fifo.front();
+        long prank = net->GetNI(pid).GetDeg();
         fifo.pop();
         for (size_t i = 0; i < net->GetNI(pid).GetDeg(); ++i) {
             id_type nid = net->GetNI(pid).GetNbrNId(i);
@@ -130,6 +133,14 @@ bfs(size_t t, id_type rid){
                 continue;
 
             long rank = rand() % 1000;
+            if (tree_mode == "1") {
+                rank = prank + net->GetNI(nid).GetDeg();
+                for (int pt = 0; pt < codes[nid].size(); pt ++) {
+                    size_t len = codes[nid][pt].size();
+                    if (len > 1 && pid == codes[nid][pt][len-2])
+                        rank = 0;
+                }
+            }
             if (info_rank[nid] < rank) {
                 if (info_rank[nid] == -1) 
                     fifo.push(nid);
@@ -144,10 +155,11 @@ bfs(size_t t, id_type rid){
 
 
 template <typename id_type, typename dist_type>
-void ds_cent<id_type, dist_type>::build_index(size_t t) {
+void ds_cent<id_type, dist_type>::build_index(
+        size_t t, string tree_mode) {
     cout << "processing " << t+1 << " tree" << endl;
     root_id[t] = select_root(t);
-    bfs(t, root_id[t]);
+    bfs(t, root_id[t], tree_mode);
     n_tree += 1;
 }
 
@@ -671,7 +683,7 @@ int main(int argc, char** argv){
         // detail results do not support stepy yet.
         for (size_t t = 0; t < n_tree; t++){
             cout << "Step 2: Build index." << endl;
-            m.build_index(t);
+            m.build_index(t, tree_mode);
             cout << "Step 3: Perform dec search." << endl;
             m.test(ktie);
             m.print_info(2);
@@ -681,7 +693,7 @@ int main(int argc, char** argv){
     else {
         cout << "Step 2: Build index." << endl;
         for (size_t t = 0; t < n_tree; t++){
-            m.build_index(t);
+            m.build_index(t, tree_mode);
         }
         m.print_info(1);
         cout << "Step 3: Perform dec search." << endl;
