@@ -1,0 +1,119 @@
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0791016
+Avg est: 0
+Avg comp: 0.430348
+Avg obv: 0.573207
+Avg path count: 0
+Avg comp path count: 2.29748
+Avg out ratio: -nan
+Index overhead: 0.00111934GB
+Avg comp time: 1.17055e-05
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0608954
+Avg est: 0
+Avg comp: 0.341002
+Avg obv: 0.543056
+Avg path count: 0
+Avg comp path count: 3.85574
+Avg out ratio: -nan
+Index overhead: 0.0022576GB
+Avg comp time: 2.90441e-05
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0514344
+Avg est: 0
+Avg comp: 0.283714
+Avg obv: 0.512388
+Avg path count: 0
+Avg comp path count: 5.09442
+Avg out ratio: -nan
+Index overhead: 0.00338302GB
+Avg comp time: 4.89976e-05
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0307495
+Avg est: 0
+Avg comp: 0.184722
+Avg obv: 0.359902
+Avg path count: 0
+Avg comp path count: 4.09322
+Avg out ratio: -nan
+Index overhead: 0.00464588GB
+Avg comp time: 7.05806e-05
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0278159
+Avg est: 0
+Avg comp: 0.168034
+Avg obv: 0.34986
+Avg path count: 0
+Avg comp path count: 4.87536
+Avg out ratio: -nan
+Index overhead: 0.00577142GB
+Avg comp time: 9.57264e-05
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0260642
+Avg est: 0
+Avg comp: 0.156613
+Avg obv: 0.345022
+Avg path count: 0
+Avg comp path count: 5.66418
+Avg out ratio: -nan
+Index overhead: 0.00690738GB
+Avg comp time: 0.000124465
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
+Number of experiments: 50000
+Avg real: 3.05526
+Avg est all: 0
+Avg est multi: 0.0248869
+Avg est: 0
+Avg comp: 0.14598
+Avg obv: 0.339432
+Avg path count: 0
+Avg comp path count: 6.5042
+Avg out ratio: -nan
+Index overhead: 0.00803414GB
+Avg comp time: 0.000156353
+Avg single time: 0
+Avg full time: 0
+Avg single path size: 0
+Avg full path size: 0
+------------------
