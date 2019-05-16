@@ -23,6 +23,7 @@ if __name__ == '__main__':
                         comp_save = 0
                         est_exact = 0
                         comp_exact = 0
+                        obv_exact = 0
                         for line in inf:
                             segs = line.split(' ')
                             sp = int(segs[2])
@@ -38,7 +39,9 @@ if __name__ == '__main__':
                                 est_exact += 1
                             if comp == sp:
                                 comp_exact += 1
+                            if obv == sp:
+                                obv_exact += 1
 
-                        outf.write("{} {} {} {} {}\n".format(
+                        outf.write("{} {} {} {} {} {}\n".format(
                             f, est_save, comp_save, 
-                            est_exact, comp_exact))
+                            est_exact, comp_exact, obv_exact))
