@@ -1,0 +1,8 @@
+Livejournal_1_detail.txt 29450 4868 10745 2740
+bio_1_detail.txt 24109 17374 27065 23073
+econ_1_detail.txt 12223 12095 47488 47336
+hollywood_1_detail.txt 29847 17223 12614 7388
+orkut_1_detail.txt 24126 8306 13292 7300
+protein_1_detail.txt 24397 16424 28005 21947
+skitter_1_detail.txt 40617 23616 18737 9318
+wiki_1_detail.txt 37677 20591 31592 19856
