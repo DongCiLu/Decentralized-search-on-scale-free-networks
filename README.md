@@ -39,3 +39,7 @@ When performing decentralized search on landmark based indices, the search at ea
 ### Throughput
 
 <img src="/example/throughput.png" width="900px"/> 
+
+## How to run the code
+The configuration script and run script for distributed version locate in DecSearch/distributed/utils/
+The configuration script and run script for centralized version locate in DecSearch/centralized/utils/
